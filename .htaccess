@@ -1,0 +1,14 @@
+RewriteEngine On
+
+ServerSignature Off
+Options All -Indexes
+Options +FollowSymLinks
+AddDefaultCharset utf-8
+LimitRequestBody 10000000
+IndexIgnore *.php *.html *.js *.css
+AddType application/x-httpd-php .foo
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^(.*)$ index.php?url=$1&id=$2 [L,QSA]

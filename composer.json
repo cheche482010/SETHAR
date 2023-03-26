@@ -1,0 +1,47 @@
+{
+    "description": "Sistema IA reino Plantae",
+    "type": "project",
+    "authors": [{
+        "name": "Jossseth Arroyo",
+        "email": "cheche482010@gmail.com",
+        "role": "Programador"
+    }, {
+        "name": "Jesus Cuicas",
+        "email": "jesuscuigo22@gmail.com",
+        "role": "Programador"
+    }],
+    "version": "3.0",
+    "license": "SETH",
+    "autoload": {
+        "classmap": ["app/", "controlador/",  "modelo/"],
+        "psr-4": {
+            "App\\": "app/",
+            "Controlador\\": "controlador/",
+            "Validacion\\": "controlador/backend/",
+            "Modulo\\": "modelo/",
+            "Prueba\\": "tests/",
+            "Traits\\": "traits/"
+        },
+        "files": [ "app/Base_Datos.php","app/Config.php", "app/App.php", "app/CRUD.php",  "app/Modelo.php", "app/Vista.php", "app/Controlador.php"]
+    },
+    "autoload-dev": {
+        "classmap": ["app/", "controlador/",  "modelo/"],
+        "psr-4": {
+            "App\\": "app/",
+            "Controlador\\": "controlador/",
+            "Modelo\\": "modelo/",
+            "Traits\\": "traits/",
+            "Entidad\\": "modelo/entidad/"
+        }
+    },
+    "require": {
+        "php": ">=5.3.3 <=8.1.1",
+        "doctrine/dbal": "^3.3",
+        "doctrine/orm": "^2.14",
+        "doctrine/cache": "^1.11",
+        "doctrine/annotations": "^1.0"
+    },
+    "config": {
+        "optimize-autoloader": true
+    }
+}
