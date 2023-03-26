@@ -1,18 +1,17 @@
 <?php
 // =============CONTROLADOR=========
 class Controlador
-{  
+{
     #Public: acceso sin restricción.
     #Protected:Solo puede ser accesado por una clase heredada y la clase que lo define.
-    #Private:Solo puede ser accesado por la clase que lo define. 
+    #Private:Solo puede ser accesado por la clase que lo define.
     protected $controlador;
     protected $modelo;
-    protected $vista;
+    public $vista;
 
     public function __construct()
     {
         $this->Cargar_Vista();
-        
     }
 
     public function Cargar_Modelo($model)
@@ -29,14 +28,33 @@ class Controlador
                 $this->modelo = new $modelName();
             } else {
                 $this->error = '[Error Objeto] => "El Objeto: [ ' . $modelName . ' ] No puede ser Instanciado."';
-                return $this->Capturar_Error($this->error);
             }
         }
     }
-    
+
+    public function Cargar_Modelo2($model)
+    {
+        $modelName = $model . '_Modelo';
+
+        // Autocarga de clases
+        spl_autoload_register(function ($className) {
+            $path = str_replace('_', '/', $className) . '.php';
+            if (file_exists($path)) {
+                require_once $path;
+            }
+        });
+
+        // Creación de la instancia del modelo
+        try {
+            $this->modelo = ModeloFactory::crear($modelName);
+        } catch (Exception $e) {
+            throw new Exception('No se pudo cargar el modelo: ' . $e->getMessage());
+        }
+    }
+
     public function Cargar_Vista()
     {
         $this->vista = new Vista();
     }
-    
+
 }

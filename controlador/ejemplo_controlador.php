@@ -1,6 +1,6 @@
 <?php
 
-class Plantas extends Controlador
+class Ejemplo extends Controlador
 {
 
     public function __construct()

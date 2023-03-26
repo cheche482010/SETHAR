@@ -1,7 +1,4 @@
 <?php
-require_once "modelo/entidad/plantas.php";
-
-use App\Modelo\Entidad\Plantas_Entidad;
 
 class Plantas_Modelo extends Modelo
 {
@@ -23,12 +20,10 @@ class Plantas_Modelo extends Modelo
     public function _SQL_(string $SQL): void        {$this->SQL = $SQL;}
     public function _Tipo_(int $tipo): void         {$this->tipo = $tipo;}
     public function _Datos_(array $datos): void     {$this->datos = $datos;}
-    public function _Estado_(array $estado): void   {$this->estado = $estado;}
 
     public function Get()
     {
-        $this->plantas = $this->Manager()->getRepository(Plantas_Entidad::class)->findAll();
-        return $this->plantas;
+        
     }
 
     public function Administrar()
@@ -38,18 +33,18 @@ class Plantas_Modelo extends Modelo
             switch ($this->tipo) {
                 case '0': #tipo 0 trae consultas de la bd retorna a un array con los datos
                     $this->resultado = $this->conexion->executeQuery($this->sentencia)->fetchAllAssociative();
-                    $this->Manager()->close();
+                    $this->Desconectar();
                     return $this->resultado;
                     break;
                 case '1': #tipo 1 ejecuta un INSERT , UPDATE, DELETE  retorna a true (si no hay falla)
                     $this->DBAL = $this->conexion->executeUpdate($this->sentencia, $this->datos);
-                    $this->Manager()->close();
+                    $this->Desconectar();
                     return $this->DBAL > 0;
                     return true;
                     break;
                 case '2':           
                     $this->resultado = $this->conexion->executeQuery($this->sentencia, $this->datos)->fetchAllAssociative();
-                    $this->Manager()->close();
+                    $this->Desconectar();
                     return $this->resultado;
                     break;
                 default: # mensaje error si la peticion fue incorrecta

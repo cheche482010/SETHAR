@@ -13,7 +13,7 @@ interface Metodos_BD
     public function Conectar();
     public function Probar_Conexion();
     public function Error_Conexion();
-    public function Manager();
+    public function Configuracion();
 }
 class BASE_DATOS implements Metodos_BD
 {
@@ -66,7 +66,7 @@ class BASE_DATOS implements Metodos_BD
     public function Error_Conexion()
     {return $this->error_conexion;}
 
-    public function Manager()
+    public function Configuracion()
     {return $this->manager;}
 
 }
