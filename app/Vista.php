@@ -14,4 +14,9 @@ class Vista
     {
         require 'vista/' . $nombre . '.php';
     }
+
+    public static function Recursos($nombre)
+    {
+        include('vista/publico/' . $nombre . '.php');
+    }
 }

@@ -1,8 +1,12 @@
 <?php
-namespace App\Config;
 
 class Configuracion
 {
+    public static function Titulo()
+    {
+        echo "SETHAR";
+    }
+
     public static function URL()
     {
         $protocol = empty($_SERVER['HTTPS']) ? 'http://' : 'https://';
@@ -12,12 +16,7 @@ class Configuracion
         unset($protocol, $domain, $root);
         return $url;
     }
-
-    public static function ATAJO()
-    {
-        return '123456';
-    }
-
+ 
     public static function Hora()
     {
         return date('h:i A');
@@ -31,5 +30,5 @@ class Configuracion
     public static function Meses()
     {
         return ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-    }
+    }    
 }

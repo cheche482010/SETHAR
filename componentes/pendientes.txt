@@ -12,4 +12,4 @@
 +uso de clases para atributos html
 + vistas con css y js propios cada uno 
 + vista usar un index que distribuya las funcionalidades de cada vista mediante funciones
-
++ CENTRALIZAR LA EJECUCION DE UNA SENTENCIA A UNA SOLA FUNCION Y QUE AUTODETECTE EL TIPO DE EJECUCION
