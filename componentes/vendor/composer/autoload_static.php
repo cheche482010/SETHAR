@@ -16,23 +16,19 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
-        '709248c3c42e6e199a15ee82b046c917' => __DIR__ . '/../..' . '/app/Base_Datos.php',
-        'a2c9b60a31662db3fa324e21415a4936' => __DIR__ . '/../..' . '/app/Config.php',
-        '87fbf896c2e050df8a34c5a57cdb1f51' => __DIR__ . '/../..' . '/app/App.php',
-        '4184043682d9d9fa2338bcc4f68588eb' => __DIR__ . '/../..' . '/app/CRUD.php',
-        '1fec60ba75ef50468f070154edb485da' => __DIR__ . '/../..' . '/app/Modelo.php',
-        '0be03f91d5c2966ec1ffc960daf1f183' => __DIR__ . '/../..' . '/app/Vista.php',
-        '17998c6198cc7334d84e7abacdcdd929' => __DIR__ . '/../..' . '/app/Controlador.php',
+        '6334c8de42591719bbdb2e6e734e23cf' => __DIR__ . '/../..' . '/Errores.php',
+        '302be6f58c7e71e387883f30a9a9c8f1' => __DIR__ . '/../..' . '/../app/Configuracion.php',
+        'fc1eb74e65b94bd8a92ed1ee35667605' => __DIR__ . '/../..' . '/../app/Base_Datos.php',
+        'ea29937c56fd21cb5adf867e5a4bcc5f' => __DIR__ . '/../..' . '/../app/App.php',
+        'fa50c74d01bd30857123cff478cac21c' => __DIR__ . '/../..' . '/../app/Modelo.php',
+        '6db527058116eed46b170878a9fe4b4b' => __DIR__ . '/../..' . '/../app/Vista.php',
+        '3722b5b640faecb591f79f11c98251b9' => __DIR__ . '/../..' . '/../app/Controlador.php',
     );
 
     public static $prefixLengthsPsr4 = array (
         'V' => 
         array (
             'Validacion\\' => 11,
-        ),
-        'T' => 
-        array (
-            'Traits\\' => 7,
         ),
         'S' => 
         array (
@@ -52,12 +48,16 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
             'Psr\\Log\\' => 8,
             'Psr\\Container\\' => 14,
             'Psr\\Cache\\' => 10,
-            'Prueba\\' => 7,
+            'Pruebas\\' => 8,
+            'Propiedades\\' => 12,
         ),
         'M' => 
         array (
-            'Modulo\\' => 7,
             'Modelo\\' => 7,
+        ),
+        'F' => 
+        array (
+            'Funciones\\' => 10,
         ),
         'E' => 
         array (
@@ -90,12 +90,8 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
     public static $prefixDirsPsr4 = array (
         'Validacion\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/controlador/backend',
-        ),
-        'Traits\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/traits',
-            1 => __DIR__ . '/../..' . '/traits',
+            0 => __DIR__ . '/../..' . '/validacion',
+            1 => __DIR__ . '/../..' . '/validacion',
         ),
         'Symfony\\Polyfill\\Php80\\' => 
         array (
@@ -149,21 +145,30 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         array (
             0 => __DIR__ . '/..' . '/psr/cache/src',
         ),
-        'Prueba\\' => 
+        'Pruebas\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/tests',
+            0 => __DIR__ . '/../..' . '/../tests',
+            1 => __DIR__ . '/../..' . '/../tests',
         ),
-        'Modulo\\' => 
+        'Propiedades\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/modelo',
+            0 => __DIR__ . '/../..' . '/../modelo/propiedades',
+            1 => __DIR__ . '/../..' . '/../modelo/propiedades',
         ),
         'Modelo\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/modelo',
+            0 => __DIR__ . '/../..' . '/../modelo',
+            1 => __DIR__ . '/../..' . '/../modelo',
+        ),
+        'Funciones\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/traits',
+            1 => __DIR__ . '/../..' . '/traits',
         ),
         'Entidad\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/modelo/entidad',
+            0 => __DIR__ . '/../..' . '/../controlador/propiedades',
+            1 => __DIR__ . '/../..' . '/../controlador/propiedades',
         ),
         'Doctrine\\Persistence\\' => 
         array (
@@ -212,23 +217,30 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         ),
         'Controlador\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/controlador',
-            1 => __DIR__ . '/../..' . '/controlador',
+            0 => __DIR__ . '/../..' . '/../controlador',
+            1 => __DIR__ . '/../..' . '/../controlador',
         ),
         'App\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/app',
-            1 => __DIR__ . '/../..' . '/app',
+            0 => __DIR__ . '/../..' . '/../app',
+            1 => __DIR__ . '/../..' . '/../app',
         ),
     );
 
     public static $classMap = array (
-        'App\\Modelo\\Entidad\\Plantas_Entidad' => __DIR__ . '/../..' . '/modelo/entidad/plantas.php',
+        'App' => __DIR__ . '/../..' . '/../app/App.php',
+        'App\\Config\\Configuracion' => __DIR__ . '/../..' . '/../app/Configuracion.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
-        'BASE_DATOS' => __DIR__ . '/../..' . '/app/Base_Datos.php',
-        'CRUD' => __DIR__ . '/../..' . '/app/CRUD.php',
+        'BASE_DATOS' => __DIR__ . '/../..' . '/../app/Base_Datos.php',
+        'CRUD' => __DIR__ . '/../..' . '/Crud.php',
+        'Clases' => __DIR__ . '/../..' . '/Clases.php',
+        'Componentes' => __DIR__ . '/../..' . '/traits/Componentes.php',
+        'ComposerAutoloaderInit2a8b9cfa11dbcd502b3063f9f8235c8c' => __DIR__ . '/..' . '/composer/autoload_real.php',
+        'Composer\\Autoload\\ClassLoader' => __DIR__ . '/..' . '/composer/ClassLoader.php',
+        'Composer\\Autoload\\ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c' => __DIR__ . '/..' . '/composer/autoload_static.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'Controlador' => __DIR__ . '/../..' . '/app/Controlador.php',
+        'Controlador' => __DIR__ . '/../..' . '/../app/Controlador.php',
+        'Direcciones' => __DIR__ . '/../..' . '/Direcciones.php',
         'Doctrine\\Common\\Annotations\\Annotation' => __DIR__ . '/..' . '/doctrine/annotations/lib/Doctrine/Common/Annotations/Annotation.php',
         'Doctrine\\Common\\Annotations\\AnnotationException' => __DIR__ . '/..' . '/doctrine/annotations/lib/Doctrine/Common/Annotations/AnnotationException.php',
         'Doctrine\\Common\\Annotations\\AnnotationReader' => __DIR__ . '/..' . '/doctrine/annotations/lib/Doctrine/Common/Annotations/AnnotationReader.php',
@@ -1141,14 +1153,19 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'Doctrine\\Persistence\\Reflection\\TypedNoDefaultReflectionProperty' => __DIR__ . '/..' . '/doctrine/persistence/src/Persistence/Reflection/TypedNoDefaultReflectionProperty.php',
         'Doctrine\\Persistence\\Reflection\\TypedNoDefaultReflectionPropertyBase' => __DIR__ . '/..' . '/doctrine/persistence/src/Persistence/Reflection/TypedNoDefaultReflectionPropertyBase.php',
         'Doctrine\\Persistence\\Reflection\\TypedNoDefaultRuntimePublicReflectionProperty' => __DIR__ . '/..' . '/doctrine/persistence/src/Persistence/Reflection/TypedNoDefaultRuntimePublicReflectionProperty.php',
-        'Iniciar_Sistema' => __DIR__ . '/../..' . '/app/App.php',
+        'Doctrine\\StaticAnalysis\\DBAL\\MyConnection' => __DIR__ . '/..' . '/doctrine/dbal/static-analysis/driver-manager-retrieves-correct-connection-type.php',
+        'Ejemplo' => __DIR__ . '/../..' . '/../controlador/ejemplo_controlador.php',
+        'EjemploTest' => __DIR__ . '/../..' . '/tests/EjemploTest.php',
+        'Ejemplo_Modelo' => __DIR__ . '/../..' . '/../modelo/ejemplo_class.php',
+        'Errores' => __DIR__ . '/../..' . '/Errores.php',
+        'Herramientas' => __DIR__ . '/../..' . '/traits/Herramientas.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
-        'Metodos_BD' => __DIR__ . '/../..' . '/app/Base_Datos.php',
-        'Modelo' => __DIR__ . '/../..' . '/app/Modelo.php',
+        'Metodos' => __DIR__ . '/../..' . '/traits/Metodos.php',
+        'Metodos_BD' => __DIR__ . '/../..' . '/../app/Base_Datos.php',
+        'Modelo' => __DIR__ . '/../..' . '/../app/Modelo.php',
+        'Modelo\\Entidad\\Ejemplo_Entidad' => __DIR__ . '/../..' . '/../modelo/propiedades/ejemplo.php',
         'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
         'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
-        'Plantas_Controlador' => __DIR__ . '/../..' . '/controlador/plantas_controlador.php',
-        'Plantas_Modelo' => __DIR__ . '/../..' . '/modelo/plantas_class.php',
         'Psr\\Cache\\CacheException' => __DIR__ . '/..' . '/psr/cache/src/CacheException.php',
         'Psr\\Cache\\CacheItemInterface' => __DIR__ . '/..' . '/psr/cache/src/CacheItemInterface.php',
         'Psr\\Cache\\CacheItemPoolInterface' => __DIR__ . '/..' . '/psr/cache/src/CacheItemPoolInterface.php',
@@ -1304,8 +1321,9 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'Symfony\\Polyfill\\Php80\\Php80' => __DIR__ . '/..' . '/symfony/polyfill-php80/Php80.php',
         'Symfony\\Polyfill\\Php80\\PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/PhpToken.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
+        'Validacion' => __DIR__ . '/../..' . '/Validacion.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
-        'Vista' => __DIR__ . '/../..' . '/app/Vista.php',
+        'Vista' => __DIR__ . '/../..' . '/../app/Vista.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

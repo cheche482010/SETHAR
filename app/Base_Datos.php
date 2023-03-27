@@ -2,7 +2,7 @@
 
 ini_set("max_execution_time", "0");
 error_reporting(E_ERROR);
-require_once "traits/Componentes.php";
+require_once "componentes/traits/Componentes.php";
 
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\Tools\Setup;

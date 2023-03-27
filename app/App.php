@@ -1,6 +1,6 @@
 <?php
 
-class Iniciar_Sistema
+class App
 {
     private $url;
     private $error;
@@ -12,7 +12,7 @@ class Iniciar_Sistema
     public function __construct()
     {
         session_start();
-        $this->Errores = new Errores;
+        // $this->Errores = new Errores;
         $this->url = isset($_GET['url']) ? $_GET['url'] : null;
         $this->url = rtrim($this->url, '/');
         $this->url = explode('/', $this->url);
@@ -24,8 +24,8 @@ class Iniciar_Sistema
              if ($this->Validar_Conexion()) {
                     if (empty($this->url[0])) {
                         require_once 'controlador/ejemplo_controlador.php';
-                        $this->controlador = new Inicio();
-                        $this->controlador->Cargar_Modelo('inicio');
+                        $this->controlador = new Ejemplo();
+                        $this->controlador->Cargar_Modelo('ejemplo');
                         $this->controlador->Cargar_Vistas();
                     } else {
                         if ($this->Validar_Archivos() || $this->Validar_Controlador() || $this->Validar_Modelo()) {
@@ -67,13 +67,13 @@ class Iniciar_Sistema
                             $this->controlador->Cargar_Vistas();
                         }
                     } else {
-                        require_once 'controlador/login_controlador.php';
-                        $this->controlador = new Login();
-                        $this->controlador->Cargar_Modelo('login');
+                        require_once 'controlador/ejemplo_controlador.php';
+                        $this->controlador = new Ejemplo();
+                        $this->controlador->Cargar_Modelo('Ejemplo');
                         if (isset($this->url[1])) {
                             $this->controlador->{$this->url[1]}();
                         } else {
-                            $this->controlador->Administrar(["Login"]);
+                            $this->controlador->Cargar_Vistas();
                         }
                     }
                 } else {
@@ -153,7 +153,7 @@ class Iniciar_Sistema
     private function Validar_Conexion()
     {
         $conexion = new BASE_DATOS();
-        if (!$conexion->comprobar == 1) {
+        if (!$conexion->Probar_Conexion() == 1) {
             $this->error[] = $conexion->error_conexion;
             return false;
         } else {

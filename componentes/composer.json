@@ -1,0 +1,73 @@
+{
+    "description": "Sistema IA reino Plantae",
+    "type": "project",
+    "authors": [{
+        "name": "Jossseth Arroyo",
+        "email": "cheche482010@gmail.com",
+        "role": "Programador"
+    }],
+    "version": "3.0",
+    "license": "SETH",
+    "autoload": {
+       "classmap": [
+            "../app/",
+            "../controlador/",
+            "../controlador/propiedades/",
+            "../modelo/",
+            "../modelo/propiedades/",
+            "../componentes/",
+            "../componentes/validacion/",
+            "../componentes/tests/"
+        ],
+        "psr-4": {
+            "App\\": "../app/",
+            "Controlador\\": "../controlador/",
+            "Entidad\\": "../controlador/propiedades/",
+            "Validacion\\": "../componentes/validacion/",
+            "Modelo\\": "../modelo/",
+            "Propiedades\\": "../modelo/propiedades/",
+            "Pruebas\\": "../tests/",
+            "Funciones\\": "../componentes/traits/"
+        },
+        "files": [
+         "Errores.php",
+         "../app/Configuracion.php",
+         "../app/Base_Datos.php",
+         "../app/App.php",
+         "../app/Modelo.php",
+         "../app/Vista.php",
+         "../app/Controlador.php"]
+    },
+    "autoload-dev": {
+        "classmap": [
+            "../app/",
+            "../controlador/",
+            "../controlador/propiedades/",
+            "../modelo/",
+            "../modelo/propiedades/",
+            "../componentes/",
+            "../componentes/validacion/",
+            "../componentes/tests/"
+        ],
+        "psr-4": {
+            "App\\": "../app/",
+            "Controlador\\": "../controlador/",
+            "Entidad\\": "../controlador/propiedades/",
+            "Validacion\\": "../componentes/validacion/",
+            "Modelo\\": "../modelo/",
+            "Propiedades\\": "../modelo/propiedades/",
+            "Pruebas\\": "../tests/",
+            "Funciones\\": "../componentes/traits/"
+        }
+    },
+    "require": {
+        "php": ">=5.3.3 <=8.1.1",
+        "doctrine/dbal": "^3.3",
+        "doctrine/orm": "^2.14",
+        "doctrine/cache": "^1.11",
+        "doctrine/annotations": "^1.0"
+    },
+    "config": {
+        "optimize-autoloader": true
+    }
+}

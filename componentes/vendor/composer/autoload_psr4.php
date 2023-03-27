@@ -6,8 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Validacion\\' => array($baseDir . '/controlador/backend'),
-    'Traits\\' => array($baseDir . '/traits', $baseDir . '/traits'),
+    'Validacion\\' => array($baseDir . '/validacion', $baseDir . '/validacion'),
     'Symfony\\Polyfill\\Php80\\' => array($vendorDir . '/symfony/polyfill-php80'),
     'Symfony\\Polyfill\\Php73\\' => array($vendorDir . '/symfony/polyfill-php73'),
     'Symfony\\Polyfill\\Php72\\' => array($vendorDir . '/symfony/polyfill-php72'),
@@ -21,10 +20,11 @@ return array(
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'Psr\\Cache\\' => array($vendorDir . '/psr/cache/src'),
-    'Prueba\\' => array($baseDir . '/tests'),
-    'Modulo\\' => array($baseDir . '/modelo'),
-    'Modelo\\' => array($baseDir . '/modelo'),
-    'Entidad\\' => array($baseDir . '/modelo/entidad'),
+    'Pruebas\\' => array($baseDir . '/../tests', $baseDir . '/../tests'),
+    'Propiedades\\' => array($baseDir . '/../modelo/propiedades', $baseDir . '/../modelo/propiedades'),
+    'Modelo\\' => array($baseDir . '/../modelo', $baseDir . '/../modelo'),
+    'Funciones\\' => array($baseDir . '/traits', $baseDir . '/traits'),
+    'Entidad\\' => array($baseDir . '/../controlador/propiedades', $baseDir . '/../controlador/propiedades'),
     'Doctrine\\Persistence\\' => array($vendorDir . '/doctrine/persistence/src/Persistence'),
     'Doctrine\\ORM\\' => array($vendorDir . '/doctrine/orm/lib/Doctrine/ORM'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
@@ -36,6 +36,6 @@ return array(
     'Doctrine\\Common\\Cache\\' => array($vendorDir . '/doctrine/cache/lib/Doctrine/Common/Cache'),
     'Doctrine\\Common\\Annotations\\' => array($vendorDir . '/doctrine/annotations/lib/Doctrine/Common/Annotations'),
     'Doctrine\\Common\\' => array($vendorDir . '/doctrine/common/src', $vendorDir . '/doctrine/event-manager/src'),
-    'Controlador\\' => array($baseDir . '/controlador', $baseDir . '/controlador'),
-    'App\\' => array($baseDir . '/app', $baseDir . '/app'),
+    'Controlador\\' => array($baseDir . '/../controlador', $baseDir . '/../controlador'),
+    'App\\' => array($baseDir . '/../app', $baseDir . '/../app'),
 );

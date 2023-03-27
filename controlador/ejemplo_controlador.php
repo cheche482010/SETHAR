@@ -10,7 +10,8 @@ class Ejemplo extends Controlador
 
     public function Cargar_Vistas()
     {   
-        $this->vista->Cargar_Vistas('inicio/index');
+        echo "si llego aqui";
+        // $this->vista->Cargar_Vistas('ejemplo/index');
     }
 
 }
