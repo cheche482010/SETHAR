@@ -4,10 +4,6 @@ ini_set("max_execution_time", "0");
 error_reporting(E_ERROR);
 require_once "componentes/traits/Componentes.php";
 
-use Doctrine\DBAL\DriverManager;
-use Doctrine\ORM\Tools\Setup;
-use Doctrine\ORM\EntityManager;
-
 interface Metodos_BD
 {
     public function Conectar();
@@ -17,25 +13,30 @@ interface Metodos_BD
 }
 class BASE_DATOS implements Metodos_BD
 {
-    use Componentes {Conexion as private;}
+    use Componentes {Conexion as private ;}
 
     private $gestor;
     private $comprobar;
     private $error_conexion;
-    private $manager;
 
     public $configuracion;
-    public $setup;
     public $conexion;
 
     public function __construct()
     {
         $this->gestor = $this->Conexion()["Mysql"];
-    
-        $this->configuracion = [
-            'url'      => "{$this->gestor["Servidor"]}:host={$this->gestor["Host"]};port={$this->gestor["Puerto"]};dbname={$this->gestor["Base_Datos"]};charset=utf8mb4",
-            'user'     => $this->gestor["Usuario"],
-            'password' => $this->gestor["Contraseña"],
+
+        $this->DNS = [
+            'Dominio'  => "{$this->gestor["Servidor"]}:host={$this->gestor["Host"]};port={$this->gestor["Puerto"]};dbname={$this->gestor["Base_Datos"]};",
+            'Usuario'  => $this->gestor["Usuario"],
+            'Clave'    => $this->gestor["Contraseña"],
+            "Opciones" => array(
+                PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                PDO::ATTR_PERSISTENT         => false,
+                PDO::ATTR_EMULATE_PREPARES   => false,
+                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES  \'UTF8\'',
+            ),
         ];
 
         $this->Iniciar_Conexion();
@@ -44,17 +45,14 @@ class BASE_DATOS implements Metodos_BD
     {
         try
         {
-            $this->conexion = DriverManager::getConnection($this->configuracion);
+            $this->conexion       = new PDO($this->DNS["Dominio"], $this->DNS["Usuario"], $this->DNS["Clave"], $this->DNS["Opciones"]);
             $this->error_conexion = "No se han encontrado errores.";
-            $this->comprobar = 1;
-            
-            $this->setup = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/modelo/entidad"), true);
-            $this->manager = EntityManager::create($this->conexion, $this->setup);
+            $this->comprobar      = 1;
             return $this->conexion;
-        }
-        catch (\Doctrine\DBAL\Exception $e) {
-            $this->error_conexion = 'Ha surgido un error y no se puede conectar a la base de datos. Detalle: </br>' . $e;
-            return $this->error_conexion;
+        } catch (PDOException $e) {
+            Errores::Capturar()->Manejo_Excepciones($e);
+        } finally {
+            unset($this->gestor, $this->DNS);
         }
     }
     public function Conectar()

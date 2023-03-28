@@ -40,7 +40,8 @@ class Errores
                 break;
         }
 
-        $log = date('[Y-m-d H:i:s]') . " Error $errno: $errstr en $errfile:$errline\n";
+        $log = "Fecha y Hora: ".date('[Y-m-d H:i:s]') . "\nError $errno: $errstr \nArchivo: $errfile \nLinea:$errline\n".
+        "\n=============================================================================================================\n";
         error_log($log, 3, "componentes/logs/" . $tipoError . '.log');
     }
 
@@ -53,14 +54,16 @@ class Errores
         } else {
             $tipoError = 'general';
         }
-        $log = date('[Y-m-d H:i:s]') . " Excepción: " . $exception->getMessage() . " en " . $exception->getFile() . ":" . $exception->getLine() . "\n";
+        $log = "Fecha y Hora: ".date('[Y-m-d H:i:s]') . " \nError: " . $exception->getMessage() . " \nArchivo: " . $exception->getFile() . "\nLinea:" . $exception->getLine() . "\nCodigo:".$exception->getCode()."\nTraza: ".$exception->getTraceAsString().
+        "\n=============================================================================================================\n";
         error_log($log, 3, "componentes/logs/excepciones.log");
     }
 
     public static function Personalizado($mensaje)
     {
 
-        $log = date('[Y-m-d H:i:s]') . " Error personalizado: $mensaje\n";
+        $log = "Fecha y Hora: ".date('[Y-m-d H:i:s]') . " \nError personalizado: $mensaje\n".
+        "\n=============================================================================================================\n";
         error_log($log, 3, "componentes/logs/personalizado.log");
     }
 
