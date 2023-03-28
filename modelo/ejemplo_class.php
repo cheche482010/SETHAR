@@ -17,48 +17,30 @@ class Ejemplo_Modelo extends Modelo
     {parent::__construct();}
 
     // SETTER estaablece los datos a usar en el modelo (tipo void no retornan un valor)
-    public function _SQL_(string $SQL): void        {$this->SQL = $SQL;}
-    public function _Tipo_(int $tipo): void         {$this->tipo = $tipo;}
-    public function _Datos_(array $datos): void     {$this->datos = $datos;}
+    public function _SQL_(string $SQL): void
+    {$this->SQL = $SQL;}
+    public function _Tipo_(int $tipo): void
+    {$this->tipo = $tipo;}
+    public function _Datos_(array $datos): void
+    {$this->datos = $datos;}
 
     public function Get()
     {
-        
+
     }
 
     public function Administrar()
     {
         $this->sentencia = $this->{$this->SQL}(); #funcion anonima en espera de asignar nombre
         try {
-            switch ($this->tipo) {
-                case '0': #tipo 0 trae consultas de la bd retorna a un array con los datos
-                    $this->resultado = $this->conexion->executeQuery($this->sentencia)->fetchAllAssociative();
-                    $this->Desconectar();
-                    return $this->resultado;
-                    break;
-                case '1': #tipo 1 ejecuta un INSERT , UPDATE, DELETE  retorna a true (si no hay falla)
-                    $this->DBAL = $this->conexion->executeUpdate($this->sentencia, $this->datos);
-                    $this->Desconectar();
-                    return $this->DBAL > 0;
-                    return true;
-                    break;
-                case '2':           
-                    $this->resultado = $this->conexion->executeQuery($this->sentencia, $this->datos)->fetchAllAssociative();
-                    $this->Desconectar();
-                    return $this->resultado;
-                    break;
-                default: # mensaje error si la peticion fue incorrecta
-                    die('[Error 400] => "La Peticion es Incorrecta, solo se permite peticion de tipo 0/1."');
-                    break;
-            }
+            $this->resultado = $this->Ejecutar($this->sentencia);
+            $this->Desconectar();
+            return $this->resultado;
 
-        } catch (\Doctrine\DBAL\Exception $e) {
-            #capturamos el error y se envia la respuesta(ubicacion MODELO)
-            return $this->Capturar_Error($e, "Plantas");
+        } catch (PDOException $e) {
+            Errores::Capturar()->Manejo_Excepciones($e);
         }
     }
-
-    
 
     private function SQL_02(): string
     {
