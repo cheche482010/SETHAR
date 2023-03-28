@@ -1,6 +1,4 @@
 <?php
-// namespace y uso de clases necesarios
-namespace Modelo\Entidad;
 
 class Ejemplo_Entidad
 {

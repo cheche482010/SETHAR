@@ -58,6 +58,8 @@ class Ejemplo_Modelo extends Modelo
         }
     }
 
+    
+
     private function SQL_02(): string
     {
         return "SELECT p.* FROM plantas p JOIN relaciones r ON p.id = r.planta_id JOIN caracteristicas c ON r.caracteristica_id = c.id WHERE p.habitat_id = :habitad AND c.nombre = :caracteristicas";

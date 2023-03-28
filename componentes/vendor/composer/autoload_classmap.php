@@ -7,7 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App' => $baseDir . '/../app/App.php',
-    'App\\Config\\Configuracion' => $baseDir . '/../app/Configuracion.php',
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
     'BASE_DATOS' => $baseDir . '/../app/Base_Datos.php',
     'CRUD' => $baseDir . '/Crud.php',
@@ -17,6 +16,7 @@ return array(
     'Composer\\Autoload\\ClassLoader' => $vendorDir . '/composer/ClassLoader.php',
     'Composer\\Autoload\\ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c' => $vendorDir . '/composer/autoload_static.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'Configuracion' => $baseDir . '/../app/Configuracion.php',
     'Controlador' => $baseDir . '/../app/Controlador.php',
     'Direcciones' => $baseDir . '/Direcciones.php',
     'Doctrine\\Common\\Annotations\\Annotation' => $vendorDir . '/doctrine/annotations/lib/Doctrine/Common/Annotations/Annotation.php',

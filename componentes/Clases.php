@@ -2,8 +2,8 @@
 
 class Clases
 {
-    private ReflectionClass $ReflectionClass;
-    private string $nombre_clase;
+    private $ReflectionClass;
+    private $nombre_clase; 
 
     public function __construct(string $nombre_clase)
     {

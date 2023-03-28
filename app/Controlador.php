@@ -16,39 +16,58 @@ class Controlador
 
     public function Cargar_Modelo($model)
     {
-        $url = 'modelo/' . $model . '_class.php';
-
-        if (file_exists($url)) {
-            require $url;
-
-            $modelName       = $model . '_Modelo';
-            $reflectionClass = new ReflectionClass($modelName);
-
-            if ($reflectionClass->IsInstantiable()) {
-                $this->modelo = new $modelName();
-            } else {
-                $this->error = '[Error Objeto] => "El Objeto: [ ' . $modelName . ' ] No puede ser Instanciado."';
-            }
-        }
-    }
-
-    public function Cargar_Modelo2($model)
-    {
-        $modelName = $model . '_Modelo';
-
+        $nombre_modelo = $model . '_Modelo';
         // Autocarga de clases
-        spl_autoload_register(function ($className) {
-            $path = str_replace('_', '/', $className) . '.php';
-            if (file_exists($path)) {
-                require_once $path;
+        spl_autoload_register(function ($model) {
+            $direccion = 'modelo/' . $model . '_class.php';
+            if (file_exists($direccion)) {
+                require_once $direccion;
             }
         });
 
-        // Creación de la instancia del modelo
-        try {
-            $this->modelo = ModeloFactory::crear($modelName);
-        } catch (Exception $e) {
-            throw new Exception('No se pudo cargar el modelo: ' . $e->getMessage());
+        $class = new Clases($nombre_modelo);
+        if ($class->validar()) {
+            $this->modelo          = $class->instanciar();
+        } else {
+            Errores::Capturar()->Personalizado('No se pudo cargar el modelo');
+        }
+    }
+
+    public function Cargar_Propiedades($propiedad)
+    {
+        $nombre_propiedad = $propiedad . '_Propiedad';
+        // Autocarga de clases
+        spl_autoload_register(function ($propiedad) {
+            $direccion = 'controlador/propiedades/' . $propiedad . '.php';
+            if (file_exists($direccion)) {
+                require_once $direccion;
+            }
+        });
+
+        $class = new Clases($nombre_propiedad);
+        if ($class->validar()) {
+            $this->propiedad = $class->instanciar();
+        } else {
+            Errores::Capturar()->Personalizado('No se pudo cargar la propiedad');
+        }
+    }
+
+    public function Cargar_Entidades($entidad)
+    {
+        $nombre_entidad = $entidad . '_Entidad';
+        // Autocarga de clases
+        spl_autoload_register(function ($entidad) {
+            $direccion = 'modelo/propiedades/' . $entidad . '.php';
+            if (file_exists($direccion)) {
+                require_once $direccion;
+            }
+        });
+
+        $class = new Clases($nombre_entidad);
+        if ($class->validar()) {
+            $this->modelo->entidad = $class->instanciar();
+        } else {
+            Errores::Capturar()->Personalizado('No se pudo cargar la entidad');
         }
     }
 

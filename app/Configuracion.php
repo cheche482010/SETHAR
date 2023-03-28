@@ -16,6 +16,11 @@ class Configuracion
         unset($protocol, $domain, $root);
         return $url;
     }
+
+    public static function Recursos()
+    {
+        echo self::URL()."recursos/";
+    }
  
     public static function Hora()
     {

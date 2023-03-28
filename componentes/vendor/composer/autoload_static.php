@@ -17,6 +17,7 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         '6334c8de42591719bbdb2e6e734e23cf' => __DIR__ . '/../..' . '/Errores.php',
+        'ed7131515b3c5228879f10c17aea61b2' => __DIR__ . '/../..' . '/Clases.php',
         '302be6f58c7e71e387883f30a9a9c8f1' => __DIR__ . '/../..' . '/../app/Configuracion.php',
         'fc1eb74e65b94bd8a92ed1ee35667605' => __DIR__ . '/../..' . '/../app/Base_Datos.php',
         'ea29937c56fd21cb5adf867e5a4bcc5f' => __DIR__ . '/../..' . '/../app/App.php',
@@ -229,7 +230,6 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
 
     public static $classMap = array (
         'App' => __DIR__ . '/../..' . '/../app/App.php',
-        'App\\Config\\Configuracion' => __DIR__ . '/../..' . '/../app/Configuracion.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'BASE_DATOS' => __DIR__ . '/../..' . '/../app/Base_Datos.php',
         'CRUD' => __DIR__ . '/../..' . '/Crud.php',
@@ -239,6 +239,7 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'Composer\\Autoload\\ClassLoader' => __DIR__ . '/..' . '/composer/ClassLoader.php',
         'Composer\\Autoload\\ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c' => __DIR__ . '/..' . '/composer/autoload_static.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Configuracion' => __DIR__ . '/../..' . '/../app/Configuracion.php',
         'Controlador' => __DIR__ . '/../..' . '/../app/Controlador.php',
         'Direcciones' => __DIR__ . '/../..' . '/Direcciones.php',
         'Doctrine\\Common\\Annotations\\Annotation' => __DIR__ . '/..' . '/doctrine/annotations/lib/Doctrine/Common/Annotations/Annotation.php',

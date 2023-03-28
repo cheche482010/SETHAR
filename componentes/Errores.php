@@ -46,6 +46,13 @@ class Errores
 
     public function Manejo_Excepciones($exception)
     {
+        if ($exception instanceof PDOException) {
+            $tipoError = 'pdo';
+        } else if ($exception instanceof Exception) {
+            $tipoError = 'exception';
+        } else {
+            $tipoError = 'general';
+        }
         $log = date('[Y-m-d H:i:s]') . " Excepción: " . $exception->getMessage() . " en " . $exception->getFile() . ":" . $exception->getLine() . "\n";
         error_log($log, 3, "componentes/logs/excepciones.log");
     }
