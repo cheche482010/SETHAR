@@ -1,11 +1,21 @@
 <?php
 // =============MODELO==============
+interface Interface_Modelo
+{
+    public function Desconectar();
+    public function __GET(string $A);
+    public function __SET(string $A, $B);
+    public function Ejecutar(string $sql, array $parametro = [], string $forzado = "MIN");
+}
 
-class Modelo extends BASE_DATOS
+class Modelo extends BASE_DATOS implements Interface_Modelo
 {
     #Public: acceso sin restricción.
     #Protected:Solo puede ser accesado por una clase heredada y la clase que lo define.
     #Private:Solo puede ser accesado por la clase que lo define.
+
+    protected $PDO;
+    protected $datos;
 
     public function __construct()
     {
@@ -14,7 +24,7 @@ class Modelo extends BASE_DATOS
 
     public function Desconectar()
     {
-        return $this->conexion->close();
+        $this->conexion = null;
     }
     // =============CREAR VARIABLE PUBLICAS==============
 
@@ -27,11 +37,12 @@ class Modelo extends BASE_DATOS
         return $this->$A = $B;
     }
 
-    protected function Ejecutar($sql, $parametro = [])
+    public function Ejecutar(string $sql, array $parametro = [], string $forzado = "MIN")
     {
         $this->PDO = $this->conexion->prepare($sql);
         foreach ($parametro as $key => $value) {
-            $this->PDO->bindParam($key, $value, $this->Tipo_Parametro($value), $value["longitud"]);
+            $value = $forzado === 'MAY' ? strtoupper($value) : ($forzado === 'MIN' ? strtolower($value) : $value);
+            $this->PDO->bindParam($key, $value, $this->Tipo_Parametro($value), strlen($value));
         }
         $this->PDO->execute();
 
@@ -41,6 +52,37 @@ class Modelo extends BASE_DATOS
         } else {
             return $this->PDO->rowCount() ? true : false;
         }
+    }
+
+    public function Ejecutar2(string $sql, array $parametro = [], string $forzado = "MIN", bool $transaccion = false)
+    {
+        if ($transaccion) {
+            $this->PDO = $this->conexion->beginTransaction();
+        }
+
+        $this->PDO = $this->conexion->prepare($sql);
+        foreach ($parametro as $key => $value) {
+            $value = $forzado === 'MAY' ? strtoupper($value) : ($forzado === 'MIN' ? strtolower($value) : $value);
+            $this->PDO->bindParam($key, $value, $this->Tipo_Parametro($value), strlen($value));
+        }
+        $this->PDO->execute();
+
+        if (strpos(strtolower($sql), 'select') === 0) {
+            $this->PDO->setFetchMode(PDO::FETCH_ASSOC);
+            $result = $this->PDO->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            $result = $this->PDO->rowCount() ? true : false;
+        }
+
+        if ($transaccion) {
+            if ($result) {
+                $this->PDO = $this->conexion->commit();
+            } else {
+                $this->PDO = $this->conexion->rollBack();
+            }
+        }
+
+        return $result;
     }
 
     private function Tipo_Parametro($value)

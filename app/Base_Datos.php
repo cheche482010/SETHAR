@@ -9,7 +9,6 @@ interface Metodos_BD
     public function Conectar();
     public function Probar_Conexion();
     public function Error_Conexion();
-    public function Configuracion();
 }
 class BASE_DATOS implements Metodos_BD
 {
@@ -19,7 +18,6 @@ class BASE_DATOS implements Metodos_BD
     private $comprobar;
     private $error_conexion;
 
-    public $configuracion;
     public $conexion;
 
     public function __construct()
@@ -41,6 +39,7 @@ class BASE_DATOS implements Metodos_BD
 
         $this->Iniciar_Conexion();
     }
+
     private function Iniciar_Conexion()
     {
         try
@@ -55,6 +54,7 @@ class BASE_DATOS implements Metodos_BD
             unset($this->gestor, $this->DNS);
         }
     }
+    
     public function Conectar()
     {return $this->conexion;}
 
@@ -63,8 +63,5 @@ class BASE_DATOS implements Metodos_BD
 
     public function Error_Conexion()
     {return $this->error_conexion;}
-
-    public function Configuracion()
-    {return $this->manager;}
 
 }
