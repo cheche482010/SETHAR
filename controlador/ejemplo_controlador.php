@@ -9,11 +9,12 @@ class Ejemplo extends Controlador
     }
 
     public function Cargar_Vistas()
-    {   
+    {
         echo "string";
-        // $this->modelo->_SQL_("SQL_02");
-        // $x = $this->modelo->Administrar();
-        // echo var_dump($x);
+        #CONSULTA
+        // $this->consulta["EJEMPLO"] = $this->modelo->_SQL_("SQL_02")->Administrar();
+        #EJECUCION
+        // $result = $this->modelo->_SQL_("SQL_01")->_Datos_($datos)->Administrar();
         // $this->vista->Cargar_Vistas('ejemplo/index');
     }
 }

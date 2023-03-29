@@ -14,11 +14,11 @@ class Ejemplo_Modelo extends Modelo
     {parent::__construct();}
 
     // SETTER estaablece los datos a usar en el modelo (tipo void no retornan un valor)
-    public function _SQL_(string $SQL): void
-    {$this->SQL = $SQL;}
+    public function _SQL_(string $SQL): self
+    {$this->SQL = $SQL; return $this;}
 
-    public function _Datos_(array $datos): void
-    {$this->datos = $datos;}
+    public function _Datos_(array $datos): self
+    {$this->datos = $datos;return $this;}
 
     public function Get()
     {
