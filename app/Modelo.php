@@ -56,17 +56,15 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
 
     public function Ejecutar2(string $sql, array $parametro = [], string $forzado = "MIN", bool $transaccion = false)
     {
-        if ($transaccion) {
-            $this->PDO = $this->conexion->beginTransaction();
-        }
-
+        if ($transaccion) {$this->conexion->beginTransaction();}
         $this->PDO = $this->conexion->prepare($sql);
         foreach ($parametro as $key => $value) {
             $value = $forzado === 'MAY' ? strtoupper($value) : ($forzado === 'MIN' ? strtolower($value) : $value);
+            $value = filter_var($value, FILTER_SANITIZE_STRING);
+            $value = $this->conexion->quote($value);
             $this->PDO->bindParam($key, $value, $this->Tipo_Parametro($value), strlen($value));
         }
         $this->PDO->execute();
-
         if (strpos(strtolower($sql), 'select') === 0) {
             $this->PDO->setFetchMode(PDO::FETCH_ASSOC);
             $result = $this->PDO->fetchAll(PDO::FETCH_ASSOC);
@@ -75,11 +73,7 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
         }
 
         if ($transaccion) {
-            if ($result) {
-                $this->PDO = $this->conexion->commit();
-            } else {
-                $this->PDO = $this->conexion->rollBack();
-            }
+            if ($result) {$this->conexion->commit();} else {$this->conexion->rollBack();}
         }
 
         return $result;

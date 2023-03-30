@@ -31,11 +31,11 @@ class Ejemplo_Modelo extends Modelo
         return $this->class->verificar_funcion($this->SQL) ? $this->{$this->SQL}() : Errores::Capturar()->Personalizado('No existe la funcion : ' . $this->SQL . "() \nEn la clase: " . $this->class->nombre_clase() . "\nArchivo: " . __FILE__);
     }
 
-    public function Administrar()
+    public function Administrar():mixed
     {
         $this->sentencia = $this->Sentencia();
         try {
-            $this->resultado = $this->Ejecutar($this->sentencia);
+            $this->resultado = $this->Ejecutar($this->sentencia,$this->datos);
             $this->Desconectar();
             return $this->resultado;
 
