@@ -60,7 +60,7 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
         $this->PDO = $this->conexion->prepare($sql);
         foreach ($parametro as $key => $value) {
             $value = $forzado === 'MAY' ? strtoupper($value) : ($forzado === 'MIN' ? strtolower($value) : $value);
-            $value = filter_var($value, FILTER_SANITIZE_STRING);
+            $value = $this->Filtrar_Parametro($value);
             $value = $this->conexion->quote($value);
             $this->PDO->bindParam($key, $value, $this->Tipo_Parametro($value), strlen($value));
         }
@@ -73,7 +73,7 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
         }
 
         if ($transaccion) {
-            if ($result) {$this->conexion->commit();} else {$this->conexion->rollBack();}
+            if ($result) {$this->conexion->commit();} else { $this->conexion->rollBack();}
         }
 
         return $result;
@@ -95,4 +95,36 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
             return PDO::PARAM_STR;
         }
     }
+
+    private function Filtrar_Parametro($valor)
+    {
+        if (is_string($valor)) {
+            $valor          = filter_var($valor, FILTER_SANITIZE_STRING);
+            $valor          = preg_replace("/[^a-zA-Z0-9_.-\s]/", "", trim($valor));
+            $palabras_clave = array("SELECT", "INSERT", "UPDATE", "DELETE", "WHERE", "DROP");
+            foreach ($palabras_clave as $palabra) {$valor = str_ireplace($palabra, "", $valor);}
+            return $valor;
+        } elseif (filter_var($valor, FILTER_VALIDATE_EMAIL)) {
+            return filter_var($valor, FILTER_SANITIZE_EMAIL);
+        } elseif (is_numeric($valor)) {
+            return filter_var($valor, FILTER_SANITIZE_NUMBER_INT);
+        } elseif (is_bool($valor)) {
+            return filter_var($valor, FILTER_SANITIZE_BOOL);
+        } elseif (DateTime::createFromFormat('Y-m-d', $valor) !== false) {
+            return filter_var($valor, FILTER_SANITIZE_STRING);
+        } elseif (is_array($valor)) {
+            return filter_var_array($valor, FILTER_SANITIZE_STRING);
+        } elseif (is_uploaded_file($valor['tmp_name'])) {
+            return $valor;
+        } elseif (is_string($valor) && preg_match('/^<[\w]+(?!.*?<[\w]+).*?>.*?<\/[\w]+>$/', $valor)) {
+            return filter_var($valor, FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_FLAG_NO_ENCODE_QUOTES);
+        } elseif (filter_var($valor, FILTER_VALIDATE_URL)) {
+            return filter_var($valor, FILTER_SANITIZE_URL);
+        } elseif (DateTime::createFromFormat('H:i', $valor) !== false) {
+            return filter_var($valor, FILTER_SANITIZE_STRING);
+        } else {
+            return null;
+        }
+    }
+
 }
