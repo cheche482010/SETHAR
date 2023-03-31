@@ -79,6 +79,87 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
         return $result;
     }
 
+    public function Ejecutar3(string $sql, array $parametro = [], string $forzado = "MIN", bool $transaccion = false, bool $tipo_valor = false)
+    {
+        if ($transaccion) {$this->conexion->beginTransaction();}
+
+        $this->PDO = $this->conexion->prepare($sql);
+
+        foreach ($parametro as $key => $value) {
+
+            $value = $forzado === 'MAY' ? strtoupper($value) : ($forzado === 'MIN' ? strtolower($value) : $value);
+            $value = $this->Filtrar_Parametro($value);
+            $value = $this->conexion->quote($value);
+
+            if ($tipo_valor) {
+                $this->PDO->bindValue($key, $value, $this->Tipo_Parametro($value));
+            } else {
+                $this->PDO->bindParam($key, $value, $this->Tipo_Parametro($value), strlen($value));
+            }
+        }
+
+        $this->PDO->execute();
+
+        if (strpos(strtolower($sql), 'select') === 0) {
+            $this->PDO->setFetchMode(PDO::FETCH_ASSOC);
+            $result = $this->PDO->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            $result = $this->PDO->rowCount() ? true : false;
+        }
+
+        if ($transaccion) {
+            if ($result) {$this->conexion->commit();} else { $this->conexion->rollBack();}
+        }
+        return $result;
+    }
+
+    public function Ejecutar4(string $sql, array $parametro = [], string $forzado = "MIN", bool $transaccion = false, bool $tipo_valor = "detallado", bool $ultimo_id = false)
+    {
+        if ($transaccion) {
+            $this->conexion->beginTransaction();
+        }
+
+        $this->PDO = $this->conexion->prepare($sql);
+
+        foreach ($parametro as $key => $value) {
+            $value = $forzado === 'MAY' ? strtoupper($value) : ($forzado === 'MIN' ? strtolower($value) : $value);
+            $value = $this->Filtrar_Parametro($value);
+            $value = $this->conexion->quote($value);
+
+            if ($tipo_valor === "detallado") {
+                $this->PDO->bindParam($key, $value, $this->Tipo_Parametro($value), strlen($value));
+            } else {
+                $this->PDO->bindValue($key, $value, $this->Tipo_Parametro($value));
+            }
+        }
+
+        $this->PDO->execute();
+
+        $result = false;
+        $ultimo = null;
+
+        if (strpos(strtolower($sql), 'select') === 0) {
+            $this->PDO->setFetchMode(PDO::FETCH_ASSOC);
+            $result = $this->PDO->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            $result = $this->PDO->rowCount() ? true : false;
+
+            if ($ultimo_id && strpos(strtolower($sql), 'insert') === 0) {
+                $ultimo = $this->conexion->lastInsertId();
+            }
+        }
+
+        if ($transaccion) {
+            if ($result) {
+                $this->conexion->commit();
+            } else {
+                $this->conexion->rollBack();
+            }
+        }
+
+        return $ultimo_id ? $ultimo : $result;
+    }
+
     private function Tipo_Parametro($value)
     {
         if (is_int($value)) {
