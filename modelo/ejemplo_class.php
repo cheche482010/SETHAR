@@ -35,7 +35,7 @@ class Ejemplo_Modelo extends Modelo
     {
         $this->sentencia = $this->Sentencia();
         try {
-            $this->resultado = $this->Ejecutar($this->sentencia,$this->datos);
+            $this->resultado = $this->Ejecutar_Detallado($this->sentencia,$this->datos);
             $this->Desconectar();
             return $this->resultado;
 

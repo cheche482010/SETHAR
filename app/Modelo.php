@@ -5,7 +5,8 @@ interface Interface_Modelo
     public function Desconectar();
     public function __GET(string $A);
     public function __SET(string $A, $B);
-    public function Ejecutar(string $sql, array $parametro = [], string $forzado = "MIN");
+    public function Ejecutar_Simple(string $sql, array $parametro = [], string $forzado = "MIN");
+    public function Ejecutar_Detallado(string $sql, array $parametro = [], string $forzado = "MIN", bool $transaccion = false, string $tipo_valor = "detallado", bool $ultimo_id = false);
 }
 
 class Modelo extends BASE_DATOS implements Interface_Modelo
@@ -37,11 +38,13 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
         return $this->$A = $B;
     }
 
-    public function Ejecutar(string $sql, array $parametro = [], string $forzado = "MIN")
+    public function Ejecutar_Simple(string $sql, array $parametro = [], string $forzado = "MIN")
     {
         $this->PDO = $this->conexion->prepare($sql);
         foreach ($parametro as $key => $value) {
             $value = $forzado === 'MAY' ? strtoupper($value) : ($forzado === 'MIN' ? strtolower($value) : $value);
+            $value = $this->Filtrar_Parametro($value);
+            $value = $this->conexion->quote($value);
             $this->PDO->bindParam($key, $value, $this->Tipo_Parametro($value), strlen($value));
         }
         $this->PDO->execute();
@@ -54,66 +57,7 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
         }
     }
 
-    public function Ejecutar2(string $sql, array $parametro = [], string $forzado = "MIN", bool $transaccion = false)
-    {
-        if ($transaccion) {$this->conexion->beginTransaction();}
-        $this->PDO = $this->conexion->prepare($sql);
-        foreach ($parametro as $key => $value) {
-            $value = $forzado === 'MAY' ? strtoupper($value) : ($forzado === 'MIN' ? strtolower($value) : $value);
-            $value = $this->Filtrar_Parametro($value);
-            $value = $this->conexion->quote($value);
-            $this->PDO->bindParam($key, $value, $this->Tipo_Parametro($value), strlen($value));
-        }
-        $this->PDO->execute();
-        if (strpos(strtolower($sql), 'select') === 0) {
-            $this->PDO->setFetchMode(PDO::FETCH_ASSOC);
-            $result = $this->PDO->fetchAll(PDO::FETCH_ASSOC);
-        } else {
-            $result = $this->PDO->rowCount() ? true : false;
-        }
-
-        if ($transaccion) {
-            if ($result) {$this->conexion->commit();} else { $this->conexion->rollBack();}
-        }
-
-        return $result;
-    }
-
-    public function Ejecutar3(string $sql, array $parametro = [], string $forzado = "MIN", bool $transaccion = false, bool $tipo_valor = false)
-    {
-        if ($transaccion) {$this->conexion->beginTransaction();}
-
-        $this->PDO = $this->conexion->prepare($sql);
-
-        foreach ($parametro as $key => $value) {
-
-            $value = $forzado === 'MAY' ? strtoupper($value) : ($forzado === 'MIN' ? strtolower($value) : $value);
-            $value = $this->Filtrar_Parametro($value);
-            $value = $this->conexion->quote($value);
-
-            if ($tipo_valor) {
-                $this->PDO->bindValue($key, $value, $this->Tipo_Parametro($value));
-            } else {
-                $this->PDO->bindParam($key, $value, $this->Tipo_Parametro($value), strlen($value));
-            }
-        }
-
-        $this->PDO->execute();
-
-        if (strpos(strtolower($sql), 'select') === 0) {
-            $this->PDO->setFetchMode(PDO::FETCH_ASSOC);
-            $result = $this->PDO->fetchAll(PDO::FETCH_ASSOC);
-        } else {
-            $result = $this->PDO->rowCount() ? true : false;
-        }
-
-        if ($transaccion) {
-            if ($result) {$this->conexion->commit();} else { $this->conexion->rollBack();}
-        }
-        return $result;
-    }
-
-    public function Ejecutar4(string $sql, array $parametro = [], string $forzado = "MIN", bool $transaccion = false, bool $tipo_valor = "detallado", bool $ultimo_id = false)
+    public function Ejecutar_Detallado(string $sql, array $parametro = [], string $forzado = "MIN", bool $transaccion = false, string $tipo_valor = "detallado", bool $ultimo_id = false)
     {
         if ($transaccion) {
             $this->conexion->beginTransaction();
