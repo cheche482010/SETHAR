@@ -153,8 +153,8 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         ),
         'Propiedades\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/../modelo/propiedades',
-            1 => __DIR__ . '/../..' . '/../modelo/propiedades',
+            0 => __DIR__ . '/../..' . '/../modelo/entidades',
+            1 => __DIR__ . '/../..' . '/../modelo/entidades',
         ),
         'Modelo\\' => 
         array (
@@ -1157,14 +1157,16 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'Doctrine\\StaticAnalysis\\DBAL\\MyConnection' => __DIR__ . '/..' . '/doctrine/dbal/static-analysis/driver-manager-retrieves-correct-connection-type.php',
         'Ejemplo' => __DIR__ . '/../..' . '/../controlador/ejemplo_controlador.php',
         'EjemploTest' => __DIR__ . '/../..' . '/tests/EjemploTest.php',
+        'Ejemplo_Entidad' => __DIR__ . '/../..' . '/../modelo/entidades/ejemplo.php',
         'Ejemplo_Modelo' => __DIR__ . '/../..' . '/../modelo/ejemplo_class.php',
+        'Ejemplo_Propiedad' => __DIR__ . '/../..' . '/../controlador/propiedades/ejemplo.php',
         'Errores' => __DIR__ . '/../..' . '/Errores.php',
         'Herramientas' => __DIR__ . '/../..' . '/traits/Herramientas.php',
+        'Interface_Modelo' => __DIR__ . '/../..' . '/../app/Modelo.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'Metodos' => __DIR__ . '/../..' . '/traits/Metodos.php',
         'Metodos_BD' => __DIR__ . '/../..' . '/../app/Base_Datos.php',
         'Modelo' => __DIR__ . '/../..' . '/../app/Modelo.php',
-        'Modelo\\Entidad\\Ejemplo_Entidad' => __DIR__ . '/../..' . '/../modelo/propiedades/ejemplo.php',
         'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
         'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
         'Psr\\Cache\\CacheException' => __DIR__ . '/..' . '/psr/cache/src/CacheException.php',

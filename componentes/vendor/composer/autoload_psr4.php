@@ -21,7 +21,7 @@ return array(
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'Psr\\Cache\\' => array($vendorDir . '/psr/cache/src'),
     'Pruebas\\' => array($baseDir . '/../tests', $baseDir . '/../tests'),
-    'Propiedades\\' => array($baseDir . '/../modelo/propiedades', $baseDir . '/../modelo/propiedades'),
+    'Propiedades\\' => array($baseDir . '/../modelo/entidades', $baseDir . '/../modelo/entidades'),
     'Modelo\\' => array($baseDir . '/../modelo', $baseDir . '/../modelo'),
     'Funciones\\' => array($baseDir . '/traits', $baseDir . '/traits'),
     'Entidad\\' => array($baseDir . '/../controlador/propiedades', $baseDir . '/../controlador/propiedades'),
