@@ -36,7 +36,7 @@ class App
                                 array_push($parametros, $this->url[$i]);
                             }
                             $this->parametros = $parametros;
-                            if ($this->Validar_Funcion() == true) {
+                            if ($this->class->verificar_funcion($this->url[1])) {
                                 $this->controlador->{$this->url[1]}($this->parametros);
                             } else {
                                 $this->Errores->Error_409($this->error);
@@ -49,7 +49,7 @@ class App
                     }
                 } else {
                     $this->Errores->Error_404($this->error);
-                    $this->Guardar_Error();
+                    
                 }
             }
         } else {
@@ -76,18 +76,23 @@ class App
     public function Cargar_Controladores()
     {
         require_once $this->archivo_controlador;
-        $this->controlador = new $this->url[0];
+        $this->class = new Clases($this->url[0]);
+        if ($this->class->validar()) {
+            $this->controlador          = $this->class->instanciar();
+        } else {
+            Errores::Capturar()->Personalizado('No se pudo cargar el controlador: '.$this->archivo_controlador);
+        }
         $this->controlador->Cargar_Modelo($this->url[0]);
         return true;
     }
+    
     public function Cargar_Funciones()
     {
-        if ($this->Validar_Funcion() == true) {
+        if ($this->class->verificar_funcion($this->url[1])) {
             $this->controlador->{$this->url[1]}();
         } else {
-            $this->Errores->Error_409($this->error);
+            Errores::Capturar()->Personalizado('No existe la funcion : ' . $this->url[1] . "() \nEn la clase: " . $this->class->nombre_clase() . "\nArchivo: " . __FILE__);
         }
-        return true;
     }
 
     private function Validar_Archivos()
@@ -119,17 +124,7 @@ class App
             return true;
         }
     }
-    private function Validar_Funcion()
-    {
-        $reflector = new ReflectionClass($this->url[0]);
-        if (!$reflector->hasMethod($this->url[1])) {
-            $this->error[] = '[Error Funcion] => "La Funcion: [ ' . $this->url[1] . '() ] No se encuentra definida, en el controlador: [ ' . $this->url[0] . ' ]"';
-            $this->Guardar_Error();
-            return false;
-        } else {
-            return true;
-        }
-    }
+    
     private function Validar_URL()
     {
         $url = preg_match_all("/^[a-zA-Z0-9\/_]{1,700}$/", $_GET['url']);
@@ -152,13 +147,6 @@ class App
         }
         unset($conexion);
     }
-    private function Guardar_Error()
-    {
-        $error_log          = new stdClass();
-        $error_log->Fecha   = $GLOBALS['fecha_larga'];
-        $error_log->Hora    = date('h:i:s a');
-        $error_log->Mensaje = $this->error;
-        error_log(print_r($error_log, true), 3, "errores.log");
-    }
+    
 
 }

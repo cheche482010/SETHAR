@@ -106,6 +106,8 @@ class Controlador
         spl_autoload_register(function ($nombre_clase) use ($direccion) {
             if (file_exists($direccion)) {
                 require_once $direccion;
+            } else {
+                Errores::Capturar()->Personalizado('No se pudo cargar el archivo: ' .__DIR__. "/".$direccion);
             }
         });
 
