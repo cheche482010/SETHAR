@@ -18,6 +18,7 @@ class CRUD
     {
         $metodo = strtolower($metodo);
         $valor  = $argumentos[0];
+        $valor = (is_string($valor) && preg_match('/^[a-zA-Z0-9_\-\.]+$/', $valor)) ? filter_var($valor, FILTER_SANITIZE_STRING) : false;
 
         switch ($metodo) {
             case 'tabla':
@@ -36,7 +37,8 @@ class CRUD
                 $this->orden = $valor;
                 break;
             default:
-                throw new Exception('Método no válido.');
+                 Errores::Capturar()->Personalizado("el metodo {$metodo} es invalido \nArchivo: ".__DIR__);
+                 break;
         }
 
         return $this;
@@ -60,31 +62,31 @@ class CRUD
                 break;
 
             case 'registrar':
-                $sql = 'INSERT INTO ' . $this->tabla . ' (' . $this->columna . ', estado) VALUES (:' . $this->columna . ', :estado)';
+                $sql = "INSERT INTO  {$this->tabla}  ({$this->columna}) VALUES (:{$this->columna})";
                 break;
 
             case 'editar':
-                $sql = 'UPDATE ' . $this->tabla . ' SET ' . $this->columna . ' = :' . $this->columna . ' WHERE ' . $this->id . ' = :' . $this->id;
+                $sql = "UPDATE {$this->tabla} SET {$this->columna} = :{$this->columna}  WHERE  {$this->id}  = :{$this->id}";
                 break;
 
             case 'eliminar':
-                $sql = 'DELETE FROM ' . $this->tabla . ' WHERE ' . $this->id . ' = :' . $this->id;
+                $sql = "DELETE FROM {$this->tabla} WHERE {$this->id} = :{$this->id}";
                 break;
 
             case 'buscar':
-                $sql = 'SELECT * FROM ' . $this->tabla . ' WHERE ' . $this->columna . ' = :' . $this->columna;
+                $sql = "SELECT * FROM {$this->tabla} WHERE {$this->columna} = :{$this->columna}";
                 break;
 
             case 'listar':
-                $sql = 'SELECT * FROM ' . $this->tabla . ' ORDER BY ' . $this->orden . ' ASC';
+                $sql = "SELECT * FROM {$this->tabla} ORDER BY {$this->orden} ASC";
                 break;
 
             case 'maximo':
-                $sql = 'SELECT MAX(' . $this->id . ') FROM ' . $this->tabla;
+                $sql = "SELECT MAX({$this->id}) FROM {$this->tabla}";
                 break;
 
             case 'contar':
-                $sql = 'SELECT COUNT(*) AS count FROM ' . $this->tabla . ' WHERE ' . $this->columna . ' = :' . $this->columna . ' AND estado = 1';
+                $sql = "SELECT COUNT(*) AS count FROM {$this->tabla}  WHERE {$this->columna} = :{$this->columna}";
                 break;
 
             case 'join':
@@ -132,7 +134,7 @@ class CRUD
                 break;
 
             default:
-                die("accion invalida");
+                 Errores::Capturar()->Personalizado("La peticion solicitada {$this->tipo} es invalida \nArchivo: ".__DIR__);
                 break;
         }
         return $sql;
