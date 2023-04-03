@@ -44,6 +44,11 @@ class Ejemplo_Modelo extends Modelo
         }
     }
 
+    public function SQL_01(): string
+    {
+        return $this->CRUD('consultar')->tabla('plantas')->orden('id_plantas')->SQL();
+    }
+
     private function SQL_02(): string
     {
         return "SELECT * FROM plantas";

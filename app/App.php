@@ -92,24 +92,10 @@ class App
         }
     }
 
-    private function Validar_URL()
-    {
-        $patron = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
-        if (!preg_match($patron, $url)) {
-            throw new Exception("La URL '$url' no es válida");
-        }
-    }
-
     private function Validar_Conexion()
     {
-        $conexion = new BASE_DATOS();
-        if (!$conexion->Probar_Conexion() == 1) {
-            $this->error[] = $conexion->Error_Conexion();
-            return false;
-        } else {
-            return true;
-        }
-        unset($conexion);
+        
+        return ($this->controlador->modelo->Probar_Conexion() == 1) ? true : false;
     }
 
     private function Validar_Archivos_Controlador()

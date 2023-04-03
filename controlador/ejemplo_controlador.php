@@ -10,7 +10,7 @@ class Ejemplo extends Controlador
 
     public function Cargar_Vistas()
     {
-        echo "string";
+        echo $this->modelo->SQL_01();
         #CONSULTA
         // $this->consulta["EJEMPLO"] = $this->modelo->_SQL_("SQL_02")->Administrar();
         #EJECUCION

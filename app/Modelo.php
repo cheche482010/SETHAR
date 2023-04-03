@@ -17,6 +17,7 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
 
     protected $PDO;
     protected $datos;
+    public    $crud;
 
     public function __construct()
     {
@@ -38,7 +39,12 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
         return $this->$A = $B;
     }
 
-    public function Obtener_SQL($fun):string
+    public function CRUD($val)
+    {
+        return new CRUD($val);
+    }
+
+    public function Obtener_SQL($fun): string
     {
         return $this->{$fun}();
     }

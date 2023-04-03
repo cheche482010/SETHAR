@@ -9,7 +9,7 @@ class CRUD
     private $id;
     private $orden;
 
-    public function __construct(string $tipo)
+    public function __construct(string $tipo = null)
     {
         $this->tipo = $tipo;
     }
@@ -42,8 +42,9 @@ class CRUD
         return $this;
     }
 
-    public function getSQL(): string
+    public function SQL(): string
     {
+        $sql = "";
         switch ($this->tipo) {
             case 'consultar':
                 $sql = "SELECT * FROM {$this->tabla}";
@@ -56,35 +57,35 @@ class CRUD
                     $sql .= " ORDER BY {$this->orden} ASC";
                 }
 
-                return $sql;
+                break;
 
             case 'registrar':
                 $sql = 'INSERT INTO ' . $this->tabla . ' (' . $this->columna . ', estado) VALUES (:' . $this->columna . ', :estado)';
-                return $sql;
+                break;
 
             case 'editar':
                 $sql = 'UPDATE ' . $this->tabla . ' SET ' . $this->columna . ' = :' . $this->columna . ' WHERE ' . $this->id . ' = :' . $this->id;
-                return $sql;
+                break;
 
             case 'eliminar':
                 $sql = 'DELETE FROM ' . $this->tabla . ' WHERE ' . $this->id . ' = :' . $this->id;
-                return $sql;
+                break;
 
             case 'buscar':
                 $sql = 'SELECT * FROM ' . $this->tabla . ' WHERE ' . $this->columna . ' = :' . $this->columna;
-                return $sql;
+                break;
 
             case 'listar':
                 $sql = 'SELECT * FROM ' . $this->tabla . ' ORDER BY ' . $this->orden . ' ASC';
-                return $sql;
+                break;
 
             case 'maximo':
                 $sql = 'SELECT MAX(' . $this->id . ') FROM ' . $this->tabla;
-                return $sql;
+                break;
 
             case 'contar':
                 $sql = 'SELECT COUNT(*) AS count FROM ' . $this->tabla . ' WHERE ' . $this->columna . ' = :' . $this->columna . ' AND estado = 1';
-                return $sql;
+                break;
 
             case 'join':
                 if (empty($this->tabla) || empty($this->columna) || empty($this->id)) {
@@ -99,40 +100,43 @@ class CRUD
                 if (!empty($this->orden)) {
                     $sql .= " ORDER BY {$this->orden} ASC";
                 }
-                $sql .= " {$this->joinType} {$this-$this->joinTabla} ON {$this->tabla}.{$this->joinId} = {$this->joinTabla}.{$this->joinId}";
-                return $sql;
+                $sql .= " {$this->joinType} {$this->joinTabla} ON {$this->tabla}.{$this->joinId} = {$this->joinTabla}.{$this->joinId}";
+                break;
 
             case 'vaciar':
                 $sql = "TRUNCATE TABLE {$this->tabla}";
-                return $sql;
+                break;
 
             case 'crear_tabla':
                 $sql = "CREATE TABLE {$this->tabla} ({$this->columna})";
-                return $sql;
+                break;
 
             case 'modificar_modificar':
                 $sql = "ALTER TABLE {$this->tabla} {$this->accion}";
-                return $sql;
+                break;
 
             case 'crear_indice':
                 $sql = "CREATE INDEX {$this->nombre_indice} ON {$this->tabla} ({$this->columna})";
-                return $sql;
+                break;
 
             case 'seleccionar_nuevo':
                 $sql = "SELECT * INTO {$this->nuevo_nombre_tabla} FROM {$this->tabla} WHERE {$this->condicion}";
-                return $sql;
+                break;
 
             case 'otorgar_permiso':
                 $sql = "GRANT {$this->permisos} ON {$this->objeto} TO {$this->usuario}";
-                return $sql;
+                break;
 
             case 'revocar_permiso':
                 $sql = "REVOKE {$this->permisos} ON {$this->objeto} FROM {$this->usuario}";
-                return $sql;
+                break;
 
             default:
-                throw new Exception('Tipo de operación no válido.');
+                die("accion invalida");
+                break;
         }
+        return $sql;
+        exit();
     }
 
 }
