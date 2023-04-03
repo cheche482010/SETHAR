@@ -26,7 +26,7 @@ class App
                 $this->controlador->Cargar_Modelo('ejemplo');
                 $this->controlador->Cargar_Vistas();
             } else {
-                if ($this->Validar_Archivos() || $this->Validar_Controlador() || $this->Validar_Modelo()) {
+                if ($this->Validar_Archivos_Controlador()) {
                     $this->Cargar_Controladores();
                     $N_parametors = sizeof($this->url);
                     if ($N_parametors > 1) {
@@ -47,9 +47,6 @@ class App
                     } else {
                         $this->controlador->Cargar_Vistas();
                     }
-                } else {
-                    $this->Errores->Error_404($this->error);
-                    
                 }
             }
         } else {
@@ -78,14 +75,14 @@ class App
         require_once $this->archivo_controlador;
         $this->class = new Clases($this->url[0]);
         if ($this->class->validar()) {
-            $this->controlador          = $this->class->instanciar();
+            $this->controlador = $this->class->instanciar();
         } else {
-            Errores::Capturar()->Personalizado('No se pudo cargar el controlador: '.$this->archivo_controlador);
+            Errores::Capturar()->Personalizado('No se pudo cargar el controlador: ' . $this->archivo_controlador);
         }
         $this->controlador->Cargar_Modelo($this->url[0]);
         return true;
     }
-    
+
     public function Cargar_Funciones()
     {
         if ($this->class->verificar_funcion($this->url[1])) {
@@ -95,44 +92,11 @@ class App
         }
     }
 
-    private function Validar_Archivos()
-    {
-        if (!file_exists($this->archivo_controlador)) {
-            $this->error[] = '[Error Archivo] => "El Archivo: [ ' . $this->archivo_controlador . ' ] No Existe."';
-            return false;
-        } else {
-            return true;
-        }
-    }
-    private function Validar_Controlador()
-    {
-        $controlador = ucfirst($this->url[0]);
-        if (!class_exists($controlador)) {
-            $this->error[] = '[Error Controlador] => "El Controlador: [ ' . $controlador . ' ] No se encuentra definido."';
-            return false;
-        } else {
-            return true;
-        }
-    }
-    private function Validar_Modelo()
-    {
-        $modelo = ucfirst($this->url[0] . "_Class");
-        if (!class_exists($modelo)) {
-            $this->error[] = '[Error Modelo] => "El Modelo: [ ' . $modelo . ' ] No se encuentra definido."';
-            return false;
-        } else {
-            return true;
-        }
-    }
-    
     private function Validar_URL()
     {
-        $url = preg_match_all("/^[a-zA-Z0-9\/_]{1,700}$/", $_GET['url']);
-        if (!$url == 1) {
-            $this->error[] = '[Error Url] => "La URL: [ ' . URL . $_GET['url'] . ' ] </br> No es una direccion valida."';
-            return false;
-        } else {
-            return true;
+        $patron = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
+        if (!preg_match($patron, $url)) {
+            throw new Exception("La URL '$url' no es válida");
         }
     }
 
@@ -147,6 +111,21 @@ class App
         }
         unset($conexion);
     }
-    
+
+    private function Validar_Archivos_Controlador()
+    {
+        $controlador = ucfirst($this->url[0]);
+        $validacion  = true;
+        if (!file_exists($this->archivo_controlador)) {
+            Errores::Capturar()->Personalizado('El Archivo del Controlador No Existe: ' . $this->archivo_controlador);
+            $validacion = false;
+        }
+        if (!class_exists($controlador)) {
+            Errores::Capturar()->Personalizado('La Clase del Controlador No Existe: ' . $controlador);
+            $validacion = false;
+        }
+
+        return $validacion;
+    }
 
 }

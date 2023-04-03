@@ -16,7 +16,7 @@ class Controlador
 
     public function Cargar_Modelo($model)
     {
-        $nombre_modelo = $model . '_Modelo';
+        $nombre_modelo = ucfirst($model) . '_Modelo';
         // Autocarga de clases
         spl_autoload_register(function ($model) {
             $direccion = 'modelo/' . $model . '_class.php';
@@ -96,6 +96,13 @@ class Controlador
                 $nombre_clase = $nombre . '_Validacion';
                 $direccion    = 'componentes/validacion/' . $archivo . '_validacion.php';
                 break;
+            case 'todo':
+                $this->Cargar('modelo', $nombre);
+                $this->Cargar('entidad', $nombre);
+                $this->Cargar('controlador', $nombre);
+                $this->Cargar('propiedad', $nombre);
+                $this->Cargar('validacion', $nombre);
+                return;
 
             default:
                 Errores::Capturar()->Personalizado('Tipo de carga no válido');
@@ -107,7 +114,7 @@ class Controlador
             if (file_exists($direccion)) {
                 require_once $direccion;
             } else {
-                Errores::Capturar()->Personalizado('No se pudo cargar el archivo: ' .__DIR__. "/".$direccion);
+                Errores::Capturar()->Personalizado('No se pudo cargar el archivo: ' . __DIR__ . "/" . $direccion);
             }
         });
 

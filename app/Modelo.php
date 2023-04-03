@@ -38,6 +38,11 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
         return $this->$A = $B;
     }
 
+    public function Obtener_SQL($fun):string
+    {
+        return $this->{$fun}();
+    }
+
     public function Ejecutar_Simple(string $sql, array $parametro = [], string $forzado = "MIN")
     {
         $this->PDO = $this->conexion->prepare($sql);
