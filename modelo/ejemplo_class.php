@@ -26,15 +26,27 @@ class Ejemplo_Modelo extends Modelo
         return $this->class->verificar_funcion($this->SQL) ? $this->{$this->SQL}() : Errores::Capturar()->Personalizado('No existe la funcion : ' . $this->SQL . "() \nEn la clase: " . $this->class->nombre_clase() . "\nArchivo: " . __FILE__);
     }
 
-    public function Administrar(string $tipo = 'simple') : mixed
+    public function Administrar(string $tipo = 'simple', array $opciones = []) : mixed
     {
+        // Definir opciones predeterminadas
+        $this->opciones_predeterminadas = [
+            'forzado'     => 'MIN',
+            'transaccion' => false,
+            'tipo_valor'  => 'detallado',
+            'ultimo_id'   => false,
+        ];
+
+        // Fusionar opciones predeterminadas con opciones proporcionadas
+        $this->opciones = array_merge($this->opciones_predeterminadas, $opciones);
+
         $this->sentencia = $this->Sentencia();
         try {
-            $this->resultado = ($tipo === 'detallado') ? $this->Ejecutar_Detallado($this->sentencia, $this->datos) : $this->Ejecutar_Simple($this->sentencia, $this->datos);
+            $this->resultado = ($tipo === 'detallado') ? $this->Ejecutar_Detallado($this->sentencia, $this->datos, $this->opciones['forzado'], $this->opciones['transaccion'], $this->opciones['tipo_valor'], $this->opciones['ultimo_id']) : $this->Ejecutar_Simple($this->sentencia, $this->datos);
             $this->Desconectar();
             return $this->resultado;
         } catch (PDOException $e) {
             Errores::Capturar()->Manejo_Excepciones($e);
         }
     }
+
 }
