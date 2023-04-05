@@ -946,6 +946,7 @@ return array(
     'Login' => $baseDir . '/../controlador/login_controlador.php',
     'Login_Modelo' => $baseDir . '/../modelo/login_class.php',
     'Metodos' => $baseDir . '/traits/Metodos.php',
+    'Metodos_APP' => $baseDir . '/../app/App.php',
     'Metodos_BD' => $baseDir . '/../app/Base_Datos.php',
     'Modelo' => $baseDir . '/../app/Modelo.php',
     'Normalizer' => $vendorDir . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',

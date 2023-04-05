@@ -14,25 +14,6 @@ class Controlador
         $this->Cargar_Vista();
     }
 
-    public function Cargar_Modelo($model)
-    {
-        $nombre_modelo = ucfirst($model) . '_Modelo';
-        // Autocarga de clases
-        spl_autoload_register(function ($model) {
-            $direccion = 'modelo/' . $model . '_class.php';
-            if (file_exists($direccion)) {
-                require_once $direccion;
-            }
-        });
-
-        $class = new Clases($nombre_modelo);
-        if ($class->validar()) {
-            $this->modelo = $class->instanciar();
-        } else {
-            Errores::Capturar()->Personalizado('No se pudo cargar el modelo');
-        }
-    }
-
     public function Cargar_Propiedades($propiedad)
     {
         $nombre_propiedad = $propiedad . '_Propiedad';

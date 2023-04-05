@@ -44,6 +44,7 @@ class Errores
         $log = "Fecha y Hora: " . date('[Y-m-d H:i:s]') . "\nError $errno: $errstr \nArchivo: $errfile \nLinea:$errline\n" .
             "\n=============================================================================================================\n";
         error_log($log, 3, "componentes/logs/" . $tipo_error . '.log');
+        die($log);
     }
 
     public function Manejo_Excepciones($exception)
@@ -58,6 +59,7 @@ class Errores
         $log = "Fecha y Hora: " . date('[Y-m-d H:i:s]') . " \nError: " . $exception->getMessage() . " \nArchivo: " . $exception->getFile() . "\nLinea:" . $exception->getLine() . "\nCodigo:" . $exception->getCode() . "\nTraza: " . $exception->getTraceAsString() .
             "\n=============================================================================================================\n";
         error_log($log, 3, "componentes/logs/excepciones.log");
+        die($log);
     }
 
     public static function Personalizado($mensaje)
@@ -66,6 +68,7 @@ class Errores
         $log = "Fecha y Hora: " . date('[Y-m-d H:i:s]') . " \nError personalizado: $mensaje\n" .
             "\n=============================================================================================================\n";
         error_log($log, 3, "componentes/logs/personalizado.log");
+        die($log);
     }
 
     public function Manejo_HTTP_Errores($exception)
@@ -84,6 +87,7 @@ class Errores
 
         error_log($log_mensaje, 3, $log_archivo);
         header("HTTP/1.1 $codigo_error Internal Server Error");
+        die($log);
         exit();
     }
 

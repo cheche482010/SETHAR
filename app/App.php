@@ -1,6 +1,13 @@
 <?php
-
-class App
+interface Metodos_APP
+{
+    public function Cargar_Controladores();
+    public function Cargar_Funciones();
+    public function Validar_Conexion();
+    public function Iniciar_Ruteo();
+    public function Validar_Archivos_Controlador();
+}
+class App implements Metodos_APP
 {
     private $url;
     private $error;
@@ -36,7 +43,8 @@ class App
         } else {
             Errores::Capturar()->Personalizado('No se pudo cargar el controlador: ' . $this->archivo_controlador);
         }
-        $this->controlador->Cargar_Modelo($this->url[0]);
+        $this->controlador->Cargar("modelo", $this->url[0]);
+        // $this->controlador->Cargar("entidad", $this->url[0]);
         return true;
     }
 
@@ -49,13 +57,12 @@ class App
         }
     }
 
-    private function Validar_Conexion()
+    public function Validar_Conexion()
     {
-
         return ($this->controlador->modelo->Probar_Conexion() == 1) ? true : false;
     }
 
-    private function Iniciar_Ruteo()
+    public function Iniciar_Ruteo()
     {
         if ($this->Validar_Archivos_Controlador()) {
             $this->Cargar_Controladores();
@@ -77,7 +84,7 @@ class App
         }
     }
 
-    private function Validar_Archivos_Controlador()
+    public function Validar_Archivos_Controlador()
     {
         $controlador = ucfirst($this->url[0]);
         $validacion  = true;

@@ -1169,6 +1169,7 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'Login' => __DIR__ . '/../..' . '/../controlador/login_controlador.php',
         'Login_Modelo' => __DIR__ . '/../..' . '/../modelo/login_class.php',
         'Metodos' => __DIR__ . '/../..' . '/traits/Metodos.php',
+        'Metodos_APP' => __DIR__ . '/../..' . '/../app/App.php',
         'Metodos_BD' => __DIR__ . '/../..' . '/../app/Base_Datos.php',
         'Modelo' => __DIR__ . '/../..' . '/../app/Modelo.php',
         'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
