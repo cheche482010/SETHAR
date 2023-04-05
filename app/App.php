@@ -59,16 +59,20 @@ class App
     {
         if ($this->Validar_Archivos_Controlador()) {
             $this->Cargar_Controladores();
-            $this->num_params = count($this->url) - 1;
-            if ($this->num_params >= 1 && isset($this->url[1])) {
-                if ($this->num_params >= 2 && $this->class->verificar_funcion($this->url[1])) {
-                    $this->parametros = array_slice($this->url, 2);
-                    $this->controlador->{$this->url[1]}($this->parametros);
+            if ($this->Validar_Conexion()) {
+                $this->num_params = count($this->url) - 1;
+                if ($this->num_params >= 1 && isset($this->url[1])) {
+                    if ($this->num_params >= 2 && $this->class->verificar_funcion($this->url[1])) {
+                        $this->parametros = array_slice($this->url, 2);
+                        $this->controlador->{$this->url[1]}($this->parametros);
+                    } else {
+                        $this->Cargar_Funciones();
+                    }
                 } else {
-                    $this->Cargar_Funciones();
+                    $this->controlador->Cargar_Vistas();
                 }
             } else {
-                $this->controlador->Cargar_Vistas();
+                Errores::Capturar()->Manejo_Excepciones($this->controlador->modelo->Error_Conexion());
             }
         }
     }

@@ -49,6 +49,8 @@ class BASE_DATOS implements Metodos_BD
             $this->comprobar      = 1;
             return $this->conexion;
         } catch (PDOException $e) {
+            $this->error_conexion = $e;
+            $this->comprobar      = 0;
             Errores::Capturar()->Manejo_Excepciones($e);
         } finally {
             unset($this->gestor, $this->DNS);
