@@ -4,70 +4,27 @@ class App
 {
     private $url;
     private $error;
-    private $parametros;
+    private $num_params;
     private $controlador;
     private $directorrio;
     private $archivo_controlador;
+    public $parametros;
 
     public function __construct()
     {
         session_start();
-        // $this->Errores = new Errores;
-        $this->url = isset($_GET['url']) ? $_GET['url'] : null;
+        $this->url = isset($_GET['url']) && !empty($_GET['url']) ? $_GET['url'] : null;
         $this->url = rtrim($this->url, '/');
         $this->url = explode('/', $this->url);
 
-        $this->archivo_controlador = 'controlador/' . strtolower($this->url[0]) . '_controlador.php';
-
         if (isset($_SESSION['usuario'])) {
-            if (empty($this->url[0])) {
-                require_once 'controlador/ejemplo_controlador.php';
-                $this->controlador = new Ejemplo();
-                $this->controlador->Cargar_Modelo('ejemplo');
-                $this->controlador->Cargar_Vistas();
-            } else {
-                if ($this->Validar_Archivos_Controlador()) {
-                    $this->Cargar_Controladores();
-                    $N_parametors = sizeof($this->url);
-                    if ($N_parametors > 1) {
-                        if ($N_parametors > 2) {
-                            $parametros = [];
-                            for ($i = 2; $i < $N_parametors; $i++) {
-                                array_push($parametros, $this->url[$i]);
-                            }
-                            $this->parametros = $parametros;
-                            if ($this->class->verificar_funcion($this->url[1])) {
-                                $this->controlador->{$this->url[1]}($this->parametros);
-                            } else {
-                                $this->Errores->Error_409($this->error);
-                            }
-                        } else {
-                            $this->Cargar_Funciones();
-                        }
-                    } else {
-                        $this->controlador->Cargar_Vistas();
-                    }
-                }
-            }
+            $this->url[0] = isset($this->url[0]) && !empty($this->url[0]) ? $this->url[0] : 'inicio';
         } else {
-            if (file_exists($this->archivo_controlador)) {
-                $this->Cargar_Controladores();
-                if (isset($this->url[1])) {
-                    $this->Cargar_Funciones();
-                } else {
-                    $this->controlador->Cargar_Vistas();
-                }
-            } else {
-                require_once 'controlador/ejemplo_controlador.php';
-                $this->controlador = new Ejemplo();
-                $this->controlador->Cargar_Modelo('Ejemplo');
-                if (isset($this->url[1])) {
-                    $this->controlador->{$this->url[1]}();
-                } else {
-                    $this->controlador->Cargar_Vistas();
-                }
-            }
+            $this->url[0] = isset($this->url[0]) && !empty($this->url[0]) ? $this->url[0] : 'login';
         }
+
+        $this->archivo_controlador = 'controlador/' . strtolower($this->url[0]) . '_controlador.php';
+        $this->Iniciar_Ruteo();
     }
 
     public function Cargar_Controladores()
@@ -94,8 +51,26 @@ class App
 
     private function Validar_Conexion()
     {
-        
+
         return ($this->controlador->modelo->Probar_Conexion() == 1) ? true : false;
+    }
+
+    private function Iniciar_Ruteo()
+    {
+        if ($this->Validar_Archivos_Controlador()) {
+            $this->Cargar_Controladores();
+            $this->num_params = count($this->url) - 1;
+            if ($this->num_params >= 1 && isset($this->url[1])) {
+                if ($this->num_params >= 2 && $this->class->verificar_funcion($this->url[1])) {
+                    $this->parametros = array_slice($this->url, 2);
+                    $this->controlador->{$this->url[1]}($this->parametros);
+                } else {
+                    $this->Cargar_Funciones();
+                }
+            } else {
+                $this->controlador->Cargar_Vistas();
+            }
+        }
     }
 
     private function Validar_Archivos_Controlador()

@@ -1,6 +1,6 @@
 <?php
 
-class Ejemplo extends Controlador
+class Inicio extends Controlador
 {
 
     public function __construct()
@@ -10,6 +10,6 @@ class Ejemplo extends Controlador
 
     public function Cargar_Vistas()
     {
-        $this->vista->Cargar_Vistas('ejemplo/index');
+        echo "inicio";
     }
 }
