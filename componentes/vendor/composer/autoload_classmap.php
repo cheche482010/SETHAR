@@ -936,7 +936,7 @@ return array(
     'EjemploTest' => $baseDir . '/tests/EjemploTest.php',
     'Ejemplo_Entidad' => $baseDir . '/../modelo/entidades/ejemplo.php',
     'Ejemplo_Modelo' => $baseDir . '/../modelo/ejemplo_class.php',
-    'Ejemplo_Propiedad' => $baseDir . '/../controlador/propiedades/ejemplo.php',
+    'Ejemplo_Validacion' => $baseDir . '/validacion/ejemplo_validacion.php',
     'Errores' => $baseDir . '/Errores.php',
     'Herramientas' => $baseDir . '/traits/Herramientas.php',
     'Inicio' => $baseDir . '/../controlador/inicio_controlador.php',

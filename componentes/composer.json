@@ -32,6 +32,7 @@
         "files": [
          "Errores.php",
          "Clases.php",
+         "Validacion.php",
          "../app/Configuracion.php",
          "../app/Base_Datos.php",
          "../app/App.php",
