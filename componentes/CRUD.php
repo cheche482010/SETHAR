@@ -2,12 +2,20 @@
 
 class CRUD
 {
-    private $tipo;
     private $tabla;
     private $columna;
     private $estado;
     private $id;
     private $orden;
+    private $joinTabla;
+    private $joinId;
+    private $joinType;
+    private $nombre_indice;
+    private $nuevo_nombre_tabla;
+    private $usuario;
+    private $objeto;
+    private $accion;
+    private $condicion;
 
     public function __construct(string $tipo = null)
     {
@@ -18,7 +26,7 @@ class CRUD
     {
         $metodo = strtolower($metodo);
         $valor  = $argumentos[0];
-        $valor = (is_string($valor) && preg_match('/^[a-zA-Z0-9_\-\.]+$/', $valor)) ? filter_var($valor, FILTER_SANITIZE_STRING) : false;
+        $valor  = (is_string($valor) && preg_match('/^[a-zA-Z0-9_\-\.]+$/', $valor)) ? filter_var($valor, FILTER_SANITIZE_STRING) : false;
 
         switch ($metodo) {
             case 'tabla':
@@ -36,9 +44,36 @@ class CRUD
             case 'orden':
                 $this->orden = $valor;
                 break;
+            case 'jointabla':
+                $this->joinTabla = $valor;
+                break;
+            case 'joinid':
+                $this->joinId = $valor;
+                break;
+            case 'jointype':
+                $this->joinType = $valor;
+                break;
+            case 'nombre_indice':
+                $this->nombre_indice = $valor;
+                break;
+            case 'nuevo_nombre_tabla':
+                $this->nuevo_nombre_tabla = $valor;
+                break;
+            case 'usuario':
+                $this->usuario = $valor;
+                break;
+            case 'objeto':
+                $this->objeto = $valor;
+                break;
+            case 'accion':
+                $this->accion = $valor;
+                break;
+            case 'condicion':
+                $this->condicion = $valor;
+                break;
             default:
-                 Errores::Capturar()->Personalizado("el metodo {$metodo} es invalido \nArchivo: ".__DIR__);
-                 break;
+                Errores::Capturar()->Personalizado("El método {$metodo} es inválido \nArchivo: " . __DIR__);
+                break;
         }
 
         return $this;
@@ -93,7 +128,7 @@ class CRUD
                 if (empty($this->tabla) || empty($this->columna) || empty($this->id)) {
                     throw new Exception('Faltan parámetros para crear la consulta JOIN.');
                 }
-                $sql       = "SELECT * FROM {$this->tabla} ";
+                $sql             = "SELECT * FROM {$this->tabla} ";
                 $this->joinTabla = $this->columna;
                 $this->joinId    = $this->id;
                 if (!empty($this->estado)) {
@@ -113,7 +148,7 @@ class CRUD
                 $sql = "CREATE TABLE {$this->tabla} ({$this->columna})";
                 break;
 
-            case 'modificar_modificar':
+            case 'modificar_tabla':
                 $sql = "ALTER TABLE {$this->tabla} {$this->accion}";
                 break;
 
@@ -134,7 +169,7 @@ class CRUD
                 break;
 
             default:
-                 Errores::Capturar()->Personalizado("La peticion solicitada {$this->tipo} es invalida \nArchivo: ".__DIR__);
+                Errores::Capturar()->Personalizado("La peticion solicitada {$this->tipo} es invalida \nArchivo: " . __DIR__);
                 break;
         }
         return $sql;
