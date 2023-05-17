@@ -17,7 +17,7 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
 
     protected $PDO;
     protected $datos;
-    public    $crud;
+    public $crud;
 
     public function __construct()
     {
@@ -110,6 +110,10 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
             } else {
                 $this->conexion->rollBack();
             }
+        }
+        
+        if ($this->PDO->errorInfo()[0] !== '00000') {
+            Errores::Capturar()->Personalizado('Error en la sentencia: [' . $sql . "] \n" . $this->PDO->errorInfo()[2]);
         }
 
         return $ultimo_id ? $ultimo : $result;
