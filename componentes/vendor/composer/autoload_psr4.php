@@ -22,6 +22,7 @@ return array(
     'Psr\\Cache\\' => array($vendorDir . '/psr/cache/src'),
     'Pruebas\\' => array($baseDir . '/../tests', $baseDir . '/../tests'),
     'Propiedades\\' => array($baseDir . '/../modelo/entidades', $baseDir . '/../modelo/entidades'),
+    'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'Modelo\\' => array($baseDir . '/../modelo', $baseDir . '/../modelo'),
     'Funciones\\' => array($baseDir . '/traits', $baseDir . '/traits'),
     'Entidad\\' => array($baseDir . '/../controlador/propiedades', $baseDir . '/../controlador/propiedades'),

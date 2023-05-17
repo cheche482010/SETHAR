@@ -128,6 +128,15 @@
       ),
       'reference' => '8bf8ab15960787f1a49d405f6eb8c787b4841119',
     ),
+    'monolog/monolog' => 
+    array (
+      'pretty_version' => '2.9.1',
+      'version' => '2.9.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'f259e2b15fb95494c83f52d3caad003bbf5ffaa1',
+    ),
     'psr/cache' => 
     array (
       'pretty_version' => '1.0.1',
@@ -160,6 +169,7 @@
       'provided' => 
       array (
         0 => '1.0|2.0',
+        1 => '1.0.0 || 2.0.0 || 3.0.0',
       ),
     ),
     'symfony/console' => 

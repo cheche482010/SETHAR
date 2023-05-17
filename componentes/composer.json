@@ -67,7 +67,8 @@
         "doctrine/dbal": "^3.3",
         "doctrine/orm": "^2.14",
         "doctrine/cache": "^1.11",
-        "doctrine/annotations": "^1.0"
+        "doctrine/annotations": "^1.0",
+        "monolog/monolog": "^2.9"
     },
     "config": {
         "optimize-autoloader": true
