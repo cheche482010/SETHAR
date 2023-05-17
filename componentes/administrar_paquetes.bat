@@ -25,7 +25,7 @@ if "%opcion%"=="6" goto fin
 
 :ver_paquetes_instalados
 if exist C:\xampp\htdocs\dashboard\www\SETHAR\componentes (
-    composer show
+    call composer show
 ) else (
     echo El directorio C:\xampp\htdocs\dashboard\www\SETHAR\componentes no existe.
 )
@@ -34,26 +34,26 @@ goto menu
 
 :agregar_paquete
 set /p paquete="Escriba el nombre del paquete a instalar: "
-composer require %paquete%
+call composer require %paquete%
 echo Paquete instalado exitosamente.
 pause
 goto menu
 
 :eliminar_paquete
 set /p paquete="Escriba el nombre del paquete a eliminar: "
-composer remove %paquete%
+call composer remove %paquete%
 echo Paquete eliminado exitosamente.
 pause
 goto menu
 
 :actualizar_paquetes
-composer update
+call composer update
 echo Paquetes actualizados exitosamente.
 pause
 goto menu
 
 :cargar_clases
-composer dump-autoload -o
+call composer dump-autoload -o
 echo Clases cargadas exitosamente.
 pause
 goto menu
