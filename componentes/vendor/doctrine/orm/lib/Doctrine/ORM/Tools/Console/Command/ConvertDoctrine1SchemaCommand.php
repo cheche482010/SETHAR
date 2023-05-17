@@ -72,9 +72,7 @@ class ConvertDoctrine1SchemaCommand extends Command
         $this->metadataExporter = $metadataExporter;
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    /** @return void */
     protected function configure()
     {
         $this->setName('orm:convert-d1-schema')
@@ -90,7 +88,7 @@ class ConvertDoctrine1SchemaCommand extends Command
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @return int
      */

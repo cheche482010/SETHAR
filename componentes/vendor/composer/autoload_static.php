@@ -44,9 +44,11 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
             'Symfony\\Contracts\\Service\\' => 26,
             'Symfony\\Component\\String\\' => 25,
             'Symfony\\Component\\Console\\' => 26,
+            'Stash\\' => 6,
         ),
         'P' => 
         array (
+            'Psr\\SimpleCache\\' => 16,
             'Psr\\Log\\' => 8,
             'Psr\\Container\\' => 14,
             'Psr\\Cache\\' => 10,
@@ -57,6 +59,11 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         array (
             'Monolog\\' => 8,
             'Modelo\\' => 7,
+        ),
+        'L' => 
+        array (
+            'League\\MimeTypeDetection\\' => 25,
+            'League\\Flysystem\\' => 17,
         ),
         'F' => 
         array (
@@ -83,6 +90,9 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'C' => 
         array (
             'Controlador\\' => 12,
+            'Cache\\TagInterop\\' => 17,
+            'Cache\\Adapter\\Filesystem\\' => 25,
+            'Cache\\Adapter\\Common\\' => 21,
         ),
         'A' => 
         array (
@@ -136,6 +146,14 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
+        'Stash\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tedivm/stash/src/Stash',
+        ),
+        'Psr\\SimpleCache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/simple-cache/src',
+        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
@@ -166,6 +184,14 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         array (
             0 => __DIR__ . '/../..' . '/../modelo',
             1 => __DIR__ . '/../..' . '/../modelo',
+        ),
+        'League\\MimeTypeDetection\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/mime-type-detection/src',
+        ),
+        'League\\Flysystem\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/flysystem/src',
         ),
         'Funciones\\' => 
         array (
@@ -227,10 +253,32 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
             0 => __DIR__ . '/../..' . '/../controlador',
             1 => __DIR__ . '/../..' . '/../controlador',
         ),
+        'Cache\\TagInterop\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/cache/tag-interop',
+        ),
+        'Cache\\Adapter\\Filesystem\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/cache/filesystem-adapter',
+        ),
+        'Cache\\Adapter\\Common\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/cache/adapter-common',
+        ),
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/../app',
             1 => __DIR__ . '/../..' . '/../app',
+        ),
+    );
+
+    public static $prefixesPsr0 = array (
+        'J' => 
+        array (
+            'JShrink' => 
+            array (
+                0 => __DIR__ . '/..' . '/tedivm/jshrink/src',
+            ),
         ),
     );
 
@@ -239,6 +287,19 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'BASE_DATOS' => __DIR__ . '/../..' . '/../app/Base_Datos.php',
         'CRUD' => __DIR__ . '/../..' . '/Crud.php',
+        'Cache\\Adapter\\Common\\AbstractCachePool' => __DIR__ . '/..' . '/cache/adapter-common/AbstractCachePool.php',
+        'Cache\\Adapter\\Common\\CacheItem' => __DIR__ . '/..' . '/cache/adapter-common/CacheItem.php',
+        'Cache\\Adapter\\Common\\Exception\\CacheException' => __DIR__ . '/..' . '/cache/adapter-common/Exception/CacheException.php',
+        'Cache\\Adapter\\Common\\Exception\\CachePoolException' => __DIR__ . '/..' . '/cache/adapter-common/Exception/CachePoolException.php',
+        'Cache\\Adapter\\Common\\Exception\\InvalidArgumentException' => __DIR__ . '/..' . '/cache/adapter-common/Exception/InvalidArgumentException.php',
+        'Cache\\Adapter\\Common\\HasExpirationTimestampInterface' => __DIR__ . '/..' . '/cache/adapter-common/HasExpirationTimestampInterface.php',
+        'Cache\\Adapter\\Common\\JsonBinaryArmoring' => __DIR__ . '/..' . '/cache/adapter-common/JsonBinaryArmoring.php',
+        'Cache\\Adapter\\Common\\PhpCacheItem' => __DIR__ . '/..' . '/cache/adapter-common/PhpCacheItem.php',
+        'Cache\\Adapter\\Common\\PhpCachePool' => __DIR__ . '/..' . '/cache/adapter-common/PhpCachePool.php',
+        'Cache\\Adapter\\Common\\TagSupportWithArray' => __DIR__ . '/..' . '/cache/adapter-common/TagSupportWithArray.php',
+        'Cache\\Adapter\\Filesystem\\FilesystemCachePool' => __DIR__ . '/..' . '/cache/filesystem-adapter/FilesystemCachePool.php',
+        'Cache\\TagInterop\\TaggableCacheItemInterface' => __DIR__ . '/..' . '/cache/tag-interop/TaggableCacheItemInterface.php',
+        'Cache\\TagInterop\\TaggableCacheItemPoolInterface' => __DIR__ . '/..' . '/cache/tag-interop/TaggableCacheItemPoolInterface.php',
         'Clases' => __DIR__ . '/../..' . '/Clases.php',
         'Componentes' => __DIR__ . '/../..' . '/traits/Componentes.php',
         'ComposerAutoloaderInit2a8b9cfa11dbcd502b3063f9f8235c8c' => __DIR__ . '/..' . '/composer/autoload_real.php',
@@ -1108,6 +1169,7 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'Doctrine\\ORM\\Tools\\Pagination\\LimitSubqueryOutputWalker' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Tools/Pagination/LimitSubqueryOutputWalker.php',
         'Doctrine\\ORM\\Tools\\Pagination\\LimitSubqueryWalker' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Tools/Pagination/LimitSubqueryWalker.php',
         'Doctrine\\ORM\\Tools\\Pagination\\Paginator' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Tools/Pagination/Paginator.php',
+        'Doctrine\\ORM\\Tools\\Pagination\\RootTypeWalker' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Tools/Pagination/RootTypeWalker.php',
         'Doctrine\\ORM\\Tools\\Pagination\\RowNumberOverFunction' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Tools/Pagination/RowNumberOverFunction.php',
         'Doctrine\\ORM\\Tools\\Pagination\\WhereInWalker' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Tools/Pagination/WhereInWalker.php',
         'Doctrine\\ORM\\Tools\\ResolveTargetEntityListener' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Tools/ResolveTargetEntityListener.php',
@@ -1172,7 +1234,66 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'Inicio' => __DIR__ . '/../..' . '/../controlador/inicio_controlador.php',
         'Inicio_Modelo' => __DIR__ . '/../..' . '/../modelo/inicio_class.php',
         'Interface_Modelo' => __DIR__ . '/../..' . '/../app/Modelo.php',
+        'JShrink\\Minifier' => __DIR__ . '/..' . '/tedivm/jshrink/src/JShrink/Minifier.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
+        'League\\Flysystem\\AdapterInterface' => __DIR__ . '/..' . '/league/flysystem/src/AdapterInterface.php',
+        'League\\Flysystem\\Adapter\\AbstractAdapter' => __DIR__ . '/..' . '/league/flysystem/src/Adapter/AbstractAdapter.php',
+        'League\\Flysystem\\Adapter\\AbstractFtpAdapter' => __DIR__ . '/..' . '/league/flysystem/src/Adapter/AbstractFtpAdapter.php',
+        'League\\Flysystem\\Adapter\\CanOverwriteFiles' => __DIR__ . '/..' . '/league/flysystem/src/Adapter/CanOverwriteFiles.php',
+        'League\\Flysystem\\Adapter\\Ftp' => __DIR__ . '/..' . '/league/flysystem/src/Adapter/Ftp.php',
+        'League\\Flysystem\\Adapter\\Ftpd' => __DIR__ . '/..' . '/league/flysystem/src/Adapter/Ftpd.php',
+        'League\\Flysystem\\Adapter\\Local' => __DIR__ . '/..' . '/league/flysystem/src/Adapter/Local.php',
+        'League\\Flysystem\\Adapter\\NullAdapter' => __DIR__ . '/..' . '/league/flysystem/src/Adapter/NullAdapter.php',
+        'League\\Flysystem\\Adapter\\Polyfill\\NotSupportingVisibilityTrait' => __DIR__ . '/..' . '/league/flysystem/src/Adapter/Polyfill/NotSupportingVisibilityTrait.php',
+        'League\\Flysystem\\Adapter\\Polyfill\\StreamedCopyTrait' => __DIR__ . '/..' . '/league/flysystem/src/Adapter/Polyfill/StreamedCopyTrait.php',
+        'League\\Flysystem\\Adapter\\Polyfill\\StreamedReadingTrait' => __DIR__ . '/..' . '/league/flysystem/src/Adapter/Polyfill/StreamedReadingTrait.php',
+        'League\\Flysystem\\Adapter\\Polyfill\\StreamedTrait' => __DIR__ . '/..' . '/league/flysystem/src/Adapter/Polyfill/StreamedTrait.php',
+        'League\\Flysystem\\Adapter\\Polyfill\\StreamedWritingTrait' => __DIR__ . '/..' . '/league/flysystem/src/Adapter/Polyfill/StreamedWritingTrait.php',
+        'League\\Flysystem\\Adapter\\SynologyFtp' => __DIR__ . '/..' . '/league/flysystem/src/Adapter/SynologyFtp.php',
+        'League\\Flysystem\\Config' => __DIR__ . '/..' . '/league/flysystem/src/Config.php',
+        'League\\Flysystem\\ConfigAwareTrait' => __DIR__ . '/..' . '/league/flysystem/src/ConfigAwareTrait.php',
+        'League\\Flysystem\\ConnectionErrorException' => __DIR__ . '/..' . '/league/flysystem/src/ConnectionErrorException.php',
+        'League\\Flysystem\\ConnectionRuntimeException' => __DIR__ . '/..' . '/league/flysystem/src/ConnectionRuntimeException.php',
+        'League\\Flysystem\\CorruptedPathDetected' => __DIR__ . '/..' . '/league/flysystem/src/CorruptedPathDetected.php',
+        'League\\Flysystem\\Directory' => __DIR__ . '/..' . '/league/flysystem/src/Directory.php',
+        'League\\Flysystem\\Exception' => __DIR__ . '/..' . '/league/flysystem/src/Exception.php',
+        'League\\Flysystem\\File' => __DIR__ . '/..' . '/league/flysystem/src/File.php',
+        'League\\Flysystem\\FileExistsException' => __DIR__ . '/..' . '/league/flysystem/src/FileExistsException.php',
+        'League\\Flysystem\\FileNotFoundException' => __DIR__ . '/..' . '/league/flysystem/src/FileNotFoundException.php',
+        'League\\Flysystem\\Filesystem' => __DIR__ . '/..' . '/league/flysystem/src/Filesystem.php',
+        'League\\Flysystem\\FilesystemException' => __DIR__ . '/..' . '/league/flysystem/src/FilesystemException.php',
+        'League\\Flysystem\\FilesystemInterface' => __DIR__ . '/..' . '/league/flysystem/src/FilesystemInterface.php',
+        'League\\Flysystem\\FilesystemNotFoundException' => __DIR__ . '/..' . '/league/flysystem/src/FilesystemNotFoundException.php',
+        'League\\Flysystem\\Handler' => __DIR__ . '/..' . '/league/flysystem/src/Handler.php',
+        'League\\Flysystem\\InvalidRootException' => __DIR__ . '/..' . '/league/flysystem/src/InvalidRootException.php',
+        'League\\Flysystem\\MountManager' => __DIR__ . '/..' . '/league/flysystem/src/MountManager.php',
+        'League\\Flysystem\\NotSupportedException' => __DIR__ . '/..' . '/league/flysystem/src/NotSupportedException.php',
+        'League\\Flysystem\\PluginInterface' => __DIR__ . '/..' . '/league/flysystem/src/PluginInterface.php',
+        'League\\Flysystem\\Plugin\\AbstractPlugin' => __DIR__ . '/..' . '/league/flysystem/src/Plugin/AbstractPlugin.php',
+        'League\\Flysystem\\Plugin\\EmptyDir' => __DIR__ . '/..' . '/league/flysystem/src/Plugin/EmptyDir.php',
+        'League\\Flysystem\\Plugin\\ForcedCopy' => __DIR__ . '/..' . '/league/flysystem/src/Plugin/ForcedCopy.php',
+        'League\\Flysystem\\Plugin\\ForcedRename' => __DIR__ . '/..' . '/league/flysystem/src/Plugin/ForcedRename.php',
+        'League\\Flysystem\\Plugin\\GetWithMetadata' => __DIR__ . '/..' . '/league/flysystem/src/Plugin/GetWithMetadata.php',
+        'League\\Flysystem\\Plugin\\ListFiles' => __DIR__ . '/..' . '/league/flysystem/src/Plugin/ListFiles.php',
+        'League\\Flysystem\\Plugin\\ListPaths' => __DIR__ . '/..' . '/league/flysystem/src/Plugin/ListPaths.php',
+        'League\\Flysystem\\Plugin\\ListWith' => __DIR__ . '/..' . '/league/flysystem/src/Plugin/ListWith.php',
+        'League\\Flysystem\\Plugin\\PluggableTrait' => __DIR__ . '/..' . '/league/flysystem/src/Plugin/PluggableTrait.php',
+        'League\\Flysystem\\Plugin\\PluginNotFoundException' => __DIR__ . '/..' . '/league/flysystem/src/Plugin/PluginNotFoundException.php',
+        'League\\Flysystem\\ReadInterface' => __DIR__ . '/..' . '/league/flysystem/src/ReadInterface.php',
+        'League\\Flysystem\\RootViolationException' => __DIR__ . '/..' . '/league/flysystem/src/RootViolationException.php',
+        'League\\Flysystem\\SafeStorage' => __DIR__ . '/..' . '/league/flysystem/src/SafeStorage.php',
+        'League\\Flysystem\\UnreadableFileException' => __DIR__ . '/..' . '/league/flysystem/src/UnreadableFileException.php',
+        'League\\Flysystem\\Util' => __DIR__ . '/..' . '/league/flysystem/src/Util.php',
+        'League\\Flysystem\\Util\\ContentListingFormatter' => __DIR__ . '/..' . '/league/flysystem/src/Util/ContentListingFormatter.php',
+        'League\\Flysystem\\Util\\MimeType' => __DIR__ . '/..' . '/league/flysystem/src/Util/MimeType.php',
+        'League\\Flysystem\\Util\\StreamHasher' => __DIR__ . '/..' . '/league/flysystem/src/Util/StreamHasher.php',
+        'League\\MimeTypeDetection\\EmptyExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/EmptyExtensionToMimeTypeMap.php',
+        'League\\MimeTypeDetection\\ExtensionMimeTypeDetector' => __DIR__ . '/..' . '/league/mime-type-detection/src/ExtensionMimeTypeDetector.php',
+        'League\\MimeTypeDetection\\ExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/ExtensionToMimeTypeMap.php',
+        'League\\MimeTypeDetection\\FinfoMimeTypeDetector' => __DIR__ . '/..' . '/league/mime-type-detection/src/FinfoMimeTypeDetector.php',
+        'League\\MimeTypeDetection\\GeneratedExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/GeneratedExtensionToMimeTypeMap.php',
+        'League\\MimeTypeDetection\\MimeTypeDetector' => __DIR__ . '/..' . '/league/mime-type-detection/src/MimeTypeDetector.php',
+        'League\\MimeTypeDetection\\OverridingExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/OverridingExtensionToMimeTypeMap.php',
         'Login' => __DIR__ . '/../..' . '/../controlador/login_controlador.php',
         'Login_Modelo' => __DIR__ . '/../..' . '/../modelo/login_class.php',
         'Metodos' => __DIR__ . '/../..' . '/traits/Metodos.php',
@@ -1314,6 +1435,74 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'Psr\\Log\\Test\\DummyTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/DummyTest.php',
         'Psr\\Log\\Test\\LoggerInterfaceTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
         'Psr\\Log\\Test\\TestLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/TestLogger.php',
+        'Psr\\SimpleCache\\CacheException' => __DIR__ . '/..' . '/psr/simple-cache/src/CacheException.php',
+        'Psr\\SimpleCache\\CacheInterface' => __DIR__ . '/..' . '/psr/simple-cache/src/CacheInterface.php',
+        'Psr\\SimpleCache\\InvalidArgumentException' => __DIR__ . '/..' . '/psr/simple-cache/src/InvalidArgumentException.php',
+        'Stash\\DriverList' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/DriverList.php',
+        'Stash\\Driver\\AbstractDriver' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Driver/AbstractDriver.php',
+        'Stash\\Driver\\Apc' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Driver/Apc.php',
+        'Stash\\Driver\\BlackHole' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Driver/BlackHole.php',
+        'Stash\\Driver\\Composite' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Driver/Composite.php',
+        'Stash\\Driver\\Ephemeral' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Driver/Ephemeral.php',
+        'Stash\\Driver\\FileSystem' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Driver/FileSystem.php',
+        'Stash\\Driver\\FileSystem\\EncoderInterface' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Driver/FileSystem/EncoderInterface.php',
+        'Stash\\Driver\\FileSystem\\NativeEncoder' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Driver/FileSystem/NativeEncoder.php',
+        'Stash\\Driver\\FileSystem\\SerializerEncoder' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Driver/FileSystem/SerializerEncoder.php',
+        'Stash\\Driver\\Memcache' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Driver/Memcache.php',
+        'Stash\\Driver\\Redis' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Driver/Redis.php',
+        'Stash\\Driver\\Sqlite' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Driver/Sqlite.php',
+        'Stash\\Driver\\Sub\\Memcache' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Driver/Sub/Memcache.php',
+        'Stash\\Driver\\Sub\\Memcached' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Driver/Sub/Memcached.php',
+        'Stash\\Driver\\Sub\\SqlitePdo' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Driver/Sub/SqlitePdo.php',
+        'Stash\\Exception\\Exception' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Exception/Exception.php',
+        'Stash\\Exception\\InvalidArgumentException' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Exception/InvalidArgumentException.php',
+        'Stash\\Exception\\LogicException' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Exception/LogicException.php',
+        'Stash\\Exception\\RuntimeException' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Exception/RuntimeException.php',
+        'Stash\\Exception\\WindowsPathMaxLengthException' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Exception/WindowsPathMaxLengthException.php',
+        'Stash\\Interfaces\\DriverInterface' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Interfaces/DriverInterface.php',
+        'Stash\\Interfaces\\Drivers\\ExtendInterface' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Interfaces/Drivers/ExtendInterface.php',
+        'Stash\\Interfaces\\Drivers\\IncDecInterface' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Interfaces/Drivers/IncDecInterface.php',
+        'Stash\\Interfaces\\Drivers\\MultiInterface' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Interfaces/Drivers/MultiInterface.php',
+        'Stash\\Interfaces\\ItemInterface' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Interfaces/ItemInterface.php',
+        'Stash\\Interfaces\\PoolInterface' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Interfaces/PoolInterface.php',
+        'Stash\\Invalidation' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Invalidation.php',
+        'Stash\\Item' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Item.php',
+        'Stash\\Pool' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Pool.php',
+        'Stash\\Session' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Session.php',
+        'Stash\\Test\\AbstractItemTest' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/AbstractItemTest.php',
+        'Stash\\Test\\AbstractPoolTest' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/AbstractPoolTest.php',
+        'Stash\\Test\\AbstractTest' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/AbstractTest.php',
+        'Stash\\Test\\CacheExceptionTest' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/CacheExceptionTest.php',
+        'Stash\\Test\\DriverListTest' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/DriverListTest.php',
+        'Stash\\Test\\Driver\\AbstractDriverTest' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/Driver/AbstractDriverTest.php',
+        'Stash\\Test\\Driver\\ApcTest' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/Driver/ApcTest.php',
+        'Stash\\Test\\Driver\\BlackHoleTest' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/Driver/BlackHoleTest.php',
+        'Stash\\Test\\Driver\\CompositeTest' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/Driver/CompositeTest.php',
+        'Stash\\Test\\Driver\\EphemeralTest' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/Driver/EphemeralTest.php',
+        'Stash\\Test\\Driver\\FileSystemSerializerTest' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/Driver/FileSystemSerializerTest.php',
+        'Stash\\Test\\Driver\\FileSystemTest' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/Driver/FileSystemTest.php',
+        'Stash\\Test\\Driver\\MemcacheAnyTest' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/Driver/MemcacheAnyTest.php',
+        'Stash\\Test\\Driver\\MemcacheTest' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/Driver/MemcacheTest.php',
+        'Stash\\Test\\Driver\\MemcachedTest' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/Driver/MemcachedTest.php',
+        'Stash\\Test\\Driver\\RedisArrayTest' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/Driver/RedisArrayTest.php',
+        'Stash\\Test\\Driver\\RedisSocketTest' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/Driver/RedisSocketTest.php',
+        'Stash\\Test\\Driver\\RedisTest' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/Driver/RedisTest.php',
+        'Stash\\Test\\Driver\\SqliteAnyTest' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/Driver/SqliteAnyTest.php',
+        'Stash\\Test\\Driver\\SqlitePdoSqlite3Test' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/Driver/SqlitePdoSqlite3Test.php',
+        'Stash\\Test\\Driver\\UnavailableDriverTest' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/Driver/UnavailableDriverTest.php',
+        'Stash\\Test\\Exception\\TestException' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/Exception/TestException.php',
+        'Stash\\Test\\ItemLoggerTest' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/ItemLoggerTest.php',
+        'Stash\\Test\\ItemTest' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/ItemTest.php',
+        'Stash\\Test\\PoolNamespaceTest' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/PoolNamespaceTest.php',
+        'Stash\\Test\\PoolTest' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/PoolTest.php',
+        'Stash\\Test\\SessionTest' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/SessionTest.php',
+        'Stash\\Test\\Stubs\\DriverCallCheckStub' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/Stubs/DriverCallCheckStub.php',
+        'Stash\\Test\\Stubs\\DriverExceptionStub' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/Stubs/DriverExceptionStub.php',
+        'Stash\\Test\\Stubs\\DriverUnavailableStub' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/Stubs/DriverUnavailableStub.php',
+        'Stash\\Test\\Stubs\\LoggerStub' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/Stubs/LoggerStub.php',
+        'Stash\\Test\\Stubs\\PoolGetDriverStub' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/Stubs/PoolGetDriverStub.php',
+        'Stash\\Test\\UtilitiesTest' => __DIR__ . '/..' . '/tedivm/stash/tests/Stash/Test/UtilitiesTest.php',
+        'Stash\\Utilities' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Utilities.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'Symfony\\Component\\Console\\Application' => __DIR__ . '/..' . '/symfony/console/Application.php',
         'Symfony\\Component\\Console\\Attribute\\AsCommand' => __DIR__ . '/..' . '/symfony/console/Attribute/AsCommand.php',
@@ -1461,6 +1650,7 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c::$classMap;
 
         }, null, ClassLoader::class);
