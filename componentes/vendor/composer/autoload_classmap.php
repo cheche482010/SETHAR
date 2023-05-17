@@ -10,6 +10,7 @@ return array(
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
     'BASE_DATOS' => $baseDir . '/../app/Base_Datos.php',
     'CRUD' => $baseDir . '/Crud.php',
+    'Cache' => $baseDir . '/Cache.php',
     'Cache\\Adapter\\Common\\AbstractCachePool' => $vendorDir . '/cache/adapter-common/AbstractCachePool.php',
     'Cache\\Adapter\\Common\\CacheItem' => $vendorDir . '/cache/adapter-common/CacheItem.php',
     'Cache\\Adapter\\Common\\Exception\\CacheException' => $vendorDir . '/cache/adapter-common/Exception/CacheException.php',

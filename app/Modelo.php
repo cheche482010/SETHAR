@@ -49,27 +49,34 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
         return $this->{$fun}();
     }
 
-    public function Ejecutar_Simple(string $sql, array $parametro = [], string $forzado = "MIN")
+    /**
+     * Ejecuta una consulta SQL y devuelve el resultado. Si se especifica la opción de caché,
+     * se guarda el resultado en caché para consultas futuras.
+     *
+     * @param string $sql La consulta SQL a ejecutar.
+     * @param array $parametros Los parámetros de la consulta SQL.
+     * @param string $forzado Opción para forzar el formato de los valores de los parámetros.
+     * @param bool $transaccion Opción para iniciar una transacción.
+     * @param string $tipo_valor Opción para definir si los parámetros son detallados o no.
+     * @param bool $ultimo_id Opción para obtener el último ID insertado.
+     * @param bool $cache Opción para usar la caché.
+     *
+     * @return mixed El resultado de la consulta o el último ID insertado.
+     */
+    public function Ejecutar(string $sql, array $parametro = [], string $forzado = "MIN", bool $transaccion = false, string $tipo_valor = "detallado", bool $ultimo_id = false, bool $cache = false)
     {
-        $this->PDO = $this->conexion->prepare($sql);
-        foreach ($parametro as $key => $value) {
-            $value = $forzado === 'MAY' ? strtoupper($value) : ($forzado === 'MIN' ? strtolower($value) : $value);
-            $value = $this->Filtrar_Parametro($value);
-            $value = $this->conexion->quote($value);
-            $this->PDO->bindParam($key, $value, $this->Tipo_Parametro($value), strlen($value));
-        }
-        $this->PDO->execute();
+        $result = false;
+        $ultimo = null;
 
-        if (strpos(strtolower($sql), 'select') === 0) {
-            $this->PDO->setFetchMode(PDO::FETCH_ASSOC);
-            return $this->PDO->fetchAll(PDO::FETCH_ASSOC);
-        } else {
-            return $this->PDO->rowCount() ? true : false;
-        }
-    }
+        if ($cache) {
+            $cache_key    = 'query_cache_' . md5($sql . serialize($parametro) . $forzado . $tipo_valor);
+            $cache_result = Cache()::Obtener($cache_key);
 
-    public function Ejecutar_Detallado(string $sql, array $parametro = [], string $forzado = "MIN", bool $transaccion = false, string $tipo_valor = "detallado", bool $ultimo_id = false)
-    {
+            if (!empty($cache_result)) {
+                return $ultimo_id ? $cache_result['ultimo_id'] : $cache_result['result'];
+            }
+        }
+
         if ($transaccion) {
             $this->conexion->beginTransaction();
         }
@@ -82,16 +89,13 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
             $value = $this->conexion->quote($value);
 
             if ($tipo_valor === "detallado") {
-                $this->PDO->bindParam($key, $value, $this->Tipo_Parametro($value), strlen($value));
+                $this->PDO->bindParam(":$key", $value, $this->Tipo_Parametro($value), strlen($value));
             } else {
-                $this->PDO->bindValue($key, $value, $this->Tipo_Parametro($value));
+                $this->PDO->bindValue(":$key", $value, $this->Tipo_Parametro($value));
             }
         }
 
         $this->PDO->execute();
-
-        $result = false;
-        $ultimo = null;
 
         if (strpos(strtolower($sql), 'select') === 0) {
             $this->PDO->setFetchMode(PDO::FETCH_ASSOC);
@@ -111,9 +115,14 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
                 $this->conexion->rollBack();
             }
         }
-        
+
         if ($this->PDO->errorInfo()[0] !== '00000') {
             Errores::Capturar()->Personalizado('Error en la sentencia: [' . $sql . "] \n" . $this->PDO->errorInfo()[2]);
+        }
+
+        if ($cache) {
+            $cache_result = ['result' => $result, 'ultimo_id' => $ultimo];
+            Cache()::Establecer_Item($cache_key, $cache_result);
         }
 
         return $ultimo_id ? $ultimo : $result;
