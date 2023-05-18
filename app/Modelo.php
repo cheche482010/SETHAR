@@ -94,18 +94,14 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
      */
     public function Ejecutar(string $sql, array $parametro = [], string $forzado = "MIN", bool $transaccion = false, string $tipo_valor = "detallado", bool $ultimo_id = false, bool $cache = false)
     {
-        $result         = false;
-        $ultimo         = null;
+        $result    = false;
+        $ultimo    = null;
+        $cache_key = 'query_cache_' . md5($sql . serialize($parametro) . $forzado . $tipo_valor);
+
         $this->transacciones = new Transacciones($this->conexion, $transaccion);
+        $this->cache         = new Cache($cache, $cache_key, $ultimo_id);
 
-        if ($cache) {
-            $cache_key    = 'query_cache_' . md5($sql . serialize($parametro) . $forzado . $tipo_valor);
-            $cache_result = Cache()::Obtener($cache_key);
-
-            if (!empty($cache_result)) {
-                return $ultimo_id ? $cache_result['ultimo_id'] : $cache_result['result'];
-            }
-        }
+        if ($cache_result = $this->cache->Iniciar()) {return $cache_result;}
 
         $this->transacciones->Comenzar();
 
@@ -139,13 +135,10 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
         $this->transacciones->Finalizar($result);
 
         if ($this->PDO->errorInfo()[0] !== '00000') {
-            Errores::Capturar()->Personalizado('Error en la sentencia: [' . $sql . "] \n" . $this->PDO->errorInfo()[2]);
+            Errores::Capturar()->Personalizado('Error en la sentencia: [' . $sql . "] Parametro [".$parametro."] \n" . $this->PDO->errorInfo()[2]);
         }
 
-        if ($cache) {
-            $cache_result = ['result' => $result, 'ultimo_id' => $ultimo];
-            Cache()::Establecer_Item($cache_key, $cache_result);
-        }
+        $this->cache->Finalizar($result, $ultimo);
 
         return $ultimo_id ? $ultimo : $result;
     }
