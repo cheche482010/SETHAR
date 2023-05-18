@@ -30,19 +30,48 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
     }
     // =============CREAR VARIABLE PUBLICAS==============
 
-    public function __GET($A)
+    /**
+     * Devuelve el valor de una propiedad.
+     *
+     * @param string $A Nombre de la propiedad.
+     * @return mixed Valor de la propiedad.
+     */
+
+    public function __GET(string $A)
     {
         return $this->$A;
     }
-    public function __SET($A, $B)
+
+    /**
+     * Establece el valor de una propiedad.
+     *
+     * @param string $A Nombre de la propiedad.
+     * @param mixed $B Valor a asignar.
+     */
+
+    public function __SET(string $A, $B)
     {
         return $this->$A = $B;
     }
+
+    /**
+     * Crea una instancia de la clase CRUD con el valor proporcionado.
+     *
+     * @param mixed $val Valor a pasar al constructor de la clase CRUD.
+     * @return CRUD Instancia de la clase CRUD.
+     */
 
     public function CRUD($val)
     {
         return new CRUD($val);
     }
+
+    /**
+     * Obtiene la consulta SQL correspondiente a una función.
+     *
+     * @param string $fun Nombre de la función.
+     * @return string Consulta SQL.
+     */
 
     public function Obtener_SQL($fun): string
     {
@@ -65,8 +94,9 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
      */
     public function Ejecutar(string $sql, array $parametro = [], string $forzado = "MIN", bool $transaccion = false, string $tipo_valor = "detallado", bool $ultimo_id = false, bool $cache = false)
     {
-        $result = false;
-        $ultimo = null;
+        $result         = false;
+        $ultimo         = null;
+        $this->transacciones = new Transacciones($this->conexion, $transaccion);
 
         if ($cache) {
             $cache_key    = 'query_cache_' . md5($sql . serialize($parametro) . $forzado . $tipo_valor);
@@ -77,9 +107,7 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
             }
         }
 
-        if ($transaccion) {
-            $this->conexion->beginTransaction();
-        }
+        $this->transacciones->Comenzar();
 
         $this->PDO = $this->conexion->prepare($sql);
 
@@ -108,13 +136,7 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
             }
         }
 
-        if ($transaccion) {
-            if ($result) {
-                $this->conexion->commit();
-            } else {
-                $this->conexion->rollBack();
-            }
-        }
+        $this->transacciones->Finalizar($result);
 
         if ($this->PDO->errorInfo()[0] !== '00000') {
             Errores::Capturar()->Personalizado('Error en la sentencia: [' . $sql . "] \n" . $this->PDO->errorInfo()[2]);
@@ -127,6 +149,13 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
 
         return $ultimo_id ? $ultimo : $result;
     }
+
+    /**
+     * Determina el tipo de parámetro para su enlace en la consulta preparada.
+     *
+     * @param mixed $value El valor del parámetro.
+     * @return int El tipo de parámetro PDO correspondiente.
+     */
 
     private function Tipo_Parametro($value)
     {
@@ -144,6 +173,13 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
             return PDO::PARAM_STR;
         }
     }
+
+    /**
+     * Filtra y sanitiza el valor del parámetro antes de utilizarlo en la consulta.
+     *
+     * @param mixed $valor El valor del parámetro a filtrar.
+     * @return mixed El valor del parámetro filtrado y sanitizado.
+     */
 
     private function Filtrar_Parametro($valor)
     {
