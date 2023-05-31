@@ -140,32 +140,8 @@ class CRUD
                 $sql .= " {$this->joinType} {$this->joinTabla} ON {$this->tabla}.{$this->joinId} = {$this->joinTabla}.{$this->joinId}";
                 break;
 
-            case 'vaciar':
-                $sql = "TRUNCATE TABLE {$this->tabla}";
-                break;
-
-            case 'crear_tabla':
-                $sql = "CREATE TABLE {$this->tabla} ({$this->columna})";
-                break;
-
-            case 'modificar_tabla':
-                $sql = "ALTER TABLE {$this->tabla} {$this->accion}";
-                break;
-
-            case 'crear_indice':
-                $sql = "CREATE INDEX {$this->nombre_indice} ON {$this->tabla} ({$this->columna})";
-                break;
-
             case 'seleccionar_nuevo':
                 $sql = "SELECT * INTO {$this->nuevo_nombre_tabla} FROM {$this->tabla} WHERE {$this->condicion}";
-                break;
-
-            case 'otorgar_permiso':
-                $sql = "GRANT {$this->permisos} ON {$this->objeto} TO {$this->usuario}";
-                break;
-
-            case 'revocar_permiso':
-                $sql = "REVOKE {$this->permisos} ON {$this->objeto} FROM {$this->usuario}";
                 break;
 
             default:

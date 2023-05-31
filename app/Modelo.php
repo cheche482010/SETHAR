@@ -11,10 +11,6 @@ interface Interface_Modelo
 
 class Modelo extends BASE_DATOS implements Interface_Modelo
 {
-    #Public: acceso sin restricción.
-    #Protected:Solo puede ser accesado por una clase heredada y la clase que lo define.
-    #Private:Solo puede ser accesado por la clase que lo define.
-
     protected $PDO;
     protected $datos;
     public $crud;
@@ -26,7 +22,9 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
 
     public function Desconectar()
     {
-        $this->conexion = null;
+        if ($this->conexion !== null) {
+            $this->conexion = null;
+        }
     }
     // =============CREAR VARIABLE PUBLICAS==============
 
@@ -39,7 +37,9 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
 
     public function __GET(string $A)
     {
-        return $this->$A;
+        if (property_exists($this, $A)) {
+            return $this->{$A};
+        }
     }
 
     /**
@@ -51,7 +51,9 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
 
     public function __SET(string $A, $B)
     {
-        return $this->$A = $B;
+        if (property_exists($this, $A)) {
+            $this->{$A} = $B;
+        }
     }
 
     /**
@@ -75,7 +77,9 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
 
     public function Obtener_SQL($fun): string
     {
-        return $this->{$fun}();
+        if (method_exists($this, $fun)) {
+            return $this->{$fun}();
+        }
     }
 
     /**
@@ -92,7 +96,7 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
      *
      * @return mixed El resultado de la consulta o el último ID insertado.
      */
-    public function Ejecutar(string $sql, array $parametro = [], string $forzado = "MIN", bool $transaccion = false, string $tipo_valor = "detallado", bool $ultimo_id = false, bool $cache = false)
+    public function Ejecutar(string $sql, array $parametro = [], string $forzado = "MIN", bool $transaccion = false, string $tipo_valor = "detallado", bool $ultimo_id = false, bool, $filtrado = true)
     {
         $result    = false;
         $ultimo    = null;
@@ -109,8 +113,10 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
 
         foreach ($parametro as $key => $value) {
             $value = $forzado === 'MAY' ? strtoupper($value) : ($forzado === 'MIN' ? strtolower($value) : $value);
-            $value = $this->Filtrar_Parametro($value);
-            $value = $this->conexion->quote($value);
+            if ($filtrado) {
+                $value = $this->Filtrar_Parametro($value);
+                $value = $this->conexion->quote($value);
+            }
 
             if ($tipo_valor === "detallado") {
                 $this->PDO->bindParam(":$key", $value, $this->Tipo_Parametro($value), strlen($value));
@@ -135,7 +141,7 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
         $this->transacciones->Finalizar($result);
 
         if ($this->PDO->errorInfo()[0] !== '00000') {
-            Errores::Capturar()->Personalizado('Error en la sentencia: [' . $sql . "] Parametro [".$parametro."] \n" . $this->PDO->errorInfo()[2]);
+            Errores::Capturar()->Personalizado('Error en la sentencia: [' . $sql . "] Parametro [" . $parametro . "] \n" . $this->PDO->errorInfo()[2]);
         }
 
         $this->cache->Finalizar($result, $ultimo);
@@ -152,18 +158,21 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
 
     private function Tipo_Parametro($value)
     {
-        if (is_int($value)) {
-            return PDO::PARAM_INT;
-        } elseif (is_bool($value)) {
-            return PDO::PARAM_BOOL;
-        } elseif (is_null($value)) {
-            return PDO::PARAM_NULL;
-        } elseif (is_resource($value)) {
-            return PDO::PARAM_LOB;
-        } elseif ($value instanceof PDOStatement) {
-            return PDO::PARAM_STMT;
-        } else {
-            return PDO::PARAM_STR;
+        switch (gettype($value)) {
+            case 'integer':
+                return PDO::PARAM_INT;
+            case 'boolean':
+                return PDO::PARAM_BOOL;
+            case 'NULL':
+                return PDO::PARAM_NULL;
+            case 'resource':
+                return PDO::PARAM_LOB;
+            case 'object':
+                if ($value instanceof PDOStatement) {
+                    return PDO::PARAM_STMT;
+                }
+            default:
+                return PDO::PARAM_STR;
         }
     }
 
@@ -176,32 +185,35 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
 
     private function Filtrar_Parametro($valor)
     {
-        if (is_string($valor)) {
-            $valor          = filter_var($valor, FILTER_SANITIZE_STRING);
-            $valor          = preg_replace("/[^a-zA-Z0-9_.-\s]/", "", trim($valor));
-            $palabras_clave = array("SELECT", "INSERT", "UPDATE", "DELETE", "WHERE", "DROP");
-            foreach ($palabras_clave as $palabra) {$valor = str_ireplace($palabra, "", $valor);}
-            return $valor;
-        } elseif (filter_var($valor, FILTER_VALIDATE_EMAIL)) {
-            return filter_var($valor, FILTER_SANITIZE_EMAIL);
-        } elseif (is_numeric($valor)) {
-            return filter_var($valor, FILTER_SANITIZE_NUMBER_INT);
-        } elseif (is_bool($valor)) {
-            return filter_var($valor, FILTER_SANITIZE_BOOL);
-        } elseif (DateTime::createFromFormat('Y-m-d', $valor) !== false) {
-            return filter_var($valor, FILTER_SANITIZE_STRING);
-        } elseif (is_array($valor)) {
-            return filter_var_array($valor, FILTER_SANITIZE_STRING);
-        } elseif (is_uploaded_file($valor['tmp_name'])) {
-            return $valor;
-        } elseif (is_string($valor) && preg_match('/^<[\w]+(?!.*?<[\w]+).*?>.*?<\/[\w]+>$/', $valor)) {
-            return filter_var($valor, FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_FLAG_NO_ENCODE_QUOTES);
-        } elseif (filter_var($valor, FILTER_VALIDATE_URL)) {
-            return filter_var($valor, FILTER_SANITIZE_URL);
-        } elseif (DateTime::createFromFormat('H:i', $valor) !== false) {
-            return filter_var($valor, FILTER_SANITIZE_STRING);
-        } else {
-            return null;
+        switch (true) {
+            case is_string($valor):
+                $valor          = filter_var($valor, FILTER_SANITIZE_STRING);
+                $valor          = preg_replace("/[^a-zA-Z0-9_.-\s]/", "", trim($valor));
+                $palabras_clave = array("SELECT", "INSERT", "UPDATE", "DELETE", "WHERE", "DROP");
+                foreach ($palabras_clave as $palabra) {
+                    $valor = str_ireplace($palabra, "", $valor);
+                }
+                return $valor;
+            case filter_var($valor, FILTER_VALIDATE_EMAIL):
+                return filter_var($valor, FILTER_SANITIZE_EMAIL);
+            case is_numeric($valor):
+                return filter_var($valor, FILTER_SANITIZE_NUMBER_INT);
+            case is_bool($valor):
+                return filter_var($valor, FILTER_SANITIZE_BOOL);
+            case DateTime::createFromFormat('Y-m-d', $valor) !== false:
+                return filter_var($valor, FILTER_SANITIZE_STRING);
+            case is_array($valor):
+                return filter_var_array($valor, FILTER_SANITIZE_STRING);
+            case is_uploaded_file($valor['tmp_name']):
+                return $valor;
+            case is_string($valor) && preg_match('/^<[\w]+(?!.*?<[\w]+).*?>.*?<\/[\w]+>$/', $valor):
+                return filter_var($valor, FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_FLAG_NO_ENCODE_QUOTES);
+            case filter_var($valor, FILTER_VALIDATE_URL):
+                return filter_var($valor, FILTER_SANITIZE_URL);
+            case DateTime::createFromFormat('H:i', $valor) !== false:
+                return filter_var($valor, FILTER_SANITIZE_STRING);
+            default:
+                return null;
         }
     }
 
