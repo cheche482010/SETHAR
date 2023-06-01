@@ -1,7 +1,7 @@
 # Documentación del Framework [SETHAR]
 
-<div style="text-align: center;">
-  <img src="recursos/img/web/x.png" alt="Texto alternativo" style="display: block; margin: 0 auto; width: 300px; height: auto; border-radius: 5px;">
+<div style="display: flex; align-items: center; justify-content: center; height: 100vh;">
+  <img src="recursos/img/web/x.png" alt="Logo Personal" style="width: 300px; height: auto; border-radius: 5px;">
 </div>
 
 
