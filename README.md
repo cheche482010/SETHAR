@@ -1,5 +1,5 @@
 <div style="display: flex; align-items: center; height: 100vh;">
-  <img src="recursos/img/web/x.png" alt="Texto alternativo" style="width: 300px; height: auto; border-radius: 5px;">
+  <img src="recursos/img/web/x.png" alt="Logo Personal" style="width: 300px; height: auto; border-radius: 5px;">
 </div>
 
 # Documentación del Framework [SETHAR]
