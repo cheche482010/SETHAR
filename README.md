@@ -1,9 +1,10 @@
-# Documentación del Framework [SETHAR]
-
 <div style="display: flex; align-items: center; height: 100vh;">
-  <div style="flex: 1;"></div> <!-- Espacio en blanco en el lado izquierdo -->
-  <img src="recursos/img/web/x.png" alt="Texto alternativo" style="width: 300px; height: auto; border-radius: 5px;">
+  <center">
+    <img src="recursos/img/web/x.png" alt="Texto alternativo" style="width: 300px; height: auto; border-radius: 5px;">
+  </center>
 </div>
+
+# Documentación del Framework [SETHAR]
 
 # Descripción
 El Framework SETHAR es una herramienta diseñada para facilitar el desarrollo de aplicaciones web en PHP. Proporciona una estructura organizada y componentes reutilizables para acelerar el proceso de desarrollo y mejorar la mantenibilidad del código.
