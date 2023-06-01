@@ -1,5 +1,5 @@
 # Documentación del Framework [SETHAR]
-![Texto alternativo](recursos/img/web.png)
+![Texto alternativo](recursos/img/web/x.png)
 
 
 # Descripción
