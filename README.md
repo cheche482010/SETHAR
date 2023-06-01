@@ -1,4 +1,6 @@
 # Documentación del Framework [SETHAR]
+![Texto alternativo](recursos/img/web.png)
+
 
 # Descripción
 El Framework SETHAR es una herramienta diseñada para facilitar el desarrollo de aplicaciones web en PHP. Proporciona una estructura organizada y componentes reutilizables para acelerar el proceso de desarrollo y mejorar la mantenibilidad del código.
@@ -6,20 +8,42 @@ El Framework SETHAR es una herramienta diseñada para facilitar el desarrollo de
 # Estructura del proyecto
 El proyecto sigue la siguiente estructura de carpetas:
 
-app: Contiene la lógica de la aplicación.
-componentes: Incluye componentes adicionales utilizados por el framework, como base de datos, validación, logs, etc.
-recursos: Contiene archivos estáticos como CSS, JavaScript e imágenes.
-controlador: Contiene los controladores de la aplicación.
-interface: Define las interfaces de los controladores.
-propiedades: Contiene las propiedades de los controladores.
-modelo: Contiene los modelos de la aplicación.
-entidades: Contiene las entidades de los modelos.
-interface: Define las interfaces de los modelos.
-vista: Contiene las vistas de la aplicación.
-ejemplo: Ejemplo de una vista específica.
-publico: Contiene vistas públicas.
-privado: Contiene vistas privadas.
-index.php: Punto de entrada de la aplicación.
+- app: Contiene la lógica de la aplicación.
+
+- componentes:
+  - base de datos: Aquí podrías tener archivos relacionados con la configuración y manejo de la base de datos, como la conexión y las consultas SQL.
+  - interface: Podrías tener interfaces que definan contratos para componentes específicos de tu aplicación, como autenticación, envío de correos electrónicos, etc.
+  - logs: Aquí podrías almacenar archivos de registro (logs) para rastrear errores o eventos importantes en tu aplicación.
+  - tests: Podrías tener archivos de prueba para tus componentes, utilizando una herramienta de pruebas como PHPUnit.
+  - traits: Aquí podrías tener traits reutilizables que contengan métodos comunes que se pueden usar en múltiples clases.
+  - validacion: Podrías tener archivos relacionados con la validación de datos, como reglas de validación y funciones de validación personalizadas.
+  - vendor: Esta carpeta puede ser generada por Composer y contendría las dependencias de terceros instaladas en tu proyecto.
+
+- controlador:
+  - interface: Aquí podrías tener interfaces que definan contratos para tus controladores, lo que ayuda a establecer un estándar en los métodos que deben implementar.
+  - propiedades: Podrías tener archivos que contengan definiciones de propiedades y constantes que se utilizan en tus controladores.
+
+- modelo:
+  - entidades: Aquí podrías tener clases que representen las entidades o modelos de tu aplicación, mapeando a tablas de la base de datos.
+  - interface: Podrías tener interfaces que definan contratos para tus modelos, especificando los métodos que deben implementar.
+
+- recursos:
+  - css: Aquí podrías almacenar tus archivos CSS para estilos personalizados.
+  - js: Podrías tener tus archivos JavaScript para funcionalidades interactivas del lado del cliente.
+  - img: Aquí podrías guardar las imágenes utilizadas en tu aplicación.
+  - plugins: Podrías incluir bibliotecas o complementos de terceros utilizados en tu aplicación.
+  - scss: Si utilizas Sass para escribir tus estilos, podrías tener archivos .scss aquí que se compilen en CSS.
+
+- vista:
+  - ejemplo: Ejemplo de una vista específica.
+    - css: Aquí podrías almacenar los archivos CSS específicos para el módulo "ejemplo".
+    - js: Aquí podrías tener los archivos JavaScript específicos para el módulo "ejemplo".
+    - modal: Aquí podrías tener archivos relacionados con los modales específicos para el módulo "ejemplo".
+  - publico: Aquí podrías tener archivos de plantillas para las páginas públicas de tu aplicación.
+  - privado: Podrías tener archivos de plantillas para las páginas privadas o con acceso restringido.
+
+- index.php: Punto de entrada de la aplicación.
+
 
 # Configuración inicial
 Antes de comenzar a utilizar el framework, siga los siguientes pasos de configuración:
