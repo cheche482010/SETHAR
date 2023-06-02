@@ -5,8 +5,6 @@ interface Interface_Modelo
     public function Desconectar();
     public function __GET(string $A);
     public function __SET(string $A, $B);
-    public function Ejecutar_Simple(string $sql, array $parametro = [], string $forzado = "MIN");
-    public function Ejecutar_Detallado(string $sql, array $parametro = [], string $forzado = "MIN", bool $transaccion = false, string $tipo_valor = "detallado", bool $ultimo_id = false);
 }
 
 class Modelo extends BASE_DATOS implements Interface_Modelo
