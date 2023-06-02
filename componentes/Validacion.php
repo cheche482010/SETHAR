@@ -17,24 +17,64 @@ class Validacion
 
     private $correo = "/^(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6}$/";
 
-    private $url = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
+    private $url              = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
+    private $codigo_postal    = "/^[0-9]{5}$/"; // Código postal de 5 dígitos
+    private $numero_tarjeta   = "/^[0-9]{16}$/"; // Número de tarjeta de crédito de 16 dígitos
+    private $codigo_seguridad = "/^[0-9]{3}$/"; // Código de seguridad de tarjeta de crédito de 3 dígitos
+    private $fecha_expiracion = "/^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/"; // Fecha de expiración de tarjeta de crédito en formato MM/YY o MM/YYYY
+    private $ipv4             = "/^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/"; // Dirección IP en formato IPv4
+    private $ipv6             = "/^((?=.*::)(?!.*::.+::)(::)?([\da-fA-F]{1,4}(:|(?!\s*\2:)\2)){7}|([\da-fA-F]{1,4}:){6})([\da-fA-F]{1,4})(\2([\da-fA-F]{1,4})(\3([\da-fA-F]{1,4})(\4([\da-fA-F]{1,4})(\5([\da-fA-F]{1,4})(\6([\da-fA-F]{1,4})\7?)?)?)?)?)?$/"; // Dirección IP en formato IPv6
+    private $hexadecimal      = "/^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/"; // Color hexadecimal en formato #RRGGBB o #RGB
 
     public function __construct()
     {}
     // ===============================================================================
-    public function Validar($patron, $valor)
+    /**
+     * Valida un valor con el patrón correspondiente.
+     *
+     * @param string $patron El nombre del patrón a utilizar.
+     * @param mixed $valor El valor a validar.
+     * @return bool Devuelve true si el valor cumple con el patrón, false en caso contrario.
+     */
+    public function validar($patron, $valor)
     {
-        return (bool) (!preg_match_all($this->{$patron}, $valor)) ? true : false;
+        return !preg_match($this->$patron, $valor);
     }
 
-    public function Comprobar($value)
+    /**
+     * Comprueba si un valor está vacío o no está definido.
+     *
+     * @param mixed $valor El valor a comprobar.
+     * @return bool Devuelve true si el valor está vacío o no está definido, false en caso contrario.
+     */
+    public function Comprobar($valor)
     {
-        return (bool) (empty($value) && isset($value)) ? true : false;
+        return empty($valor) && isset($valor);
     }
-    
+
+    /**
+     * Limpia los datos eliminando caracteres especiales y etiquetas HTML.
+     *
+     * @param mixed $data Los datos a limpiar.
+     * @return string Los datos limpios.
+     */
     public function Datos_Limpios($data)
     {
         return htmlspecialchars(strip_tags(stripslashes(trim($data))));
+    }
+
+    /**
+     * Verifica la longitud de un valor.
+     *
+     * @param string $valor El valor a verificar.
+     * @param int $minimo La longitud mínima permitida.
+     * @param int $maximo La longitud máxima permitida.
+     * @return bool Devuelve true si el valor cumple con la longitud permitida, false en caso contrario.
+     */
+    public function Longitud($valor, $minimo, $maximo)
+    {
+        $longitud = strlen($valor);
+        return $longitud >= $minimo && $longitud <= $maximo;
     }
 
 }
