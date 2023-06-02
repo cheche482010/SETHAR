@@ -97,11 +97,19 @@ class CRUD
                 break;
 
             case 'registrar':
-                $sql = "INSERT INTO  {$this->tabla}  ({$this->columna}) VALUES (:{$this->columna})";
+                $columnas = explode(',', $this->columna);
+                $values   = implode(',', array_map(function ($columna) {
+                    return ":$columna";
+                }, $columnas));
+                $sql = "INSERT INTO {$this->tabla} ($this->columna) VALUES ($values)";
                 break;
 
             case 'editar':
-                $sql = "UPDATE {$this->tabla} SET {$this->columna} = :{$this->columna}  WHERE  {$this->id}  = :{$this->id}";
+                $columnas = explode(',', $this->columna);
+                $set      = implode(',', array_map(function ($columna) {
+                    return "$columna = :$columna";
+                }, $columnas));
+                $sql = "UPDATE {$this->tabla} SET $set WHERE {$this->id} = :id";
                 break;
 
             case 'eliminar':
@@ -114,6 +122,32 @@ class CRUD
 
             case 'listar':
                 $sql = "SELECT * FROM {$this->tabla} ORDER BY {$this->orden} ASC";
+                break;
+
+            case 'select_unico':
+                $sql = "SELECT {$this->columna} FROM {$this->tabla}";
+
+                if (!empty($this->estado)) {
+                    $sql .= " WHERE " . $this->Contruir_Condiciones($this->estado);
+                }
+
+                if (!empty($this->orden)) {
+                    $sql .= " ORDER BY {$this->orden}";
+                }
+
+                break;
+
+            case 'consulta_multiple':
+                $sql = "SELECT {$this->columna} FROM {$this->tabla}";
+
+                if (!empty($this->estado)) {
+                    $sql .= " WHERE " . $this->Contruir_Condiciones($this->estado);
+                }
+
+                if (!empty($this->orden)) {
+                    $sql .= " ORDER BY {$this->orden}";
+                }
+
                 break;
 
             case 'maximo':
@@ -150,6 +184,18 @@ class CRUD
         }
         return $sql;
         exit();
+    }
+
+    // Agrega un nuevo método para construir las condiciones WHERE
+    private function Contruir_Condiciones(array $conditions): string
+    {
+        $where = [];
+        foreach ($conditions as $column => $value) {
+            $column  = filter_var($column, FILTER_SANITIZE_STRING);
+            $value   = filter_var($value, FILTER_SANITIZE_STRING);
+            $where[] = "{$column} = '{$value}'";
+        }
+        return implode(' AND ', $where);
     }
 
 }

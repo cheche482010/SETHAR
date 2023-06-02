@@ -1,4 +1,5 @@
 <?php
+require_once '../TCPDF/tcpdf.php';
 trait PDF
 {
     /**
@@ -10,8 +11,6 @@ trait PDF
      */
     public function Crear_PDF($titulo, $autor)
     {
-        require_once 'tcpdf/tcpdf.php';
-
         // Crea una nueva instancia de TCPDF
         $pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8');
 

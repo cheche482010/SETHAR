@@ -1,0 +1,56 @@
+{
+    "en": {
+        "greeting": "Hello",
+        "welcome": "Welcome to our website",
+        "buttons": {
+            "submit": "Submit",
+            "cancel": "Cancel",
+            "next": "Next",
+            "previous": "Previous",
+            "save": "Save",
+            "delete": "Delete"
+        },
+        "header": {
+            "title": "Welcome to Our Website",
+            "subtitle": "Explore our services and find out more"
+        },
+        "menu": {
+            "home": "Home",
+            "about": "About",
+            "services": "Services",
+            "contact": "Contact"
+        },
+        "footer": {
+            "address": "Address",
+            "phone": "Phone",
+            "email": "Email"
+        }
+    },
+    "es": {
+        "greeting": "Hola",
+        "welcome": "Bienvenido/a a nuestro sitio web",
+        "buttons": {
+            "submit": "Enviar",
+            "cancel": "Cancelar",
+            "next": "Siguiente",
+            "previous": "Anterior",
+            "save": "Guardar",
+            "delete": "Eliminar"
+        },
+        "header": {
+            "title": "Bienvenido/a a nuestro sitio web",
+            "subtitle": "Explora nuestros servicios y descubre más"
+        },
+        "menu": {
+            "home": "Inicio",
+            "about": "Acerca de",
+            "services": "Servicios",
+            "contact": "Contacto"
+        },
+        "footer": {
+            "address": "Dirección",
+            "phone": "Teléfono",
+            "email": "Correo electrónico"
+        }
+    }
+}
