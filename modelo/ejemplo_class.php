@@ -1,19 +1,59 @@
 <?php
-
+interface EjemploModeloInterface
+{
+    public function Configurar(array $configuracion): self;
+    public function Administrar(): mixed;
+}
 class Ejemplo_Modelo extends Modelo
 {
     #Public: acceso sin restricción.
     #Private:Solo puede ser accesado por la clase que lo define.
 
+    /**
+     * Datos del modelo.
+     * @var mixed
+     */
+    public $datos;
+
+    /**
+     * Opciones de configuración.
+     * @var array
+     */
+    public $opciones;
+
+    /**
+     * Sentencia actual.
+     * @var string|null
+     */
+    public $sentencia;
+
+    /**
+     * Resultado de la operación.
+     * @var mixed
+     */
+    public $resultado;
+
+    /**
+     * Sentencia SQL.
+     * @var string|null
+     */
     private $SQL;
-    private $datos;
-    private $opciones;
-    private $sentencia;
+
+    /**
+     * Configuración del modelo.
+     * @var array|null
+     */
     private $configuracion;
+
+    /**
+     * Opciones predeterminadas.
+     * @var array
+     */
     private $opciones_predeterminadas;
 
-    public $resultado; #resultado de consultas de la bd
-
+    /**
+     * Constructor de la clase.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -23,9 +63,17 @@ class Ejemplo_Modelo extends Modelo
             'transaccion' => false,
             'tipo_valor'  => 'detallado',
             'ultimo_id'   => false,
+            'cache'       => false,
+            'filtrado'    => true,
         ];
     }
 
+    /**
+     * Configura el modelo.
+     *
+     * @param array $configuracion Configuración del modelo.
+     * @return self
+     */
     public function Configurar(array $configuracion): self
     {
         $this->configuracion = $configuracion;
@@ -35,17 +83,36 @@ class Ejemplo_Modelo extends Modelo
         return $this;
     }
 
+    /**
+     * Obtiene la sentencia actual.
+     *
+     * @return string|null Sentencia actual.
+     */
     private function Sentencia():  ? string
     {
         $this->class = new Clases("Ejemplo_Modelo");
         return $this->class->verificar_funcion($this->SQL) ? $this->{$this->SQL}() : Errores::Capturar()->Personalizado('No existe la funcion : ' . $this->SQL . "() \nEn la clase: " . $this->class->nombre_clase() . "\nArchivo: " . __FILE__);
     }
 
-    public function Administrar(string $tipo = 'simple', array $opciones = []) : mixed
+    /**
+     * Administra el modelo y ejecuta la sentencia actual.
+     *
+     * @return mixed Resultado de la operación.
+     */
+    public function Administrar() : mixed
     {
         $this->sentencia = $this->Sentencia();
         try {
-            $this->resultado = ($tipo === 'detallado') ? $this->Ejecutar_Detallado($this->sentencia, $this->datos, $this->opciones['forzado'], $this->opciones['transaccion'], $this->opciones['tipo_valor'], $this->opciones['ultimo_id']) : $this->Ejecutar_Simple($this->sentencia, $this->datos);
+            $this->resultado = $this->Ejecutar(
+                $this->sentencia,
+                $this->datos,
+                $this->opciones['forzado'],
+                $this->opciones['transaccion'],
+                $this->opciones['tipo_valor'],
+                $this->opciones['ultimo_id'],
+                $this->opciones['cache'],
+                $this->opciones['filtrado']
+            );
             $this->Desconectar();
             return $this->resultado;
         } catch (PDOException $e) {
@@ -53,84 +120,13 @@ class Ejemplo_Modelo extends Modelo
         }
     }
 
-    public function SQL_01(): string
+    /**
+     * Ejemplo de una sentencia SQL personalizada.
+     *
+     * @return string Sentencia SQL personalizada.
+     */
+    private function SQL_01(): string
     {
-        return $this->CRUD('consultar')->tabla('tabla')->orden('columna')->SQL();
+        return "insertar sql de su aplicacion";
     }
-
-    public function SQL_02(): string
-    {
-        return $this->CRUD('registrar')->tabla('tabla')->columna('columna')->SQL();
-    }
-
-    public function SQL_03(): string
-    {
-        return $this->CRUD('editar')->tabla('tabla')->columna('columna')->id('id')->SQL();
-    }
-
-    public function SQL_04(): string
-    {
-        return $this->CRUD('eliminar')->tabla('tabla')->id('id')->SQL();
-    }
-
-    public function SQL_05(): string
-    {
-        return $this->CRUD('buscar')->tabla('tabla')->columna('columna')->SQL();
-    }
-
-    public function SQL_06(): string
-    {
-        return $this->CRUD('listar')->tabla('tabla')->orden('columna')->SQL();
-    }
-
-    public function SQL_07(): string
-    {
-        return $this->CRUD('maximo')->tabla('tabla')->id('id')->SQL();
-    }
-
-    public function SQL_08(): string
-    {
-        return $this->CRUD('contar')->tabla('tabla')->columna('columna')->SQL();
-    }
-
-    public function SQL_09(): string
-    {
-        return $this->CRUD('join')->tabla('tabla1')->columna('columna1')->id('id1')->estado('estado')->orden('columna2')->joinTabla('tabla2')->joinId('id2')->joinType('INNER')->SQL();
-    }
-
-    public function SQL_10(): string
-    {
-        return $this->CRUD('vaciar')->tabla('tabla')->SQL();
-    }
-
-    public function SQL_11(): string
-    {
-        return $this->CRUD('crear_tabla')->tabla('tabla')->columna('columna1 INT, columna2 VARCHAR(255), columna3 DATE')->SQL();
-    }
-
-    public function SQL_12(): string
-    {
-        return $this->CRUD('modificar_tabla')->tabla('tabla')->accion('ADD COLUMN columna1 INT')->SQL();
-    }
-
-    public function SQL_13(): string
-    {
-        return $this->CRUD('crear_indice')->nombre_indice('indice1')->tabla('tabla')->columna('columna')->SQL();
-    }
-
-    public function SQL_14(): string
-    {
-        return $this->CRUD('seleccionar_nuevo')->nuevo_nombre_tabla('nueva_tabla')->tabla('tabla')->condicion('condicion')->SQL();
-    }
-
-    public function SQL_15(): string
-    {
-        return $this->CRUD('otorgar_permiso')->permisos('permisos')->objeto('objeto')->usuario('usuario')->SQL();
-    }
-
-    public function SQL_16(): string
-    {
-        return $this->CRUD('revocar_permiso')->permisos('permisos')->objeto('objeto')->usuario('usuario')->SQL();
-    }
-
 }
