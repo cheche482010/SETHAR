@@ -10,6 +10,6 @@ class Login extends Controlador
 
     public function Cargar_Vistas()
     {
-        echo "login";
+        Vista::Login('index');
     }
 }

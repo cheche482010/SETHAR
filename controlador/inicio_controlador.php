@@ -10,6 +10,6 @@ class Inicio extends Controlador
 
     public function Cargar_Vistas()
     {
-        echo "inicio";
+        Vista::Inicio('index');
     }
 }
