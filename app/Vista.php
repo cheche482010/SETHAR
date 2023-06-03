@@ -92,7 +92,10 @@ class Vista implements Vista_Interface
      */
     public static function Recursos($nombre)
     {
-        include 'vista/publico/' . $nombre . '.php';
+        $archivo_vista = 'vista/publico/' . $nombre . '.php';
+        if (file_exists($archivo_vista)) {
+            include $archivo_vista;
+        }
     }
 
     /**

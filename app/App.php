@@ -85,9 +85,12 @@ class App implements Metodos_APP
     }
 
     public function Validar_Archivos_Controlador()
-    {
-        $controlador = ucfirst($this->url[0]);
-        $validacion  = true;
+{
+    $controlador = ucfirst($this->url[0]);
+    $validacion  = true;
+
+    // Excluir la verificación de archivos de la clase Vista y la función Recursos
+    if ($controlador !== 'Vista' && $controlador !== 'Recursos') {
         if (!file_exists($this->archivo_controlador)) {
             Errores::Capturar()->Personalizado('El Archivo del Controlador No Existe: ' . $this->archivo_controlador);
             $validacion = false;
@@ -96,8 +99,10 @@ class App implements Metodos_APP
             Errores::Capturar()->Personalizado('La Clase del Controlador No Existe: ' . $controlador);
             $validacion = false;
         }
-
-        return $validacion;
     }
+
+    return $validacion;
+}
+
 
 }
