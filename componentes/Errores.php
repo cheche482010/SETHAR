@@ -43,23 +43,23 @@ class Errores
 
         $log = "Fecha y Hora: " . date('[Y-m-d H:i:s]') . "\nError $errno: $errstr \nArchivo: $errfile \nLinea:$errline\n" .
             "\n=============================================================================================================\n";
-        error_log($log, 3, "componentes/logs/" . $tipo_error . '.log');
-        die($log);
+        error_log(nl2br($log), 3, "componentes/logs/" . $tipo_error . '.log');
+        die(nl2br($log));
     }
 
     public function Manejo_Excepciones($exception)
     {
         if ($exception instanceof PDOException) {
-            $tipo_error = 'pdo';
+            $tipo_error = 'PDOException';
         } else if ($exception instanceof Exception) {
-            $tipo_error = 'exception';
+            $tipo_error = 'Exception';
         } else {
             $tipo_error = 'general';
         }
         $log = "Fecha y Hora: " . date('[Y-m-d H:i:s]') . " \nError: " . $exception->getMessage() . " \nArchivo: " . $exception->getFile() . "\nLinea:" . $exception->getLine() . "\nCodigo:" . $exception->getCode() . "\nTraza: " . $exception->getTraceAsString() .
             "\n=============================================================================================================\n";
-        error_log($log, 3, "componentes/logs/excepciones.log");
-        die($log);
+        error_log(nl2br($log), 3, "componentes/logs/".$tipo_error."_error.log");
+        die(nl2br($log));
     }
 
     public static function Personalizado($mensaje)
@@ -67,14 +67,14 @@ class Errores
 
         $log = "Fecha y Hora: " . date('[Y-m-d H:i:s]') . " \nError personalizado: $mensaje\n" .
             "\n=============================================================================================================\n";
-        error_log($log, 3, "componentes/logs/personalizado.log");
-        die($log);
+        error_log(nl2br($log), 3, "componentes/logs/personalizado.log");
+        die(nl2br($log));
     }
 
     public function Manejo_HTTP_Errores($exception)
     {
         $codigo_error = $exception->getCode();
-        $log_mensaje = "Fecha y Hora: " . date('[Y-m-d H:i:s]'). " \nError: ".$exception->getMessage() . " en " . $exception->getFile() . " en línea " . $exception->getLine() .
+        $log = "Fecha y Hora: " . date('[Y-m-d H:i:s]'). " \nError: ".$exception->getMessage() . " en " . $exception->getFile() . " en línea " . $exception->getLine() .
             "\n=============================================================================================================\n";
 
         if ($codigo_error >= 400 && $codigo_error <= 499) {
@@ -85,9 +85,9 @@ class Errores
             $log_archivo  = "componentes/logs/http.log";
         }
 
-        error_log($log_mensaje, 3, $log_archivo);
+        error_log(nl2br($log), 3, $log_archivo);
         header("HTTP/1.1 $codigo_error Internal Server Error");
-        die($log);
+        die(nl2br($log));
         exit();
     }
 
