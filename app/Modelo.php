@@ -5,7 +5,10 @@ interface Interface_Modelo
     public function Desconectar();
     public function __GET(string $A);
     public function __SET(string $A, $B);
-    public function Ejecutar(string $sql, array $parametro = [], string $forzado = "MIN", bool $transaccion = false, string $tipo_valor = "detallado", bool $ultimo_id = false, bool $cache = false,  bool $filtrado = true);
+    public function CRUD($val);
+    public function Obtener_SQL($fun): string;
+    public function Entidad_Clase();
+    public function Ejecutar(string $sql, array $parametro = [], string $forzado = "MIN", bool $transaccion = false, string $tipo_valor = "detallado", bool $ultimo_id = false, bool $cache = false, bool $filtrado = true);
 }
 
 class Modelo extends BASE_DATOS implements Interface_Modelo
@@ -16,6 +19,7 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
 
     protected $PDO;
     protected $datos;
+    private $entidad;
     public $crud;
 
     public function __construct()
@@ -82,6 +86,55 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
     }
 
     /**
+     * Obtiene una instancia de la clase entidad correspondiente al modelo actual.
+     *
+     * @return mixed Una instancia de la clase entidad si existe, de lo contrario, null.
+     */
+    public function Entidad_Clase()
+    {
+        $modelo_clase    = get_class($this);
+        $entidad_clase   = str_replace('_Modelo', '_Entidad', $modelo_clase);
+        $entidad_archivo = 'modelo/entidades/' . strtolower(str_replace('_Modelo', '', $modelo_clase)) . '.php';
+
+        if (file_exists($entidad_archivo)) {
+            require_once $entidad_archivo;
+            if (class_exists($entidad_clase)) {
+                $class = new Clases($entidad_clase);
+                if ($class->validar()) {
+                    return $this->entidad = $class->instanciar();
+                }
+            }
+
+        }
+
+        return null;
+    }
+
+    /**
+     * Realiza acciones en las entidades asociadas al modelo.
+     *
+     * @param string $accion La acción a realizar: "obtener" o "establecer".
+     * @param string|null $nombre El nombre de la propiedad de la entidad.
+     * @param mixed|null $parametro El valor a establecer en la propiedad de la entidad.
+     * @return mixed La entidad o el resultado de la acción realizada.
+     */
+    public function Entidades($accion = '', $nombre = null, $parametro = null)
+    {
+        if ($accion === 'obtener' && !empty($nombre)) {
+            // Verificar si la función existe en la entidad y devolver su resultado
+            if (method_exists($this->entidad, "get_$nombre")) {
+                return $this->entidad->{"get_$nombre"}();
+            }
+        } elseif ($accion === 'establecer' && !empty($nombre)) {
+            // Verificar si la función existe en la entidad y establecer el valor
+            if (method_exists($this->entidad, "set_$nombre")) {
+                $this->entidad->{"set_$nombre"}($parametro);
+            }
+        }
+        return $this->entidad;
+    }
+
+    /**
      * Ejecuta una consulta SQL y devuelve el resultado. Si se especifica la opción de caché,
      * se guarda el resultado en caché para consultas futuras.
      *
@@ -95,7 +148,7 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
      *
      * @return mixed El resultado de la consulta o el último ID insertado.
      */
-    public function Ejecutar(string $sql, array $parametro = [], string $forzado = "MIN", bool $transaccion = false, string $tipo_valor = "detallado", bool $ultimo_id = false, bool $cache = false,  bool $filtrado = true)
+    public function Ejecutar(string $sql, array $parametro = [], string $forzado = "MIN", bool $transaccion = false, string $tipo_valor = "detallado", bool $ultimo_id = false, bool $cache = false, bool $filtrado = true)
     {
         $result    = false;
         $ultimo    = null;
@@ -140,7 +193,7 @@ class Modelo extends BASE_DATOS implements Interface_Modelo
         $this->transacciones->Finalizar($result);
 
         if ($this->PDO->errorInfo()[0] !== '00000') {
-            Errores::Capturar()->Personalizado('Error en la sentencia: [' . $sql . "] Parametro [".$parametro."] \n" . $this->PDO->errorInfo()[2]);
+            Errores::Capturar()->Personalizado('Error en la sentencia: [' . $sql . "] Parametro [" . $parametro . "] \n" . $this->PDO->errorInfo()[2]);
         }
 
         $this->cache->Finalizar($result, $ultimo);

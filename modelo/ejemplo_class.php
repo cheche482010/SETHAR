@@ -40,6 +40,12 @@ class Ejemplo_Modelo extends Modelo
     private $SQL;
 
     /**
+     * Entidades del modelo.
+     * @var obj|null
+     */
+    private $entidad;
+
+    /**
      * Configuración del modelo.
      * @var array|null
      */
@@ -66,7 +72,10 @@ class Ejemplo_Modelo extends Modelo
             'cache'       => false,
             'filtrado'    => true,
         ];
+
+        $this->entidad = $this->Entidad_Clase();
     }
+
 
     /**
      * Configura el modelo.
