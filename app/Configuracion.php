@@ -2,6 +2,51 @@
 
 class Configuracion
 {
+    const CREDENCIALES = [
+        'Mysql' => [
+            'Servidor'   => 'mysql',
+            'Host'       => 'localhost',
+            'Base_Datos' => 'reino_plantae',
+            'Puerto'     => '3306',
+            'Usuario'    => 'root',
+            'Contraseña' => 'root',
+        ],
+        'PostgreSQL' => [
+            'Servidor'   => 'pgsql',
+            'Host'       => 'localhost',
+            'Base_Datos' => 'ejemplo',
+            'Puerto'     => '5432',
+            'Usuario'    => 'root',
+            'Contraseña' => 'root',
+        ],
+        'SQLite' => [
+            'Servidor'   => 'sqlite',
+            'Base_Datos' => 'ruta/al/archivo.db',
+        ],
+        'SQLServer' => [
+            'Servidor'   => 'sqlsrv',
+            'Host'       => 'localhost',
+            'Base_Datos' => 'ejemplo',
+            'Puerto'     => '1433',
+            'Usuario'    => 'sa',
+            'Contraseña' => 'password',
+        ],
+        'Oracle' => [
+            'Servidor'   => 'oci',
+            'Host'       => 'localhost',
+            'Base_Datos' => 'ejemplo',
+            'Puerto'     => '1521',
+            'Usuario'    => 'system',
+            'Contraseña' => 'password',
+        ],
+        'MongoDB' => [
+            'Servidor'   => 'mongodb',
+            'Host'       => 'localhost',
+            'Base_Datos' => 'ejemplo',
+            'Puerto'     => '27017',
+        ],
+    ];
+
     public static function Titulo()
     {
         echo "SETHAR";
@@ -35,5 +80,7 @@ class Configuracion
     public static function Meses()
     {
         return ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-    }    
+    }  
+
+
 }

@@ -6,9 +6,11 @@
 + uso de trigger en bd
 
 + uso de vista de errores 
-+ mejorar frontcontroller
+
 + uso de clase configuracioon
-+uso de clases para atributos html
-+ vistas con css y js propios cada uno 
+
+
 + vista usar un index que distribuya las funcionalidades de cada vista mediante funciones
 +usar interfaces
+
++trait de json y xml
