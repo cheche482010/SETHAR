@@ -13,4 +13,4 @@
 + vista usar un index que distribuya las funcionalidades de cada vista mediante funciones
 +usar interfaces
 
-+trait de json y xml
+

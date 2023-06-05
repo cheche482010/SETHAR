@@ -6,8 +6,8 @@ trait PDO
      *
      * @param mixed $value Valor para determinar el tipo de parámetro.
      * @return mixed El tipo de parámetro correspondiente al valor.
- */
      */
+     *  /
     private function Tipo_Parametro($value): mixed
     {
         switch (gettype($value)) {
@@ -36,11 +36,19 @@ trait PDO
     private function Configuracion_PDO(): array
     {
         return [
-            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            PDO::ATTR_PERSISTENT         => false,
-            PDO::ATTR_EMULATE_PREPARES   => false,
-            PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\'',
+            "Modo de error"               => PDO::ATTR_ERRMODE,
+            "Modo de recuperacion"        => PDO::ATTR_DEFAULT_FETCH_MODE,
+            "Persistente"                 => PDO::ATTR_PERSISTENT,
+            "Emular preparaciones"        => PDO::ATTR_EMULATE_PREPARES,
+            "Comando inicial MySQL"       => PDO::MYSQL_ATTR_INIT_COMMAND,
+            "Modo de MAY/MIN"             => PDO::ATTR_CASE,
+            "Conversion de NULL"          => PDO::ATTR_ORACLE_NULLS,
+            "Convertir valores a cadenas" => PDO::ATTR_STRINGIFY_FETCHES,
+            "Sentencia personalizada"     => PDO::ATTR_STATEMENT_CLASS,
+            "Tiempo de espera"            => PDO::ATTR_TIMEOUT,
+            "Autocommit"                  => PDO::ATTR_AUTOCOMMIT,
+            "Emular preparaciones"        => PDO::ATTR_EMULATE_PREPARES,
+            "Buffer"                      => PDO::MYSQL_ATTR_USE_BUFFERED_QUERY,
         ];
     }
 
