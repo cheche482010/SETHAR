@@ -35,12 +35,8 @@
          "Validacion.php",
          "Cache.php",
          "Transacciones.php",
-         "../app/Configuracion.php",
-         "../app/Base_Datos.php",
-         "../app/App.php",
-         "../app/Modelo.php",
-         "../app/Vista.php",
-         "../app/Controlador.php"]
+         "Autocarga.php"
+         ]
     },
     "autoload-dev": {
         "classmap": [

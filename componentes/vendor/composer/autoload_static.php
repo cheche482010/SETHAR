@@ -21,12 +21,7 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         '2780243604061d23e0bedd0052e7d0af' => __DIR__ . '/../..' . '/Validacion.php',
         '0bde03cffab8b04cf298b1798dedb572' => __DIR__ . '/../..' . '/Cache.php',
         '06511a3989657c84e7a6ab4e28400b2d' => __DIR__ . '/../..' . '/Transacciones.php',
-        '302be6f58c7e71e387883f30a9a9c8f1' => __DIR__ . '/../..' . '/../app/Configuracion.php',
-        'fc1eb74e65b94bd8a92ed1ee35667605' => __DIR__ . '/../..' . '/../app/Base_Datos.php',
-        'ea29937c56fd21cb5adf867e5a4bcc5f' => __DIR__ . '/../..' . '/../app/App.php',
-        'fa50c74d01bd30857123cff478cac21c' => __DIR__ . '/../..' . '/../app/Modelo.php',
-        '6db527058116eed46b170878a9fe4b4b' => __DIR__ . '/../..' . '/../app/Vista.php',
-        '3722b5b640faecb591f79f11c98251b9' => __DIR__ . '/../..' . '/../app/Controlador.php',
+        '1628f67451d30761d8433ac79e25ba4e' => __DIR__ . '/../..' . '/Autocarga.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -320,6 +315,7 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Configuracion' => __DIR__ . '/../..' . '/../app/Configuracion.php',
         'Controlador' => __DIR__ . '/../..' . '/../app/Controlador.php',
+        'Correos' => __DIR__ . '/../..' . '/traits/Correos.php',
         'Datamatrix' => __DIR__ . '/../..' . '/TCPDF/include/barcodes/datamatrix.php',
         'Direcciones' => __DIR__ . '/../..' . '/Direcciones.php',
         'Doctrine\\Common\\Annotations\\Annotation' => __DIR__ . '/..' . '/doctrine/annotations/lib/Doctrine/Common/Annotations/Annotation.php',
@@ -1445,6 +1441,7 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'PHPMailer\\PHPMailer\\PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/PHPMailer.php',
         'PHPMailer\\PHPMailer\\POP3' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/POP3.php',
         'PHPMailer\\PHPMailer\\SMTP' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/SMTP.php',
+        'PRUEBAS' => __DIR__ . '/../..' . '/pruebas/Modelo_v2.php',
         'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
         'Psr\\Cache\\CacheException' => __DIR__ . '/..' . '/psr/cache/src/CacheException.php',
         'Psr\\Cache\\CacheItemInterface' => __DIR__ . '/..' . '/psr/cache/src/CacheItemInterface.php',

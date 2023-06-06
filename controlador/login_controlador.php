@@ -2,6 +2,7 @@
 
 class Login extends Controlador
 {
+    use Mensajes;
 
     public function __construct()
     {

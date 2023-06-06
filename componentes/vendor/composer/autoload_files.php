@@ -20,10 +20,5 @@ return array(
     '2780243604061d23e0bedd0052e7d0af' => $baseDir . '/Validacion.php',
     '0bde03cffab8b04cf298b1798dedb572' => $baseDir . '/Cache.php',
     '06511a3989657c84e7a6ab4e28400b2d' => $baseDir . '/Transacciones.php',
-    '302be6f58c7e71e387883f30a9a9c8f1' => $baseDir . '/../app/Configuracion.php',
-    'fc1eb74e65b94bd8a92ed1ee35667605' => $baseDir . '/../app/Base_Datos.php',
-    'ea29937c56fd21cb5adf867e5a4bcc5f' => $baseDir . '/../app/App.php',
-    'fa50c74d01bd30857123cff478cac21c' => $baseDir . '/../app/Modelo.php',
-    '6db527058116eed46b170878a9fe4b4b' => $baseDir . '/../app/Vista.php',
-    '3722b5b640faecb591f79f11c98251b9' => $baseDir . '/../app/Controlador.php',
+    '1628f67451d30761d8433ac79e25ba4e' => $baseDir . '/Autocarga.php',
 );

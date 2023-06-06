@@ -1,6 +1,9 @@
 <?php
-
-class Modelo extends BASE_DATOS implements Interface_Modelo
+// set_error_handler(function($errno, $errstr, $errfile, $errline) {
+        //     $log = date('[Y-m-d H:i:s]') . " Error $errno: $errstr en $errfile:$errline\n";
+        //     error_log($log, 3, 'errores.log');
+        // });
+class PRUEBAS
 {
     #Public: acceso sin restricción.
     #Protected:Solo puede ser accesado por una clase heredada y la clase que lo define.
