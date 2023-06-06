@@ -24,6 +24,7 @@ return array(
     'Psr\\Cache\\' => array($vendorDir . '/psr/cache/src'),
     'Pruebas\\' => array($baseDir . '/../tests', $baseDir . '/../tests'),
     'Propiedades\\' => array($baseDir . '/../modelo/entidades', $baseDir . '/../modelo/entidades'),
+    'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'Modelo\\' => array($baseDir . '/../modelo', $baseDir . '/../modelo'),
     'League\\MimeTypeDetection\\' => array($vendorDir . '/league/mime-type-detection/src'),

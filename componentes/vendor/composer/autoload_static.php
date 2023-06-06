@@ -56,6 +56,7 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
             'Psr\\Cache\\' => 10,
             'Pruebas\\' => 8,
             'Propiedades\\' => 12,
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'M' => 
         array (
@@ -178,6 +179,10 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
             0 => __DIR__ . '/../..' . '/../modelo/entidades',
             1 => __DIR__ . '/../..' . '/../modelo/entidades',
         ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
+        ),
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
@@ -290,7 +295,7 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'Arrays' => __DIR__ . '/../..' . '/traits/Arrays.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'BASE_DATOS' => __DIR__ . '/../..' . '/../app/Base_Datos.php',
-        'CRUD' => __DIR__ . '/../..' . '/Crud.php',
+        'CRUD' => __DIR__ . '/../..' . '/CRUD.php',
         'Cache' => __DIR__ . '/../..' . '/Cache.php',
         'Cache\\Adapter\\Common\\AbstractCachePool' => __DIR__ . '/..' . '/cache/adapter-common/AbstractCachePool.php',
         'Cache\\Adapter\\Common\\CacheItem' => __DIR__ . '/..' . '/cache/adapter-common/CacheItem.php',
@@ -1232,18 +1237,21 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'Doctrine\\Persistence\\Reflection\\TypedNoDefaultRuntimePublicReflectionProperty' => __DIR__ . '/..' . '/doctrine/persistence/src/Persistence/Reflection/TypedNoDefaultRuntimePublicReflectionProperty.php',
         'Doctrine\\StaticAnalysis\\DBAL\\MyConnection' => __DIR__ . '/..' . '/doctrine/dbal/static-analysis/driver-manager-retrieves-correct-connection-type.php',
         'Ejemplo' => __DIR__ . '/../..' . '/../controlador/ejemplo_controlador.php',
+        'EjemploModeloInterface' => __DIR__ . '/../..' . '/../modelo/ejemplo_class.php',
         'EjemploTest' => __DIR__ . '/../..' . '/tests/EjemploTest.php',
         'Ejemplo_Entidad' => __DIR__ . '/../..' . '/../modelo/entidades/ejemplo.php',
         'Ejemplo_Modelo' => __DIR__ . '/../..' . '/../modelo/ejemplo_class.php',
         'Ejemplo_Propiedad' => __DIR__ . '/../..' . '/../controlador/propiedades/ejemplo.php',
         'Ejemplo_Validacion' => __DIR__ . '/../..' . '/validacion/ejemplo_validacion.php',
         'Encriptacion' => __DIR__ . '/../..' . '/traits/Encriptacion.php',
+        'Entidades' => __DIR__ . '/../..' . '/traits/Entidades.php',
         'Errores' => __DIR__ . '/../..' . '/Errores.php',
         'Imagenes' => __DIR__ . '/../..' . '/traits/Imagenes.php',
         'Inicio' => __DIR__ . '/../..' . '/../controlador/inicio_controlador.php',
         'Inicio_Modelo' => __DIR__ . '/../..' . '/../modelo/inicio_class.php',
         'Interface_Modelo' => __DIR__ . '/../..' . '/../app/Modelo.php',
         'JShrink\\Minifier' => __DIR__ . '/..' . '/tedivm/jshrink/src/JShrink/Minifier.php',
+        'Json' => __DIR__ . '/../..' . '/traits/Json.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'League\\Flysystem\\AdapterInterface' => __DIR__ . '/..' . '/league/flysystem/src/AdapterInterface.php',
         'League\\Flysystem\\Adapter\\AbstractAdapter' => __DIR__ . '/..' . '/league/flysystem/src/Adapter/AbstractAdapter.php',
@@ -1430,6 +1438,13 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'PDF' => __DIR__ . '/../..' . '/traits/PDF.php',
         'PDF417' => __DIR__ . '/../..' . '/TCPDF/include/barcodes/pdf417.php',
         'PDO' => __DIR__ . '/../..' . '/traits/PDO.php',
+        'PHPMailer\\PHPMailer\\DSNConfigurator' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/DSNConfigurator.php',
+        'PHPMailer\\PHPMailer\\Exception' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/Exception.php',
+        'PHPMailer\\PHPMailer\\OAuth' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuth.php',
+        'PHPMailer\\PHPMailer\\OAuthTokenProvider' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuthTokenProvider.php',
+        'PHPMailer\\PHPMailer\\PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/PHPMailer.php',
+        'PHPMailer\\PHPMailer\\POP3' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/POP3.php',
+        'PHPMailer\\PHPMailer\\SMTP' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/SMTP.php',
         'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
         'Psr\\Cache\\CacheException' => __DIR__ . '/..' . '/psr/cache/src/CacheException.php',
         'Psr\\Cache\\CacheItemInterface' => __DIR__ . '/..' . '/psr/cache/src/CacheItemInterface.php',
@@ -1675,6 +1690,8 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'Validacion' => __DIR__ . '/../..' . '/Validacion.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
         'Vista' => __DIR__ . '/../..' . '/../app/Vista.php',
+        'Vista_Interface' => __DIR__ . '/../..' . '/../app/Vista.php',
+        'XML' => __DIR__ . '/../..' . '/traits/Xml.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

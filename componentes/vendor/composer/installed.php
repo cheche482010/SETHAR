@@ -182,6 +182,15 @@
       ),
       'reference' => 'f259e2b15fb95494c83f52d3caad003bbf5ffaa1',
     ),
+    'phpmailer/phpmailer' => 
+    array (
+      'pretty_version' => 'v6.8.0',
+      'version' => '6.8.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'df16b615e371d81fb79e506277faea67a1be18f1',
+    ),
     'psr/cache' => 
     array (
       'pretty_version' => '1.0.1',

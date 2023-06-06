@@ -73,7 +73,8 @@
         "monolog/monolog": "^2.9",
         "tedivm/stash": "^0.17.6",
         "tedivm/jshrink": "^1.6",
-        "cache/filesystem-adapter": "^1.1"
+        "cache/filesystem-adapter": "^1.1",
+        "phpmailer/phpmailer": "^6.8"
     },
     "config": {
         "optimize-autoloader": true
