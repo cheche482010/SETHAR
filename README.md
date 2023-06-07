@@ -64,7 +64,7 @@ Antes de comenzar a utilizar el framework, sigue los siguientes pasos de configu
 
 1. Clone el repositorio [https://github.com/cheche482010/SETHAR] en tu entorno local.
 2. Instala las dependencias ejecutando el comando "composer install" en la raíz del proyecto.
-3. Configura la conexión a la base de datos en el archivo de configuración "APP/Configuracion.php.php".
+3. Configura la conexión a la base de datos en el archivo de configuración "APP/Configuracion.php".
 
 ```php 
 class Configuracion
