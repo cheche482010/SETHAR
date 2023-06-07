@@ -58,6 +58,10 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
             'League\\MimeTypeDetection\\' => 25,
             'League\\Flysystem\\' => 17,
         ),
+        'I' => 
+        array (
+            'Interfaces\\' => 11,
+        ),
         'F' => 
         array (
             'Funciones\\' => 10,
@@ -190,6 +194,11 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         array (
             0 => __DIR__ . '/..' . '/league/flysystem/src',
         ),
+        'Interfaces\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/interfaces',
+            1 => __DIR__ . '/../..' . '/interfaces',
+        ),
         'Funciones\\' => 
         array (
             0 => __DIR__ . '/../..' . '/traits',
@@ -317,6 +326,11 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'Componentes\\Funciones\\Traducciones' => __DIR__ . '/../..' . '/traits/Traductociones.php',
         'Componentes\\Funciones\\URL' => __DIR__ . '/../..' . '/traits/URL.php',
         'Componentes\\Funciones\\XML' => __DIR__ . '/../..' . '/traits/Xml.php',
+        'Componentes\\Interfaces\\Metodos_APP' => __DIR__ . '/../..' . '/interfaces/Metodos_APP.php',
+        'Componentes\\Interfaces\\Metodos_BD' => __DIR__ . '/../..' . '/interfaces/Metodos_BD.php',
+        'Componentes\\Interfaces\\Metodos_Controlador' => __DIR__ . '/../..' . '/interfaces/Metodos_Controlador.php',
+        'Componentes\\Interfaces\\Metodos_Modelo' => __DIR__ . '/../..' . '/interfaces/Metodos_Modelo.php',
+        'Componentes\\Interfaces\\Metodos_Vista' => __DIR__ . '/../..' . '/interfaces/Metodos_Vista.php',
         'ComposerAutoloaderInit2a8b9cfa11dbcd502b3063f9f8235c8c' => __DIR__ . '/..' . '/composer/autoload_real.php',
         'Composer\\Autoload\\ClassLoader' => __DIR__ . '/..' . '/composer/ClassLoader.php',
         'Composer\\Autoload\\ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c' => __DIR__ . '/..' . '/composer/autoload_static.php',
@@ -1249,7 +1263,6 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'Errores' => __DIR__ . '/../..' . '/Errores.php',
         'Inicio' => __DIR__ . '/../..' . '/../controlador/inicio_controlador.php',
         'Inicio_Modelo' => __DIR__ . '/../..' . '/../modelo/inicio_class.php',
-        'Interface_Modelo' => __DIR__ . '/../..' . '/../app/Modelo.php',
         'JShrink\\Minifier' => __DIR__ . '/..' . '/tedivm/jshrink/src/JShrink/Minifier.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'League\\Flysystem\\AdapterInterface' => __DIR__ . '/..' . '/league/flysystem/src/AdapterInterface.php',
@@ -1314,8 +1327,6 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'Login_Modelo' => __DIR__ . '/../..' . '/../modelo/login_class.php',
         'MC_TCPDF' => __DIR__ . '/../..' . '/TCPDF/examples/example_010.php',
         'MYPDF' => __DIR__ . '/../..' . '/TCPDF/examples/example_003.php',
-        'Metodos_APP' => __DIR__ . '/../..' . '/../app/App.php',
-        'Metodos_BD' => __DIR__ . '/../..' . '/../app/Base_Datos.php',
         'Modelo' => __DIR__ . '/../..' . '/../app/Modelo.php',
         'Monolog\\Attribute\\AsMonologProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Attribute/AsMonologProcessor.php',
         'Monolog\\DateTimeImmutable' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/DateTimeImmutable.php',
@@ -1683,7 +1694,6 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'Validacion' => __DIR__ . '/../..' . '/Validacion.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
         'Vista' => __DIR__ . '/../..' . '/../app/Vista.php',
-        'Vista_Interface' => __DIR__ . '/../..' . '/../app/Vista.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

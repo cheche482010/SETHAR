@@ -1,12 +1,7 @@
 <?php
-interface Metodos_APP
-{
-    public function Cargar_Controladores();
-    public function Cargar_Funciones();
-    public function Validar_Conexion();
-    public function Iniciar_Ruteo();
-    public function Validar_Archivos_Controlador();
-}
+
+use Componentes\Interfaces\Metodos_APP;
+
 class App implements Metodos_APP
 {
     private $url;

@@ -1,6 +1,8 @@
 <?php
 // =============CONTROLADOR=========
-class Controlador
+use Componentes\Interfaces\Metodos_Controlador;
+
+class Controlador implements Metodos_Controlador
 {
     #Public: acceso sin restricción.
     #Protected:Solo puede ser accesado por una clase heredada y la clase que lo define.
@@ -12,44 +14,6 @@ class Controlador
     public function __construct()
     {
         $this->Cargar_Vista();
-    }
-
-    public function Cargar_Propiedades($propiedad)
-    {
-        $nombre_propiedad = $propiedad . '_Propiedad';
-        // Autocarga de clases
-        spl_autoload_register(function ($propiedad) {
-            $direccion = 'controlador/propiedades/' . $propiedad . '.php';
-            if (file_exists($direccion)) {
-                require_once $direccion;
-            }
-        });
-
-        $class = new Clases($nombre_propiedad);
-        if ($class->validar()) {
-            $this->propiedad = $class->instanciar();
-        } else {
-            Errores::Capturar()->Personalizado('No se pudo cargar la propiedad');
-        }
-    }
-
-    public function Cargar_Entidades($entidad)
-    {
-        $nombre_entidad = $entidad . '_Entidad';
-        // Autocarga de clases
-        spl_autoload_register(function ($entidad) {
-            $direccion = 'modelo/propiedades/' . $entidad . '.php';
-            if (file_exists($direccion)) {
-                require_once $direccion;
-            }
-        });
-
-        $class = new Clases($nombre_entidad);
-        if ($class->validar()) {
-            $this->modelo->entidad = $class->instanciar();
-        } else {
-            Errores::Capturar()->Personalizado('No se pudo cargar la entidad');
-        }
     }
 
     public function Cargar($tipo, $nombre)

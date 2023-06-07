@@ -67,20 +67,4 @@ class Configuracion
         echo self::URL()."recursos/";
     }
  
-    public static function Hora()
-    {
-        return date('h:i A');
-    }
-
-    public static function Dias()
-    {
-        return ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado"];
-    }
-
-    public static function Meses()
-    {
-        return ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-    }  
-
-
 }

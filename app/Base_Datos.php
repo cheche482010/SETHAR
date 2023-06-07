@@ -3,13 +3,8 @@
 ini_set("max_execution_time", "0");
 error_reporting(E_ERROR);
 
-interface Metodos_BD
-{
-    public function Conectar();
-    public function Probar_Conexion();
-    public function Error_Conexion();
-}
 
+use Componentes\Interfaces\Metodos_BD;
 use Componentes\Funciones\Componentes;
 
 class BASE_DATOS implements Metodos_BD
@@ -42,7 +37,7 @@ class BASE_DATOS implements Metodos_BD
         $this->Iniciar_Conexion();
     }
 
-    private function Iniciar_Conexion()
+    public function Iniciar_Conexion()
     {
         try
         {

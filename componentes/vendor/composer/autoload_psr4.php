@@ -29,6 +29,7 @@ return array(
     'Modelos\\' => array($baseDir . '/../modelo', $baseDir . '/../modelo'),
     'League\\MimeTypeDetection\\' => array($vendorDir . '/league/mime-type-detection/src'),
     'League\\Flysystem\\' => array($vendorDir . '/league/flysystem/src'),
+    'Interfaces\\' => array($baseDir . '/interfaces', $baseDir . '/interfaces'),
     'Funciones\\' => array($baseDir . '/traits', $baseDir . '/traits'),
     'Entidades\\' => array($baseDir . '/../modelo/entidades', $baseDir . '/../modelo/entidades'),
     'Doctrine\\Persistence\\' => array($vendorDir . '/doctrine/persistence/src/Persistence'),

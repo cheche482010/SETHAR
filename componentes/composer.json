@@ -27,7 +27,8 @@
             "Modelos\\": "../modelo/",
             "Entidades\\": "../modelo/entidades/",
             "Pruebas\\": "../tests/",
-            "Funciones\\": "../componentes/traits/"
+            "Funciones\\": "../componentes/traits/",
+            "Interfaces\\": "../componentes/interfaces/"
         },
         "files": [
          "Autocarga.php"
@@ -52,7 +53,8 @@
             "Modelos\\": "../modelo/",
             "Entidades\\": "../modelo/entidades/",
             "Pruebas\\": "../tests/",
-            "Funciones\\": "../componentes/traits/"
+            "Funciones\\": "../componentes/traits/",
+            "Interfaces\\": "../componentes/interfaces/"
         }
     },
     "require": {
