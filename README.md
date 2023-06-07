@@ -170,6 +170,27 @@ class Ejemplo_Modelo extends Modelo
 }  
 ```
 
+# Sentencias
+Para el manejo de sentencias se agrupan por funciones privadas que especifican su uso o llamandalas por codigos para emnumerar las sentencias.
+
+```php
+    /**
+     * Ejemplo de una sentencia SQL personalizada.
+     *
+     * @return string Sentencia SQL personalizada.
+     */
+
+    private function Consultar_Usuario(): string
+    {
+        return "SELECT * FROM Usuarios";
+    }
+
+    private function SQL_01(): string
+    {
+        return "SELECT * FROM Usuarios";
+    }
+```
+
 ## Vistas
 Las vistas se encuentran en la carpeta "vista" y son responsables de mostrar la interfaz de usuario al usuario final. Organiza las vistas en subcarpetas según la funcionalidad o el contexto.
 
