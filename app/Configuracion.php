@@ -2,6 +2,8 @@
 
 class Configuracion
 {
+    const Titulo = "SETHAR";
+    
     const CREDENCIALES = [
         'Mysql' => [
             'Servidor'   => 'mysql',
