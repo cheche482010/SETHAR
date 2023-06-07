@@ -1,5 +1,10 @@
 @echo off
-cd /d C:\xampp\htdocs\dashboard\www\SETHAR\componentes
+REM Obtener la ruta del directorio del proyecto
+set "project_dir=%~dp0..\..\..\"
+
+REM Navegar al directorio "componentes" del proyecto
+cd /d "%project_dir%SETHAR\componentes"
+
 setlocal
 
 :menu
@@ -24,11 +29,17 @@ if "%opcion%"=="5" goto cargar_clases
 if "%opcion%"=="6" goto fin
 
 :ver_paquetes_instalados
-if exist C:\xampp\htdocs\dashboard\www\SETHAR\componentes (
+REM Verificar si el directorio "componentes" existe dentro del proyecto
+if exist "%project_dir%SETHAR\componentes" (
+    REM Navegar al directorio "componentes"
+    cd /d "%project_dir%SETHAR\componentes"
+
+    REM Ejecutar el comando "composer show"
     call composer show
 ) else (
-    echo El directorio C:\xampp\htdocs\dashboard\www\SETHAR\componentes no existe.
+    echo El directorio "%project_dir%SETHAR\componentes" no existe.
 )
+
 pause
 goto menu
 
