@@ -11,21 +11,32 @@ El Framework SETHAR es una herramienta diseñada para facilitar el desarrollo de
 El proyecto sigue la siguiente estructura de carpetas:
 
 - **app**: Contiene la lógica de la aplicación.
+  - **App.php**: Frontcontroller de la aplicacion.
+  - **Base_Datos.php**: conexion a la base de datos.
+  - **Configuracion.php**: configuracion de credenciales.
+  - **Controlador.php**: clase padre provedora de herramientas al los controladores.
+  - **Modelo.php**: clase padre provedora de herramientas al los modelos.
+  - **Vista.php**: clase proveedora de las rutas y recursos del sistema.
 
 - **componentes**:
   - **base de datos**: Aquí encontrarás archivos relacionados con la configuración y manejo de la base de datos, como la conexión y las consultas SQL.
+  - **bat**: carpeta contenedora de archivos bat, podras encontrar ejecutables que te proporcionaran ayuda.
+  - **clases**: componente de clases con herramientas y funcionalidades para el sistema.
   - **interface**: Puedes tener interfaces que definan contratos para componentes específicos de tu aplicación, como autenticación, envío de correos electrónicos, etc.
+  - **json**: Aquí puedes almacenar archivos json asi como optener los proporsionados por el framework.
   - **logs**: Aquí puedes almacenar archivos de registro (logs) para rastrear errores o eventos importantes en tu aplicación.
+  - **pruebas**: Contiene ejemplo de las funcionalidades.
+  - **TCPDF**: Librera de manejo de pdf.
   - **tests**: Puedes tener archivos de prueba para tus componentes, utilizando una herramienta de pruebas como PHPUnit.
   - **traits**: Aquí puedes tener traits reutilizables que contengan métodos comunes que se pueden usar en múltiples clases.
   - **validacion**: Puedes tener archivos relacionados con la validación de datos, como reglas de validación y funciones de validación personalizadas.
   - **vendor**: Esta carpeta puede ser generada por Composer y contendría las dependencias de terceros instaladas en tu proyecto.
 
-- **controlador**:
+- **controlador**: carpeta donde guararas los controladores del sistema
   - **interface**: Aquí puedes tener interfaces que definan contratos para tus controladores, lo que ayuda a establecer un estándar en los métodos que deben implementar.
   - **propiedades**: Puedes tener archivos que contengan definiciones de propiedades y constantes que se utilizan en tus controladores.
 
-- **modelo**:
+- **modelo**: carpeta donde guararas los modelos del sistema
   - **entidades**: Aquí puedes tener clases que representen las entidades o modelos de tu aplicación, mapeando a tablas de la base de datos.
   - **interface**: Puedes tener interfaces que definan contratos para tus modelos, especificando los métodos que deben implementar.
 
@@ -76,6 +87,30 @@ Las vistas se encuentran en la carpeta "vista" y son responsables de mostrar la 
 
 ## Configuración adicional
 Si necesitas configurar componentes adicionales, como el enrutamiento, la autenticación, la validación o cualquier otro componente proporcionado por el framework, consulta la documentación específica de cada componente en la carpeta "componentes".
+
+# Paquetes Instalados
+
+El Framework SETHAR utiliza varios paquetes de terceros para mejorar su funcionalidad y ofrecer características adicionales. A continuación se describen los paquetes instalados en el framework:
+
+- **doctrine/dbal**: Versión "^3.3". Este paquete proporciona una capa de abstracción para interactuar con la base de datos utilizando la biblioteca Doctrine DBAL. Permite ejecutar consultas SQL, gestionar la conexión a la base de datos y trabajar con diferentes tipos de datos.
+
+- **doctrine/orm**: Versión "^2.14". Doctrine ORM es una biblioteca de mapeo objeto-relacional (ORM) que proporciona una forma conveniente de trabajar con la base de datos utilizando modelos y entidades. Facilita la manipulación de los datos almacenados en la base de datos y ofrece funcionalidades avanzadas como consultas, relaciones entre entidades y generación de esquemas.
+
+- **doctrine/cache**: Versión "^1.11". Este paquete proporciona una capa de abstracción para trabajar con la caché en el framework. Permite almacenar y recuperar datos en caché, lo que mejora el rendimiento de la aplicación al reducir la necesidad de realizar operaciones costosas.
+
+- **doctrine/annotations**: Versión "^1.0". Doctrine Annotations es una biblioteca que permite utilizar anotaciones en el código PHP para definir metadatos adicionales. Estos metadatos se utilizan, por ejemplo, en el mapeo de objetos a la base de datos o en la configuración de rutas en el enrutador del framework.
+
+- **monolog/monolog**: Versión "^2.9". Monolog es una biblioteca de registro (logging) para PHP que permite registrar mensajes y eventos en diferentes canales y formatos. Proporciona flexibilidad en la configuración del registro y facilita la depuración y monitorización de la aplicación.
+
+- **tedivm/stash**: Versión "^0.17.6". Stash es una biblioteca de almacenamiento en caché que permite almacenar y recuperar datos en caché de manera eficiente. Ofrece diferentes adaptadores de almacenamiento (como archivos, memoria y bases de datos) y opciones avanzadas de configuración.
+
+- **tedivm/jshrink**: Versión "^1.6". JShrink es una biblioteca para minificar y comprimir código JavaScript. Permite reducir el tamaño de los archivos JavaScript para mejorar el rendimiento de la aplicación web al reducir el tiempo de carga de la página.
+
+- **cache/filesystem-adapter**: Versión "^1.1". Este paquete proporciona un adaptador para el almacenamiento en caché utilizando el sistema de archivos. Permite almacenar y recuperar datos en caché utilizando archivos en el sistema de archivos del servidor.
+
+- **phpmailer/phpmailer**: Versión "^6.8". PHPMailer es una biblioteca de envío de correos electrónicos en PHP. Proporciona una interfaz sencilla para enviar correos electrónicos con capacidades avanzadas, como adjuntar archivos, enviar correos en formato HTML y utilizar protocolos de seguridad.
+
+Estos paquetes son utilizados en el framework para agregar funcionalidades adicionales y mejorar la experiencia de desarrollo al trabajar con el framework SETHAR.
 
 # Contribución
 ¡Nos encantaría recibir contribuciones de la comunidad! Si deseas contribuir al desarrollo del framework, consulta las pautas de contribución en el archivo CONTRIBUTING.md en la raíz del proyecto.
