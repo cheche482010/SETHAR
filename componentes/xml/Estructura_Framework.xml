@@ -1,0 +1,353 @@
+<?xml version="1.0"?>
+<sethar>
+    <app descripcion="carpeta contenedora de archivos que ejecutan el patron MVC">
+        <archivo descripcion="frontcontroller de la aplicacion" nombre="App.php">
+            App.php
+        </archivo>
+        <archivo descripcion="conexion a la base de datos" nombre="Base_Datos.php">
+            Base_Datos.php
+        </archivo>
+        <archivo descripcion="configuracion de credenciales" nombre="Configuracion.php">
+            Configuracion.php
+        </archivo>
+        <archivo descripcion="clase padre provedora de herramientas al los controladores" nombre="Controlador.php">
+            Controlador.php
+        </archivo>
+        <archivo descripcion="clase padre provedora de herramientas al los modelos" nombre="Modelo.php">
+            Modelo.php
+        </archivo>
+        <archivo descripcion="clase proveedora de las rutas y recursos del sistema" nombre="Vista.php">
+            Vista.php
+        </archivo>
+    </app>
+    <componentes descripcion="carpeta contenedora de funcionalidades y herramientas del sistema">
+        <base_datos descripcion="carpeta contenedora de sql de base datos">
+            <archivo descripcion="base de datos sencilla" nombre="BD.sql">
+                BD.sql
+            </archivo>
+            <triggers descripcion="carpeta contenedora de triggers">
+                <archivo descripcion="trigger bitacora de sql ejecutados" nombre="logs.sql">
+                    logs.sql
+                </archivo>
+            </triggers>
+        </base_datos>
+        <bat descripcion="carpeta contenedora de archivos bat">
+            <archivo descripcion="archivo administrador de paquetes composer" nombre="administrar_paquetes.bat">
+                administrar_paquetes.bat
+            </archivo>
+            <archivo descripcion="creador de plantillas del sistema" nombre="crear_archivos.bat">
+                crear_archivos.bat
+            </archivo>
+        </bat>
+        <clases descripcion="carpeta contenedora de clases componentes del sistema">
+            <archivo descripcion="archivo de manipulacion de crud con capa ORM" nombre="CRUD.php">
+                CRUD.php
+            </archivo>
+            <archivo descripcion="archivo de manipulacion de cache" nombre="Cache.php">
+                Cache.php
+            </archivo>
+            <archivo descripcion="archivo de verificacion de clases" nombre="Clases.php">
+                Clases.php
+            </archivo>
+            <archivo descripcion="archivo manejador de errores del sistema" nombre="Errores.php">
+                Errores.php
+            </archivo>
+            <archivo descripcion="archivo manejador de transacciones de base de datos" nombre="Transacciones.php">
+                Transacciones.php
+            </archivo>
+        </clases>
+        <interfaces descripcion="carpeta contenedora de interfaces del sistema">
+            <archivo descripcion="interface de clase app" nombre="Metodos_APP.php">
+                Metodos_APP.php
+            </archivo>
+            <archivo descripcion="interface de clase Base_Datos" nombre="Metodos_BD.php">
+                Metodos_BD.php
+            </archivo>
+            <archivo descripcion="interface de clase Controlador" nombre="Metodos_Controlador.php">
+                Metodos_Controlador.php
+            </archivo>
+            <archivo descripcion="interface de clase Modelo" nombre="Metodos_Modelo.php">
+                Metodos_Modelo.php
+            </archivo>
+            <archivo descripcion="interface de clase Vista" nombre="Metodos_Vista.php">
+                Metodos_Vista.php
+            </archivo>
+        </interfaces>
+        <json descripcion="carpeta contenedora de archivos JSON">
+            <archivo descripcion="archivo de idiomas" nombre="idiomas.json">
+                idiomas.json
+            </archivo>
+        </json>
+        <logs descripcion="carpeta contenedora de archivos de registros y logs del sistema">
+            <archivo descripcion="Archivo de registro que registra errores relacionados con excepciones de PDO (PHP Data Objects)" nombre="PDOException_error.log">
+                PDOException_error.log
+            </archivo>
+            <archivo descripcion="Archivo de registro que registra advertencias generadas por la aplicación" nombre="advertencia.log">
+                advertencia.log
+            </archivo>
+            <archivo descripcion="Archivo de registro general que registra información y eventos importantes" nombre="general.log">
+                general.log
+            </archivo>
+            <archivo descripcion="Archivo de registro que registra errores generales de la aplicación" nombre="general_error.log">
+                general_error.log
+            </archivo>
+            <archivo descripcion="Archivo de registro que registra notificaciones importantes generadas por la aplicación" nombre="notificacion.log">
+                notificacion.log
+            </archivo>
+            <archivo descripcion="Archivo de registro personalizado que puede contener registros específicos definidos por el usuario" nombre="personalizado.log">
+                personalizado.log
+            </archivo>
+        </logs>
+        <pruebas descripcion="carpeta contenedora de archivos de ideas y ejemplos">
+            <archivo nombre="Modelo_v2.php">
+                Modelo_v2.php
+            </archivo>
+            <archivo nombre="SQL_ejemplos.php">
+                SQL_ejemplos.php
+            </archivo>
+            <archivo nombre="pendientes.txt">
+                pendientes.txt
+            </archivo>
+        </pruebas>
+        <tcpdf descripcion="carpeta que contiene la librería TCPDF para generación de archivos PDF">
+            <!-- LIBRERIA TCPDF -->
+        </tcpdf>
+        <tests descripcion="carpeta contenedora de archivos de pruebas del sistema">
+            <config>
+                <archivo descripcion="archivo de configuración de ejemplo" nombre="Ejemplo.xml">
+                    Ejemplo.xml
+                </archivo>
+            </config>
+            <ejecutable>
+                <archivo descripcion="archivo ejecutable de ejemplo" nombre="Ejemplo.bat">
+                    Ejemplo.bat
+                </archivo>
+            </ejecutable>
+            <resultados>
+                <ejemplo descripcion="carpeta de resultados de ejemplo">
+                </ejemplo>
+            </resultados>
+            <archivo descripcion="archivo de prueba de ejemplo" nombre="EjemploTest.php">
+                EjemploTest.php
+            </archivo>
+        </tests>
+        <traits descripcion="carpeta contenedora de traits utilizados en el sistema">
+            <archivo descripcion="archivo que contiene funciones relacionadas con la manipulación de archivos" nombre="Archivos.php">
+                Archivos.php
+            </archivo>
+            <archivo descripcion="archivo que contiene funciones relacionadas con el manejo de arrays" nombre="Arrays.php">
+                Arrays.php
+            </archivo>
+            <archivo descripcion="archivo que contiene funciones relacionadas con el manejo de cadenas de texto" nombre="Cadenas.php">
+                Cadenas.php
+            </archivo>
+            <archivo descripcion="archivo que contiene funciones para generar códigos únicos o identificadores" nombre="Codigos_Unicos.php">
+                Codigos_Unicos.php
+            </archivo>
+            <archivo descripcion="archivo que contiene funciones relacionadas con componentes o elementos específicos" nombre="Componentes.php">
+                Componentes.php
+            </archivo>
+            <archivo descripcion="archivo que contiene funciones relacionadas con el envío y manipulación de correos electrónicos" nombre="Correos.php">
+                Correos.php
+            </archivo>
+            <archivo descripcion="archivo que contiene funciones relacionadas con la encriptación y el manejo de claves" nombre="Encriptacion.php">
+                Encriptacion.php
+            </archivo>
+            <archivo descripcion="archivo que contiene funciones relacionadas con la manipulación de entidades o modelos de datos" nombre="Entidades.php">
+                Entidades.php
+            </archivo>
+            <archivo descripcion="archivo que contiene funciones relacionadas con la generación y manipulación de código HTML" nombre="Html.php">
+                Html.php
+            </archivo>
+            <archivo descripcion="archivo que contiene funciones relacionadas con la manipulación de imágenes" nombre="Imagenes.php">
+                Imagenes.php
+            </archivo>
+            <archivo descripcion="archivo que contiene funciones para trabajar con datos en formato JSON" nombre="Json.php">
+                Json.php
+            </archivo>
+            <archivo descripcion="archivo que contiene funciones relacionadas con la gestión de mensajes o notificaciones" nombre="Mensajes.php">
+                Mensajes.php
+            </archivo>
+            <archivo descripcion="archivo que contiene funciones para generar archivos PDF" nombre="PDF.php">
+                PDF.php
+            </archivo>
+            <archivo descripcion="archivo que contiene funciones relacionadas con el uso de la extensión PDO (PHP Data Objects)" nombre="PDO.php">
+                PDO.php
+            </archivo>
+            <archivo descripcion="archivo que contiene funciones relacionadas con la gestión de sesiones" nombre="Sesiones.php">
+                Sesiones.php
+            </archivo>
+            <archivo descripcion="archivo que contiene funciones relacionadas con el manejo del tiempo y fechas" nombre="Tiempo.php">
+                Tiempo.php
+            </archivo>
+            <archivo descripcion="archivo que contiene funciones relacionadas con la traducción o localización de contenido" nombre="Traductociones.php">
+                Traductociones.php
+            </archivo>
+            <archivo descripcion="archivo que contiene funciones relacionadas con la manipulación de URLs" nombre="URL.php">
+                URL.php
+            </archivo>
+            <archivo descripcion="archivo que contiene funciones relacionadas con la validación de datos y formularios" nombre="Validacion.php">
+                Validacion.php
+            </archivo>
+            <archivo descripcion="archivo que contiene funciones para trabajar con datos en formato XML" nombre="Xml.php">
+                Xml.php
+            </archivo>
+        </traits>
+        <validacion descripcion="carpeta contenedora de archivos relacionados con la validación de datos">
+            <archivo descripcion="archivo para realizar validaciones por separado de su modulo" nombre="ejemplo_validacion.php">
+                ejemplo_validacion.php
+            </archivo>
+        </validacion>
+        <vendor descripcion="carpeta de dependencias de Composer">
+            <!-- CARPTETA DE DEMPENDENCIAS COMPOSER -->
+        </vendor>
+        <xml descripcion="carpeta contenedora de archivos xml">
+            <archivo descripcion="archivo que define la estructura básica del framework utilizado" nombre="Estructura_Framework.php">
+                Estructura_Framework.php
+            </archivo>
+        </xml>
+        <archivo descripcion="archivo que implementa la funcionalidad de autocarga de clases y archivos" nombre="Autocarga.php">
+            Autocarga.php
+        </archivo>
+        <archivo descripcion="archivo de configuración del administrador de paquetes Composer" nombre="composer.json">
+            composer.json
+        </archivo>
+        <archivo descripcion="archivo generado por Composer que contiene información sobre las dependencias y versiones de los paquetes instalados" nombre="composer.lock">
+            composer.lock
+        </archivo>
+    </componentes>
+    <controlador descripcion="carpeta contenedora de controladores">
+        <propiedades descripcion="Carpeta que contiene las propiedades y configuraciones específicas de los controladores">
+            <archivo descripcion="archivo que contiene las propiedades y configuraciones específicas para un ejemplo de controlador" nombre="ejemplo.php">
+                ejemplo.php
+            </archivo>
+        </propiedades>
+        <interfaces descripcion="Carpeta que contiene las interfaces de los controladores">
+            <!-- AGREGAR INTERFACES DE CONTROLADORES -->
+        </interfaces>
+        <archivo descripcion="archivo que implementa la lógica del controlador de ejemplo" nombre="ejemplo_controlador.php">
+            ejemplo_controlador.php
+        </archivo>
+        <archivo descripcion="archivo que implementa la lógica del controlador de inicio" nombre="inicio_controlador.php">
+            inicio_controlador.php
+        </archivo>
+        <archivo descripcion="archivo que implementa la lógica del controlador de inicio de sesión" nombre="login_controlador.php">
+            login_controlador.php
+        </archivo>
+    </controlador>
+    <modelo descripcion="carpeta contenedora de los modelos">
+        <entidades descripcion="Carpeta que contiene las entidades del modelo">
+            <archivo descripcion="Archivo que representa una entidad de ejemplo" nombre="ejemplo.php">
+                ejemplo.php
+            </archivo>
+        </entidades>
+        <interfaces descripcion="Carpeta que contiene las interfaces del modelo">
+            <!-- AGREGAR INTERFACES DE MODELO -->
+        </interfaces>
+        <archivo descripcion="Archivo que implementa la clase del modelo de ejemplo" nombre="ejemplo_class.php">
+            ejemplo_class.php
+        </archivo>
+        <archivo descripcion="Archivo que implementa la clase del modelo de inicio" nombre="inicio_class.php">
+            inicio_class.php
+        </archivo>
+        <archivo descripcion="Archivo que implementa la clase del modelo de inicio de sesión" nombre="login_class.php">
+            login_class.php
+        </archivo>
+    </modelo>
+    <recursos descripcion="carpeta contenedora de los Estilos generales del sistema, usa como bas AdminLite">
+        <css descripcion="Carpeta que contiene los archivos CSS de AdminLite">
+            <!-- CSS ADMINLITE -->
+        </css>
+        <img descripcion="Carpeta que contiene las imágenes de AdminLite">
+            <!-- IMG ADMINLITE -->
+        </img>
+        <js descripcion="Carpeta que contiene los archivos JavaScript de AdminLite">
+            <!-- JS ADMINLITE -->
+        </js>
+        <plugins descripcion="Carpeta que contiene los plugins utilizados en AdminLite">
+            <!-- PLUGINS DE ADMINLITE -->
+        </plugins>
+        <scss descripcion="Carpeta que contiene los archivos SCSS de AdminLite">
+            <!-- SCSS DE ADMINLITE -->
+        </scss>
+    </recursos>
+    <vista>
+        <ejemplo>
+            <css descripcion="Carpeta que contiene los archivos CSS específicos de la vista 'ejemplo'">
+            </css>
+            <js descripcion="Carpeta que contiene los archivos JavaScript específicos de la vista 'ejemplo'">
+            </js>
+            <modal descripcion="Carpeta que contiene los archivos de modal específicos de la vista 'ejemplo'">
+            </modal>
+            <archivo nombre="index.php">
+                index.php
+            </archivo>
+        </ejemplo>
+        <inicio>
+            <css descripcion="Carpeta que contiene los archivos CSS específicos de la vista 'inicio'">
+            </css>
+            <js descripcion="Carpeta que contiene los archivos JavaScript específicos de la vista 'inicio'">
+            </js>
+            <modal descripcion="Carpeta que contiene los archivos de modal específicos de la vista 'inicio'">
+            </modal>
+            <archivo nombre="index.php">
+                index.php
+            </archivo>
+        </inicio>
+        <login>
+            <css descripcion="Carpeta que contiene los archivos CSS específicos de la vista 'login'">
+            </css>
+            <js descripcion="Carpeta que contiene los archivos JavaScript específicos de la vista 'login'">
+                <archivo nombre="recordar.js">
+                    recordar.js
+                </archivo>
+                <archivo nombre="ver_clave.js">
+                    ver_clave.js
+                </archivo>
+            </js>
+            <modal descripcion="Carpeta que contiene los archivos de modal específicos de la vista 'login'">
+            </modal>
+            <archivo nombre="index.php">
+                index.php
+            </archivo>
+        </login>
+        <publico>
+            <archivo descripcion="Componente que contiene el contenido principal de la página" nombre="Contenido.php">
+                Contenido.php
+            </archivo>
+            <archivo descripcion="Componente que contiene los estilos CSS específicos de la página" nombre="Estilos.php">
+                Estilos.php
+            </archivo>
+            <archivo descripcion="Componente que contiene el pie de página de la página" nombre="Footer.php">
+                Footer.php
+            </archivo>
+            <archivo descripcion="Componente que contiene las metaetiquetas de la página" nombre="Meta.php">
+                Meta.php
+            </archivo>
+            <archivo descripcion="Componente que contiene la barra de navegación de la página" nombre="Navbar.php">
+                Navbar.php
+            </archivo>
+            <archivo descripcion="Componente que contiene los scripts JavaScript específicos de la página" nombre="Script.php">
+                Script.php
+            </archivo>
+            <archivo descripcion="Componente que contiene el título de la página" nombre="Titulo.php">
+                Titulo.php
+            </archivo>
+        </publico>
+    </vista>
+    <archivo descripcion="Archivo que especifica atributos de Git para el proyecto" nombre=".gitattributes">
+        .gitattributes
+    </archivo>
+    <archivo descripcion="Archivo de configuración utilizado por el servidor web Apache" nombre=".htaccess">
+        .htaccess
+    </archivo>
+    <archivo descripcion="Archivo que contiene información sobre cómo contribuir al proyecto" nombre="CONTRIBUTING.md">
+        CONTRIBUTING.md
+    </archivo>
+    <archivo descripcion="Archivo principal de la aplicación que se ejecuta al acceder a la URL principal" nombre="index.php">
+        index.php
+    </archivo>
+    <archivo descripcion="Archivo que proporciona información sobre el proyecto y su uso" nombre="README.md">
+        README.md
+    </archivo>
+</sethar>

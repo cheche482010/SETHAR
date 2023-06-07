@@ -6,17 +6,17 @@ CREATE TABLE log_cambios (
 );
 
 CREATE TRIGGER registro_cambios
-AFTER INSERT, UPDATE, DELETE ON plantas
+AFTER INSERT, UPDATE, DELETE ON SETHAR
 FOR EACH ROW
 BEGIN
     INSERT INTO log_cambios (tabla_afectada, descripcion)
-    VALUES ('plantas', CONCAT(OLD.id, ' -> ', NEW.id));
+    VALUES ('SETHAR', CONCAT(OLD.id, ' -> ', NEW.id));
 END;
 
 CREATE TRIGGER registro_consultas
-AFTER UPDATE ON plantas
+AFTER UPDATE ON SETHAR
 FOR EACH ROW
 BEGIN
     INSERT INTO log_cambios (tabla_afectada, descripcion)
-    VALUES ('plantas', CONCAT('Consulta SQL: ', @consulta_sql));
+    VALUES ('SETHAR', CONCAT('Consulta SQL: ', @consulta_sql));
 END;

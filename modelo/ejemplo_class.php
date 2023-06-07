@@ -3,6 +3,7 @@ interface EjemploModeloInterface
 {
     public function Configurar(array $configuracion): self;
     public function Administrar(): mixed;
+    public function Sentencia():  ? string;
 }
 class Ejemplo_Modelo extends Modelo
 {
@@ -97,7 +98,7 @@ class Ejemplo_Modelo extends Modelo
      *
      * @return string|null Sentencia actual.
      */
-    private function Sentencia():  ? string
+    public function Sentencia():  ? string
     {
         $this->class = new Clases("Ejemplo_Modelo");
         return $this->class->verificar_funcion($this->SQL) ? $this->{$this->SQL}() : Errores::Capturar()->Personalizado('No existe la funcion : ' . $this->SQL . "() \nEn la clase: " . $this->class->nombre_clase() . "\nArchivo: " . __FILE__);
