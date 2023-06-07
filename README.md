@@ -5,9 +5,10 @@
 # Documentación del Framework [SETHAR]
 
 # Descripción
-El Framework SETHAR es una herramienta diseñada para facilitar el desarrollo de aplicaciones web en PHP. Proporciona una estructura organizada y componentes reutilizables para acelerar el proceso de desarrollo y mejorar la mantenibilidad del código.
+El Framework SETHAR es una herramienta diseñada para facilitar el desarrollo de aplicaciones web en PHP. Proporciona una estructura organizada y componentes reutilizables para acelerar el proceso de desarrollo y mejorar la mantenibilidad del código. Basado en el patron Modelo-Vista-Controlador + Componentes siendo asi un modelo hibrido.
 
 # Estructura del proyecto
+Puede ver las especificaciones en el archivo "componentes/xml/Estructura_Framework.xml"
 El proyecto sigue la siguiente estructura de carpetas:
 
 - **app**: Contiene la lógica de la aplicación.
@@ -180,6 +181,42 @@ Las vistas se encuentran en la carpeta "vista" y son responsables de mostrar la 
 ## Configuración adicional
 Si necesitas configurar componentes adicionales, como el enrutamiento, la autenticación, la validación o cualquier otro componente proporcionado por el framework, consulta la documentación específica de cada componente en la carpeta "componentes".
 
+```php
+use Componentes\Funciones\(nombre de trait);
+
+class Ejemplo extends Controlador
+{
+    use Archivos;
+    use Arrays;
+    use Cadenas;
+    use Codigos_Unicos;
+    use Componentes;
+    use Correos;
+    use Encriptacion;
+    use Entidades;
+    use Html;
+    use Imagenes;
+    use Json;
+    use Mensajes;
+    use PDF;
+    use Sesiones;
+    use Tiempo;
+    use Traductociones;
+    use URL;
+    use Validacion;
+    use Xml;
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    public function Cargar_Vistas()
+    {
+        Vista::Ejemplo('index');
+    }
+}
+```
 # Paquetes Instalados
 
 El Framework SETHAR utiliza varios paquetes de terceros para mejorar su funcionalidad y ofrecer características adicionales. A continuación se describen los paquetes instalados en el framework:
