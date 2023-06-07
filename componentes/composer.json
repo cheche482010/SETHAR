@@ -30,11 +30,6 @@
             "Funciones\\": "../componentes/traits/"
         },
         "files": [
-         "Errores.php",
-         "Clases.php",
-         "Validacion.php",
-         "Cache.php",
-         "Transacciones.php",
          "Autocarga.php"
          ]
     },
