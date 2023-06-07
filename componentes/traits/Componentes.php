@@ -1,5 +1,7 @@
 <?php
 
+namespace Componentes\Funciones;
+
 trait Componentes
 {
     protected function Conexion()

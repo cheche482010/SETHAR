@@ -1,5 +1,9 @@
 <?php
+
 require_once '../TCPDF/tcpdf.php';
+
+namespace Componentes\Funciones;
+
 trait PDF
 {
     /**

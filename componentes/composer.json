@@ -21,11 +21,11 @@
         ],
         "psr-4": {
             "App\\": "../app/",
-            "Controlador\\": "../controlador/",
-            "Entidad\\": "../controlador/propiedades/",
-            "Validacion\\": "../componentes/validacion/",
-            "Modelo\\": "../modelo/",
-            "Propiedades\\": "../modelo/entidades/",
+            "Controladores\\": "../controlador/",
+            "Propiedades\\": "../controlador/propiedades/",
+            "Validaciones\\": "../componentes/validacion/",
+            "Modelos\\": "../modelo/",
+            "Entidades\\": "../modelo/entidades/",
             "Pruebas\\": "../tests/",
             "Funciones\\": "../componentes/traits/"
         },
@@ -46,11 +46,11 @@
         ],
         "psr-4": {
             "App\\": "../app/",
-            "Controlador\\": "../controlador/",
-            "Entidad\\": "../controlador/propiedades/",
-            "Validacion\\": "../componentes/validacion/",
-            "Modelo\\": "../modelo/",
-            "Propiedades\\": "../modelo/entidades/",
+            "Controladores\\": "../controlador/",
+            "Propiedades\\": "../controlador/propiedades/",
+            "Validaciones\\": "../componentes/validacion/",
+            "Modelos\\": "../modelo/",
+            "Entidades\\": "../modelo/entidades/",
             "Pruebas\\": "../tests/",
             "Funciones\\": "../componentes/traits/"
         }

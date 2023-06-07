@@ -2,7 +2,6 @@
 
 ini_set("max_execution_time", "0");
 error_reporting(E_ERROR);
-require_once "componentes/traits/Componentes.php";
 
 interface Metodos_BD
 {
@@ -10,6 +9,9 @@ interface Metodos_BD
     public function Probar_Conexion();
     public function Error_Conexion();
 }
+
+use Componentes\Funciones\Componentes;
+
 class BASE_DATOS implements Metodos_BD
 {
     use Componentes {Conexion as private ;}

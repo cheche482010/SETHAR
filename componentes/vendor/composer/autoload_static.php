@@ -22,7 +22,7 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
     public static $prefixLengthsPsr4 = array (
         'V' => 
         array (
-            'Validacion\\' => 11,
+            'Validaciones\\' => 13,
         ),
         'S' => 
         array (
@@ -51,7 +51,7 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'M' => 
         array (
             'Monolog\\' => 8,
-            'Modelo\\' => 7,
+            'Modelos\\' => 8,
         ),
         'L' => 
         array (
@@ -64,7 +64,7 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         ),
         'E' => 
         array (
-            'Entidad\\' => 8,
+            'Entidades\\' => 10,
         ),
         'D' => 
         array (
@@ -82,7 +82,7 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         ),
         'C' => 
         array (
-            'Controlador\\' => 12,
+            'Controladores\\' => 14,
             'Cache\\TagInterop\\' => 17,
             'Cache\\Adapter\\Filesystem\\' => 25,
             'Cache\\Adapter\\Common\\' => 21,
@@ -94,7 +94,7 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
     );
 
     public static $prefixDirsPsr4 = array (
-        'Validacion\\' => 
+        'Validaciones\\' => 
         array (
             0 => __DIR__ . '/../..' . '/validacion',
             1 => __DIR__ . '/../..' . '/validacion',
@@ -166,8 +166,8 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         ),
         'Propiedades\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/../modelo/entidades',
-            1 => __DIR__ . '/../..' . '/../modelo/entidades',
+            0 => __DIR__ . '/../..' . '/../controlador/propiedades',
+            1 => __DIR__ . '/../..' . '/../controlador/propiedades',
         ),
         'PHPMailer\\PHPMailer\\' => 
         array (
@@ -177,7 +177,7 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
-        'Modelo\\' => 
+        'Modelos\\' => 
         array (
             0 => __DIR__ . '/../..' . '/../modelo',
             1 => __DIR__ . '/../..' . '/../modelo',
@@ -195,10 +195,10 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
             0 => __DIR__ . '/../..' . '/traits',
             1 => __DIR__ . '/../..' . '/traits',
         ),
-        'Entidad\\' => 
+        'Entidades\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/../controlador/propiedades',
-            1 => __DIR__ . '/../..' . '/../controlador/propiedades',
+            0 => __DIR__ . '/../..' . '/../modelo/entidades',
+            1 => __DIR__ . '/../..' . '/../modelo/entidades',
         ),
         'Doctrine\\Persistence\\' => 
         array (
@@ -245,7 +245,7 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
             0 => __DIR__ . '/..' . '/doctrine/common/src',
             1 => __DIR__ . '/..' . '/doctrine/event-manager/src',
         ),
-        'Controlador\\' => 
+        'Controladores\\' => 
         array (
             0 => __DIR__ . '/../..' . '/../controlador',
             1 => __DIR__ . '/../..' . '/../controlador',
@@ -281,8 +281,6 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
 
     public static $classMap = array (
         'App' => __DIR__ . '/../..' . '/../app/App.php',
-        'Archivos' => __DIR__ . '/../..' . '/traits/Archivos.php',
-        'Arrays' => __DIR__ . '/../..' . '/traits/Arrays.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'BASE_DATOS' => __DIR__ . '/../..' . '/../app/Base_Datos.php',
         'CRUD' => __DIR__ . '/../..' . '/CRUD.php',
@@ -300,17 +298,31 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'Cache\\Adapter\\Filesystem\\FilesystemCachePool' => __DIR__ . '/..' . '/cache/filesystem-adapter/FilesystemCachePool.php',
         'Cache\\TagInterop\\TaggableCacheItemInterface' => __DIR__ . '/..' . '/cache/tag-interop/TaggableCacheItemInterface.php',
         'Cache\\TagInterop\\TaggableCacheItemPoolInterface' => __DIR__ . '/..' . '/cache/tag-interop/TaggableCacheItemPoolInterface.php',
-        'Cadenas' => __DIR__ . '/../..' . '/traits/Cadenas.php',
         'Clases' => __DIR__ . '/../..' . '/Clases.php',
-        'Codigos_Unicos' => __DIR__ . '/../..' . '/traits/Codigos_Unicos.php',
-        'Componentes' => __DIR__ . '/../..' . '/traits/Componentes.php',
+        'Componentes\\Funciones\\Archivos' => __DIR__ . '/../..' . '/traits/Archivos.php',
+        'Componentes\\Funciones\\Arrays' => __DIR__ . '/../..' . '/traits/Arrays.php',
+        'Componentes\\Funciones\\Cadenas' => __DIR__ . '/../..' . '/traits/Cadenas.php',
+        'Componentes\\Funciones\\Codigos_Unicos' => __DIR__ . '/../..' . '/traits/Codigos_Unicos.php',
+        'Componentes\\Funciones\\Componentes' => __DIR__ . '/../..' . '/traits/Componentes.php',
+        'Componentes\\Funciones\\Correos' => __DIR__ . '/../..' . '/traits/Correos.php',
+        'Componentes\\Funciones\\Encriptacion' => __DIR__ . '/../..' . '/traits/Encriptacion.php',
+        'Componentes\\Funciones\\Entidades' => __DIR__ . '/../..' . '/traits/Entidades.php',
+        'Componentes\\Funciones\\Imagenes' => __DIR__ . '/../..' . '/traits/Imagenes.php',
+        'Componentes\\Funciones\\Json' => __DIR__ . '/../..' . '/traits/Json.php',
+        'Componentes\\Funciones\\Mensajes' => __DIR__ . '/../..' . '/traits/Mensajes.php',
+        'Componentes\\Funciones\\PDF' => __DIR__ . '/../..' . '/traits/PDF.php',
+        'Componentes\\Funciones\\PDO' => __DIR__ . '/../..' . '/traits/PDO.php',
+        'Componentes\\Funciones\\Sesiones' => __DIR__ . '/../..' . '/traits/Sesiones.php',
+        'Componentes\\Funciones\\Tiempo' => __DIR__ . '/../..' . '/traits/Tiempo.php',
+        'Componentes\\Funciones\\Traducciones' => __DIR__ . '/../..' . '/traits/Traductociones.php',
+        'Componentes\\Funciones\\URL' => __DIR__ . '/../..' . '/traits/URL.php',
+        'Componentes\\Funciones\\XML' => __DIR__ . '/../..' . '/traits/Xml.php',
         'ComposerAutoloaderInit2a8b9cfa11dbcd502b3063f9f8235c8c' => __DIR__ . '/..' . '/composer/autoload_real.php',
         'Composer\\Autoload\\ClassLoader' => __DIR__ . '/..' . '/composer/ClassLoader.php',
         'Composer\\Autoload\\ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c' => __DIR__ . '/..' . '/composer/autoload_static.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Configuracion' => __DIR__ . '/../..' . '/../app/Configuracion.php',
         'Controlador' => __DIR__ . '/../..' . '/../app/Controlador.php',
-        'Correos' => __DIR__ . '/../..' . '/traits/Correos.php',
         'Datamatrix' => __DIR__ . '/../..' . '/TCPDF/include/barcodes/datamatrix.php',
         'Direcciones' => __DIR__ . '/../..' . '/Direcciones.php',
         'Doctrine\\Common\\Annotations\\Annotation' => __DIR__ . '/..' . '/doctrine/annotations/lib/Doctrine/Common/Annotations/Annotation.php',
@@ -1234,15 +1246,11 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'Ejemplo_Modelo' => __DIR__ . '/../..' . '/../modelo/ejemplo_class.php',
         'Ejemplo_Propiedad' => __DIR__ . '/../..' . '/../controlador/propiedades/ejemplo.php',
         'Ejemplo_Validacion' => __DIR__ . '/../..' . '/validacion/ejemplo_validacion.php',
-        'Encriptacion' => __DIR__ . '/../..' . '/traits/Encriptacion.php',
-        'Entidades' => __DIR__ . '/../..' . '/traits/Entidades.php',
         'Errores' => __DIR__ . '/../..' . '/Errores.php',
-        'Imagenes' => __DIR__ . '/../..' . '/traits/Imagenes.php',
         'Inicio' => __DIR__ . '/../..' . '/../controlador/inicio_controlador.php',
         'Inicio_Modelo' => __DIR__ . '/../..' . '/../modelo/inicio_class.php',
         'Interface_Modelo' => __DIR__ . '/../..' . '/../app/Modelo.php',
         'JShrink\\Minifier' => __DIR__ . '/..' . '/tedivm/jshrink/src/JShrink/Minifier.php',
-        'Json' => __DIR__ . '/../..' . '/traits/Json.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'League\\Flysystem\\AdapterInterface' => __DIR__ . '/..' . '/league/flysystem/src/AdapterInterface.php',
         'League\\Flysystem\\Adapter\\AbstractAdapter' => __DIR__ . '/..' . '/league/flysystem/src/Adapter/AbstractAdapter.php',
@@ -1306,7 +1314,6 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'Login_Modelo' => __DIR__ . '/../..' . '/../modelo/login_class.php',
         'MC_TCPDF' => __DIR__ . '/../..' . '/TCPDF/examples/example_010.php',
         'MYPDF' => __DIR__ . '/../..' . '/TCPDF/examples/example_003.php',
-        'Mensajes' => __DIR__ . '/../..' . '/traits/Mensajes.php',
         'Metodos_APP' => __DIR__ . '/../..' . '/../app/App.php',
         'Metodos_BD' => __DIR__ . '/../..' . '/../app/Base_Datos.php',
         'Modelo' => __DIR__ . '/../..' . '/../app/Modelo.php',
@@ -1426,9 +1433,7 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'Monolog\\Test\\TestCase' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Test/TestCase.php',
         'Monolog\\Utils' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Utils.php',
         'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
-        'PDF' => __DIR__ . '/../..' . '/traits/PDF.php',
         'PDF417' => __DIR__ . '/../..' . '/TCPDF/include/barcodes/pdf417.php',
-        'PDO' => __DIR__ . '/../..' . '/traits/PDO.php',
         'PHPMailer\\PHPMailer\\DSNConfigurator' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/DSNConfigurator.php',
         'PHPMailer\\PHPMailer\\Exception' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/Exception.php',
         'PHPMailer\\PHPMailer\\OAuth' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuth.php',
@@ -1460,7 +1465,6 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'Psr\\SimpleCache\\CacheInterface' => __DIR__ . '/..' . '/psr/simple-cache/src/CacheInterface.php',
         'Psr\\SimpleCache\\InvalidArgumentException' => __DIR__ . '/..' . '/psr/simple-cache/src/InvalidArgumentException.php',
         'QRcode' => __DIR__ . '/../..' . '/TCPDF/include/barcodes/qrcode.php',
-        'Sesiones' => __DIR__ . '/../..' . '/traits/Sesiones.php',
         'Stash\\DriverList' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/DriverList.php',
         'Stash\\Driver\\AbstractDriver' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Driver/AbstractDriver.php',
         'Stash\\Driver\\Apc' => __DIR__ . '/..' . '/tedivm/stash/src/Stash/Driver/Apc.php',
@@ -1674,16 +1678,12 @@ class ComposerStaticInit2a8b9cfa11dbcd502b3063f9f8235c8c
         'TCPDF_PARSER' => __DIR__ . '/../..' . '/TCPDF/tcpdf_parser.php',
         'TCPDF_STATIC' => __DIR__ . '/../..' . '/TCPDF/include/tcpdf_static.php',
         'TOC_TCPDF' => __DIR__ . '/../..' . '/TCPDF/examples/example_059.php',
-        'Tiempo' => __DIR__ . '/../..' . '/traits/Tiempo.php',
-        'Traducciones' => __DIR__ . '/../..' . '/traits/Traductociones.php',
         'Transacciones' => __DIR__ . '/../..' . '/Transacciones.php',
-        'URL' => __DIR__ . '/../..' . '/traits/URL.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'Validacion' => __DIR__ . '/../..' . '/Validacion.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
         'Vista' => __DIR__ . '/../..' . '/../app/Vista.php',
         'Vista_Interface' => __DIR__ . '/../..' . '/../app/Vista.php',
-        'XML' => __DIR__ . '/../..' . '/traits/Xml.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

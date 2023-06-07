@@ -1,5 +1,7 @@
 <?php
 
+use Componentes\Funciones\Mensajes;
+
 class Login extends Controlador
 {
     use Mensajes;

@@ -1,4 +1,8 @@
 <?php
+
+
+namespace Componentes\Funciones;
+
 trait Mensajes
 {
     /**

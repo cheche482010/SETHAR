@@ -1,4 +1,7 @@
 <?php
+
+namespace Componentes\Funciones;
+
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 

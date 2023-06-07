@@ -1,4 +1,7 @@
 <?php
+
+namespace Componentes\Funciones;
+
 trait PDO
 {
     /**

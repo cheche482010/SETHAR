@@ -1,4 +1,7 @@
 <?php
+
+namespace Componentes\Funciones;
+
 trait Encriptacion
 {
     // Encriptación AES
