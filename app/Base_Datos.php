@@ -3,14 +3,10 @@
 ini_set("max_execution_time", "0");
 error_reporting(E_ERROR);
 
-
 use Componentes\Interfaces\Metodos_BD;
-use Componentes\Funciones\Componentes;
 
 class BASE_DATOS implements Metodos_BD
 {
-    use Componentes {Conexion as private ;}
-
     private $gestor;
     private $comprobar;
     private $error_conexion;
@@ -19,7 +15,7 @@ class BASE_DATOS implements Metodos_BD
 
     public function __construct()
     {
-        $this->gestor = $this->Conexion()["Mysql"];
+        $this->gestor = Configuracion::CREDENCIALES["Mysql"];;
 
         $this->DNS = [
             'Dominio'  => "{$this->gestor["Servidor"]}:host={$this->gestor["Host"]};port={$this->gestor["Puerto"]};dbname={$this->gestor["Base_Datos"]};",

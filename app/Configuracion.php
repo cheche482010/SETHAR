@@ -1,8 +1,10 @@
 <?php
 
+// namespace App;
+
 class Configuracion
 {
-    const Titulo = "SETHAR";
+    const TITULO = "SETHAR";
     
     const CREDENCIALES = [
         'Mysql' => [
@@ -51,7 +53,7 @@ class Configuracion
 
     public static function Titulo()
     {
-        echo "SETHAR";
+        echo self::TITULO;
     }
 
     public static function URL()
