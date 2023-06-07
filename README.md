@@ -79,7 +79,7 @@ El script "crear_modulo.bat" ubicado en la carpeta "componentes/bat" permite cre
 ## Controladores
 Los controladores se encuentran en la carpeta "controlador" y son responsables de manejar las solicitudes y generar las respuestas correspondientes. Sigue las pautas establecidas en la documentación del framework para crear nuevos controladores.
 
-.. code-block:: python
+.. code-block:: php
   
 class Ejmplo extends Controlador
 {
@@ -100,7 +100,7 @@ class Ejmplo extends Controlador
 ## Modelos
 Los modelos se encuentran en la carpeta "modelo" y representan la lógica de negocio y la interacción con la base de datos. Sigue las pautas establecidas en la documentación del framework para crear nuevos modelos.
 
-.. code-block:: python
+.. code-block:: php
 
 class Ejemplo_Modelo extends Modelo
 {
@@ -157,7 +157,7 @@ class Ejemplo_Modelo extends Modelo
 ## Vistas
 Las vistas se encuentran en la carpeta "vista" y son responsables de mostrar la interfaz de usuario al usuario final. Organiza las vistas en subcarpetas según la funcionalidad o el contexto.
 
-.. code-block:: python
+.. code-block:: php
 
 <!DOCTYPE html>
 <html lang="es">
