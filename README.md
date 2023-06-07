@@ -63,14 +63,14 @@ Antes de comenzar a utilizar el framework, sigue los siguientes pasos de configu
 
 1. Clone el repositorio [https://github.com/cheche482010/SETHAR] en tu entorno local.
 2. Instala las dependencias ejecutando el comando "composer install" en la raíz del proyecto.
-3. Configura la conexión a la base de datos en el archivo de configuración "componentes/traits/Componentes.php".
+3. Configura la conexión a la base de datos en el archivo de configuración "APP/Configuracion.php.php".
 4. Realiza otras configuraciones necesarias según tus requisitos específicos.
 
 # Uso del framework
 El framework ofrece una estructura y componentes reutilizables para facilitar el desarrollo de aplicaciones web en PHP. A continuación, se describen los principales componentes del framework y cómo utilizarlos:
 
 ## Creación de Plantillas
-El script "crear_modulo.bat" ubicado en la carpeta "componentes" permite crear plantillas de módulos de forma automatizada. Este script realiza las siguientes acciones:
+El script "crear_modulo.bat" ubicado en la carpeta "componentes/bat" permite crear plantillas de módulos de forma automatizada. Este script realiza las siguientes acciones:
 
 1. Solicita al usuario el nombre del nuevo módulo.
 2. Utiliza PowerShell para generar archivos de modelo, entidad, controlador, propiedades y validación con el nombre proporcionado.
@@ -79,11 +79,112 @@ El script "crear_modulo.bat" ubicado en la carpeta "componentes" permite crear p
 ## Controladores
 Los controladores se encuentran en la carpeta "controlador" y son responsables de manejar las solicitudes y generar las respuestas correspondientes. Sigue las pautas establecidas en la documentación del framework para crear nuevos controladores.
 
+.. code-block:: python
+  
+class Ejmplo extends Controlador
+{
+   
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    public function Cargar_Vistas()
+    {
+        Vista::Ejmplo('index');
+    }
+}
+   
+```
+
 ## Modelos
 Los modelos se encuentran en la carpeta "modelo" y representan la lógica de negocio y la interacción con la base de datos. Sigue las pautas establecidas en la documentación del framework para crear nuevos modelos.
 
+.. code-block:: python
+
+class Ejemplo_Modelo extends Modelo
+{
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    public function Configurar(array $configuracion): self
+    {
+        $this->configuracion = $configuracion;
+        $this->SQL           = isset($this->configuracion['sql']) ? $this->configuracion['sql'] : null;
+        $this->datos         = isset($this->configuracion['datos']) ? $this->configuracion['datos'] : null;
+        $this->opciones      = isset($this->configuracion['opciones']) ? array_merge($this->opciones_predeterminadas, $this->configuracion['opciones']) : $this->opciones_predeterminadas;
+        return $this;
+    }
+
+    public function Sentencia():  ? string
+    {
+        $this->class = new Clases("Ejemplo_Modelo");
+        return $this->class->verificar_funcion($this->SQL) ? $this->{$this->SQL}() : Errores::Capturar()->Personalizado('No existe la funcion : ' . $this->SQL . "() \nEn la clase: " . $this->class->nombre_clase() . "\nArchivo: " . __FILE__);
+    }
+
+    /**
+     * Administra el modelo y ejecuta la sentencia actual.
+     *
+     * @return mixed Resultado de la operación.
+     */
+    public function Administrar() : mixed
+    {
+        $this->sentencia = $this->Sentencia();
+        try {
+            $this->resultado = $this->Ejecutar(
+                $this->sentencia,
+                $this->datos,
+                $this->opciones['forzado'],
+                $this->opciones['transaccion'],
+                $this->opciones['tipo_valor'],
+                $this->opciones['ultimo_id'],
+                $this->opciones['cache'],
+                $this->opciones['filtrado']
+            );
+            $this->Desconectar();
+            return $this->resultado;
+        } catch (PDOException $e) {
+            Errores::Capturar()->Manejo_Excepciones($e);
+        }
+    }
+
+}
+   
+```
+
 ## Vistas
 Las vistas se encuentran en la carpeta "vista" y son responsables de mostrar la interfaz de usuario al usuario final. Organiza las vistas en subcarpetas según la funcionalidad o el contexto.
+
+.. code-block:: python
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <?php Vista::Recursos("Meta"); ?>
+        <?php Vista::Recursos("Titulo"); ?>
+        <?php Vista::Recursos("Estilos"); ?>
+    </head>
+
+    <body class="hold-transition text-sm layout-top-nav layout-fixed layout-navbar-fixed layout-footer-fixed" id="body">
+        <!-- ============================================================== -->
+        <!-- Inicio contenido de pagina -->
+        <!-- ============================================================== -->
+        <main class="wrapper">
+            <?php Vista::Recursos("Navbar"); ?>
+            <!-- Contenido de la pagina -->
+            <div class="content-wrapper">
+                <?php Vista::Recursos("Contenido"); ?>
+            </div>
+            <!-- /.content-wrapper -->
+            <?php Vista::Recursos("Footer"); ?>
+        </main>
+        <?php Vista::Recursos("Script"); ?>
+    </body>
+</html>
+   
+```
 
 ## Configuración adicional
 Si necesitas configurar componentes adicionales, como el enrutamiento, la autenticación, la validación o cualquier otro componente proporcionado por el framework, consulta la documentación específica de cada componente en la carpeta "componentes".
