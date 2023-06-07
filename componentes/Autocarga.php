@@ -11,6 +11,7 @@ function Auto_Cargar($directory)
 Auto_Cargar("traits");
 Auto_Cargar("interfaces");
 Auto_Cargar("validacion");
+Auto_Cargar("clases");
 Auto_Cargar("../app");
 Auto_Cargar("../controlador/interfaces");
 Auto_Cargar("../modelo/interfaces");

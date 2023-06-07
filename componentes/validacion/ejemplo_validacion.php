@@ -1,6 +1,6 @@
 <?php
 
-class Ejemplo_Validacion extends Validacion
+class Ejemplo_Validacion
 {
     public  $mensaje;
     private $Errores;

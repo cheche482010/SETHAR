@@ -1,6 +1,8 @@
 <?php
 
-class Validacion
+namespace Componentes\Funciones;
+
+trait Validacion
 {
     // patrones de búsqueda
     private $cedula      = "/^([0-9]{7,9})$/";
@@ -26,9 +28,6 @@ class Validacion
     private $ipv6             = "/^((?=.*::)(?!.*::.+::)(::)?([\da-fA-F]{1,4}(:|(?!\s*\2:)\2)){7}|([\da-fA-F]{1,4}:){6})([\da-fA-F]{1,4})(\2([\da-fA-F]{1,4})(\3([\da-fA-F]{1,4})(\4([\da-fA-F]{1,4})(\5([\da-fA-F]{1,4})(\6([\da-fA-F]{1,4})\7?)?)?)?)?)?$/"; // Dirección IP en formato IPv6
     private $hexadecimal      = "/^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/"; // Color hexadecimal en formato #RRGGBB o #RGB
 
-    public function __construct()
-    {}
-    // ===============================================================================
     /**
      * Valida un valor con el patrón correspondiente.
      *

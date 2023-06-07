@@ -191,4 +191,22 @@ trait Encriptacion
 
         return $url_desencriptada;
     }
+
+    public static function Seguridad($string, $accion = null)
+    {
+        // Advanced Encryption Standard cipher-block chaining
+        $metodo = "AES-256-CBC"; //El método de cifrado //clave simétrica de 256 bits
+        $llave  = openssl_digest("key", 'whirlpool', true); //genera un hash usando el método dado y devuelve codificada (512 bits)
+        $iv     = substr(hash("whirlpool", $llave), 0, 16); // ciframos el vector de inicialización y acortamos con substr a 16
+
+        if ($accion == 'codificar') {
+            $salida = openssl_encrypt($string, $metodo, $llave, 0, $iv); // ciframos la direccion obtenida con el metodo openssl_encrypt
+            $salida = base64_encode($salida); // ciframos la salida en bs64
+        } else if ($accion == 'decodificar') {
+            $string = base64_decode($string);
+            $salida = openssl_decrypt($string, $metodo, $llave, 0, $iv);
+        }
+        return $salida;
+        unset($metodo, $llave, $iv, $accion, $sting, $salida);
+    }
 }
