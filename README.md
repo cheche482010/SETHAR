@@ -79,8 +79,7 @@ El script "crear_modulo.bat" ubicado en la carpeta "componentes/bat" permite cre
 ## Controladores
 Los controladores se encuentran en la carpeta "controlador" y son responsables de manejar las solicitudes y generar las respuestas correspondientes. Sigue las pautas establecidas en la documentación del framework para crear nuevos controladores.
 
-.. code-block:: php
-  
+```php 
 class Ejmplo extends Controlador
 {
    
@@ -93,15 +92,13 @@ class Ejmplo extends Controlador
     {
         Vista::Ejmplo('index');
     }
-}
-   
+} 
 ```
 
 ## Modelos
 Los modelos se encuentran en la carpeta "modelo" y representan la lógica de negocio y la interacción con la base de datos. Sigue las pautas establecidas en la documentación del framework para crear nuevos modelos.
 
-.. code-block:: php
-
+```php
 class Ejemplo_Modelo extends Modelo
 {
     public function __construct()
@@ -150,15 +147,13 @@ class Ejemplo_Modelo extends Modelo
         }
     }
 
-}
-   
+}  
 ```
 
 ## Vistas
 Las vistas se encuentran en la carpeta "vista" y son responsables de mostrar la interfaz de usuario al usuario final. Organiza las vistas en subcarpetas según la funcionalidad o el contexto.
 
-.. code-block:: php
-
+```php
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -168,9 +163,6 @@ Las vistas se encuentran en la carpeta "vista" y son responsables de mostrar la 
     </head>
 
     <body class="hold-transition text-sm layout-top-nav layout-fixed layout-navbar-fixed layout-footer-fixed" id="body">
-        <!-- ============================================================== -->
-        <!-- Inicio contenido de pagina -->
-        <!-- ============================================================== -->
         <main class="wrapper">
             <?php Vista::Recursos("Navbar"); ?>
             <!-- Contenido de la pagina -->
@@ -182,8 +174,7 @@ Las vistas se encuentran en la carpeta "vista" y son responsables de mostrar la 
         </main>
         <?php Vista::Recursos("Script"); ?>
     </body>
-</html>
-   
+</html>  
 ```
 
 ## Configuración adicional
