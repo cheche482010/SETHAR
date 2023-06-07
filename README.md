@@ -195,13 +195,16 @@ Para el manejo de sentencias se agrupan por funciones privadas que especifican s
 El uso de ejecucion de sentencias poseen un valor predeterminado pero este se puede cambiar a preferencias dependiendo del trabajo.
 
 ```php
-     * @param string sql La consulta SQL a ejecutar.
-     * @param array datos Los parámetros de la consulta SQL.
-     * @param string forzado Opción para forzar el formato de los valores de los parámetros.
-     * @param bool transaccion Opción para iniciar una transacción.
-     * @param string tipo_valor Opción para definir si los parámetros son detallados o no.
-     * @param bool ultimo_id Opción para obtener el último ID insertado.
-     * @param bool cache Opción para usar la caché.
+/**
+* @param string sql La consulta SQL a ejecutar.
+* @param array datos Los parámetros de la consulta SQL.
+* @param string forzado Opción para forzar el formato de los valores de los parámetros.
+* @param bool transaccion Opción para iniciar una transacción.
+* @param string tipo_valor Opción para definir si los parámetros son detallados o no.
+* @param bool ultimo_id Opción para obtener el último ID insertado.
+* @param bool cache Opción para usar la caché.
+*/
+
 $resultado = $modelo->Configurar([
     'sql' => 'SQL_01',
     'datos' => ['parametro1' => 'valor1', 'parametro2' => 'valor2'],
