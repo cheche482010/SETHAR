@@ -15,7 +15,7 @@ class BASE_DATOS implements Metodos_BD
 
     public function __construct()
     {
-        $this->gestor = Configuracion::CREDENCIALES["Mysql"];;
+        $this->gestor = Configuracion::CREDENCIALES["Mysql"];
 
         $this->DNS = [
             'Dominio'  => "{$this->gestor["Servidor"]}:host={$this->gestor["Host"]};port={$this->gestor["Puerto"]};dbname={$this->gestor["Base_Datos"]};",

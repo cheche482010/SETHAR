@@ -10,7 +10,7 @@ class Configuracion
         'Mysql' => [
             'Servidor'   => 'mysql',
             'Host'       => 'localhost',
-            'Base_Datos' => 'reino_plantae',
+            'Base_Datos' => 'sethar',
             'Puerto'     => '3306',
             'Usuario'    => 'root',
             'Contraseña' => 'root',
