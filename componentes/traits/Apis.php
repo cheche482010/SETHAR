@@ -246,66 +246,8 @@ trait Api
         return $headers;
     }
 
-    /**
-     * Maneja errores y excepciones específicas de las respuestas de la API.
-     *
-     * @param mixed $response Respuesta de la API
-     * @param int $statusCode Código de estado HTTP esperado
-     * @param string $errorMessage Mensaje de error personalizado
-     * @throws Exception Si la respuesta no coincide con el código de estado esperado
-     */
-    public function handleApiResponse($response, $statusCode, $errorMessage = 'Error en la respuesta de la API')
-    {
-        if ($response === false) {
-            throw new Exception($errorMessage);
-        }
-
-        if (is_array($response) && $this->getResponseValue($response, 'status_code') !== $statusCode) {
-            throw new Exception($errorMessage);
-        }
-    }
-
-/**
- * Obtiene la siguiente página de resultados de una API paginada.
- *
- * @param string $url URL de la API paginada
- * @param int $currentPage Página actual
- * @param int $perPage Resultados por página
- * @param array $headers Encabezados opcionales de la solicitud
- * @return mixed Respuesta de la API en formato JSON o false en caso de error
- */
-    public function getNextPage($url, $currentPage, $perPage, $headers = [])
-    {
-        $start  = ($currentPage - 1) * $perPage;
-        $newUrl = str_replace('{start}', $start, $url);
-
-        return $this->get($newUrl, $headers);
-    }
-
-/**
- * Implementa una caché simple para almacenar en caché las respuestas de la API.
- *
- * @param string $key Clave de caché única para la solicitud
- * @param callable $callback Función de devolución de llamada para realizar la solicitud a la API
- * @param int $expiration Tiempo de expiración de la caché en segundos
- * @return mixed Respuesta de la API en formato JSON o false en caso de error
- */
-    public function cachedRequest($key, $callback, $expiration)
-    {
-        $cache = $this->getFromCache($key);
-        if ($cache !== false) {
-            return $cache;
-        }
-
-        $response = $callback();
-
-        if ($response !== false) {
-            $this->storeInCache($key, $response, $expiration);
-        }
-
-        return $response;
-    }
     
+
     /**
      * Genera un token de autenticación.
      *

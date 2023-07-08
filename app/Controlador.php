@@ -1,12 +1,15 @@
 <?php
 // =============CONTROLADOR=========
+use Componentes\Funciones\Api;
+use Componentes\Funciones\Archivos;
+
 use Componentes\Interfaces\Metodos_Controlador;
 
 class Controlador implements Metodos_Controlador
 {
-    #Public: acceso sin restricción.
-    #Protected:Solo puede ser accesado por una clase heredada y la clase que lo define.
-    #Private:Solo puede ser accesado por la clase que lo define.
+    use Archivos, Api;
+
+    
     public $controlador;
     public $modelo;
     public $vista;

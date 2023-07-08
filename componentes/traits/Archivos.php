@@ -10,7 +10,7 @@ trait Archivos
      * @param string $ruta La ruta del archivo a leer.
      * @return string|false El contenido del archivo como una cadena de texto, o false en caso de error.
      */
-    public function Leer_Archivo(string $ruta): string|false
+    public function Leer_Archivo(string $ruta)
     {
         return file_get_contents($ruta);
     }
@@ -22,7 +22,7 @@ trait Archivos
      * @param string $contenido El contenido a escribir en el archivo.
      * @return int|false El número de bytes escritos en el archivo, o false en caso de error.
      */
-    public function Escribir_Archivo(string $ruta, string $contenido): int|false
+    public function Escribir_Archivo(string $ruta, string $contenido)
     {
         return file_put_contents($ruta, $contenido);
     }
@@ -68,7 +68,7 @@ trait Archivos
      * @param string $directorio La ruta del directorio a leer.
      * @return array|false Un array con los nombres de los archivos y subdirectorios, o false en caso de error.
      */
-    public function Leer_Directorio(string $directorio): array|false
+    public function Leer_Directorio(string $directorio)
     {
         return scandir($directorio);
     }
