@@ -67,7 +67,9 @@
         "tedivm/stash": "^0.17.6",
         "tedivm/jshrink": "^1.6",
         "cache/filesystem-adapter": "^1.1",
-        "phpmailer/phpmailer": "^6.8"
+        "phpmailer/phpmailer": "^6.8",
+        "illuminate/view": "^8.83",
+        "nesbot/carbon": "2.53.1"
     },
     "config": {
         "optimize-autoloader": true
